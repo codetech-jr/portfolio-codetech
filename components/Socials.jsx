@@ -17,7 +17,7 @@ const Social = ({ containerStyles = "flex gap-4 justify-center", iconStyles = ""
           href={item.path}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 border border-[#00C6FF] rounded-full flex justify-center items-center text-[#00C6FF] text-base hover:bg-[#00C6FF] hover:text-[#0C0C2C] hover:transition-all duration-500"
+          className="w-9 h-9 border rounded-full flex justify-center items-center border-[#00C6FF] text-[#00C6FF]  hover:bg-[#00C6FF] hover:text-[#0C0C2C] text-base hover:transition-all duration-500"
         >
           {item.icon}
         </Link>
