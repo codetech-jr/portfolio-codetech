@@ -193,7 +193,7 @@ const Work = () => {
                             {projects.map((item, index) => { // Cambié 'project' a 'item' para evitar conflicto con el estado 'project'
                                 return (
                                     <SwiperSlide key={index} className="w-full">
-                                        <div className="h-[460px] relative group flex justify-center items-center bg-pink-50/20">
+                                        <div className="border-[#0C0C2C] h-[460px] relative group flex justify-center items-center bg-pink-50/20">
                                             {/* overlay */}
                                             <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
                                             {/* image */}
@@ -202,7 +202,7 @@ const Work = () => {
                                                     src={item.image}
                                                     fill
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Ajusta los sizes según tu diseño
-                                                    className="object-cover"
+                                                    className="object-cover bg-[#0C0C2C]"
                                                     alt={`Imagen del ${item.title}`} // Alt text descriptivo
                                                     priority={index === 0} // Carga la primera imagen con prioridad
                                                 />
