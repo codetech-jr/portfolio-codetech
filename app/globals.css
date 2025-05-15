@@ -1,0 +1,89 @@
+/* app/globals.css */
+@import "tailwindcss"; /* CORRECTO para v4 */
+
+
+
+:root {
+  /* Usa @theme en lugar de theme() */
+  --color-primary: @theme colors.primary; 
+  --color-accent: @theme colors.accent.DEFAULT;
+  --color-accent-hover: @theme colors.accent.hover;
+
+      /* Colores principales */
+      --color-background: #0C0C2C;
+      --color-accent1: #00C6FF;
+      --color-accent2: #003B8D;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #A3A8CC;
+  
+      /* Colores complementarios */
+      --color-alt-background: #1B1F3B;
+      --color-success: #00D68F;
+      --color-warning: #FFC857;
+      --color-error: #FF4C61;
+
+  --background: 0 0% 100%; /* Blanco */
+  --foreground: 222.2 84% 4.9%; /* Negro/Gris oscuro */
+
+  --primary: 262.1 83.3% 57.8%; /* Ejemplo: Violeta */
+  --primary-foreground: 210 40% 98%; /* Ejemplo: Casi blanco */
+
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  /* ...otras variables: destructive, muted, accent, popover, card... */
+
+  --border: 214.3 31.8% 91.4%; /* Gris claro para borde */
+  --input: 214.3 31.8% 91.4%;
+  --ring: 262.1 83.3% 57.8%; /* Mismo color que primary para el anillo de foco */
+
+  --radius: 0.5rem; /* ¡ASEGÚRATE QUE ESTA VARIABLE EXISTE! */
+
+  /* La variable de fuente definida en layout.tsx sigue siendo correcta */
+}
+
+.stair-bg {
+  background-color: #0C0C2C;
+}
+  
+
+
+
+
+body {
+  font-family: var(--font-jetbrainsMono);
+  background-color: #0C0C2C;
+  /* Usa @theme aquí también */
+  /* background-color: @theme colors.primary;  */
+
+  /* Alternativamente, usa la variable CSS si la definiste en :root */
+  /* background-color: var(--color-primary); */
+
+}
+
+@layer base{
+  body{
+    @apply leading-loose;
+  }
+
+  .h1{
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
+  }
+
+  .h2{
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+  }
+  
+  .h3{
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+  }
+
+  .text-outline{
+    -webkit-text-stroke: 1px #fff;
+  }
+  
+  .text-outline-hover{
+    -webkit-text-stroke: #00C6FF;
+  }
+}
+

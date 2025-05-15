@@ -1,0 +1,6 @@
+
+@layer base{
+    .text-outline-hover{
+        -webkit-text-stroke: #00C6FF;
+    }
+}
