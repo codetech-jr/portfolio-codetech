@@ -25,10 +25,10 @@ const projects = [
         category: 'Frontend',
         title: 'Dada',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, laboriosam.',
-        stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
+        stack: [{ name: "React" }, { name: "Next.Js" }, { name: "TailwindCss" }],
         image: "/assets/dada.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
-        live: "https://dada-media-design.vercel.app/",
-        github: "https://github.com/codetech-jr/dada-media-design", 
+        live: "https://dada-react.vercel.app/",
+        github: "https://github.com/codetech-jr/dada-react", 
     },
     {
         num: '02',
