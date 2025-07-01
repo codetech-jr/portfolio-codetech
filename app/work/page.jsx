@@ -22,69 +22,109 @@ import WorkSliderBtns from "@/components/ui/WorkSliderBtns"; // Asumo que este c
 const projects = [
     {
         num: '01',
-        category: 'Frontend',
-        title: 'Dada',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, laboriosam.',
+        category: 'Frontend - UI/UX - Backend',
+        title: 'Repuestos Temuco',
+        description: 'Desarrollé un catálogo digital interactivo para una tienda de repuestos y electrodomésticos. El objetivo principal es ofrecer a los clientes una forma rápida y sencilla de consultar el inventario de productos disponibles, con un potente buscador y navegación por categorías. El sitio funciona como una vitrina online moderna que mejora la presencia digital del negocio.',
+        stack: [{ name: "React" }, { name: "TailwindCss" }, { name: "Typescript" }, { name: "Next.Js" }, { name: "Supabase" }],
+        image: "/assets/temuco.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
+        live: "https://temuco-repuestos.vercel.app/",
+        github: "https://github.com/codetech-jr/temuco-repuestos", 
+    },
+    {
+        num: '02',
+        category: 'Frontend - UI/UX - Branding',
+        title: 'Pedro Salazar Abogado',
+        description: 'Lideré el diseño y desarrollo del sitio web para el abogado Pedro Salazar, con un enfoque principal en la creación de una identidad visual sólida y una experiencia de usuario (UX) impecable. Mi labor incluyó la traducción de los atributos de la marca (seriedad, experiencia, confianza) a un diseño visual efectivo, seleccionando colores y tipografías acordes. El sitio está estructurado para guiar al usuario de forma intuitiva hacia los servicios y el contacto, optimizando el camino para la conversión.',
+        stack: [{ name: "React" }, { name: "TailwindCss" }, { name: "Typescript" }, { name: "Next.Js"}],
+        image: "/assets/pedro-salazar.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
+        live: "https://abogado-pedro-salazar.vercel.app/",
+        github: "https://github.com/codetech-jr/abogado-pedro-salazar", 
+    },
+    {
+        num: '03',
+        category: 'Frontend - UI/UX - Branding',
+        title: 'Miri Model Portfolio',
+        description: 'Responsable del ciclo completo de diseño y desarrollo del portafolio para una modelo profesional. El objetivo fue crear una experiencia de usuario (UX) inmersiva y visualmente impactante. Mi labor principal fue conceptualizar la identidad visual, seleccionando una paleta de colores sofisticada y un diseño limpio que pusiera el foco en la fotografía. El corazón del proyecto es una galería de alta resolución, diseñada para una navegación fluida y elegante que refleja el profesionalismo de la modelo.',
+        stack: [{ name: "React" }, { name: "TailwindCss" }, { name: "Typescript" }, { name: "Next.Js"}],
+        image: "/assets/portfolio-miri.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
+        live: "https://miri-portfolio-model.vercel.app/",
+        github: "https://github.com/codetech-jr/miri-portfolio-model",
+    },
+    {
+        num: '04',
+        category: 'Frontend - UI/UX',
+        title: 'Dada Videos',
+        description: 'Creé una página de aterrizaje optimizada para la conversión, dirigida a un editor de vídeo profesional. El objetivo principal del sitio es transformar visitantes en clientes potenciales mediante la exhibición impactante de su portafolio de trabajos y la inclusión de llamadas a la acción claras y efectivas. La estructura está pensada para guiar al usuario a través de la calidad y el estilo de la edición, generando confianza e incentivando el contacto.',
+        stack: [{ name: "Vue.js" }, { name: "TailwindCss" }, { name: "Typescript" }, { name: "Nuxt"}],
+        image: "/assets/dada-videos.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
+        live: "https://dada-videos.vercel.app/",
+        github: "https://github.com/codetech-jr/dada-videos",
+    },
+    {
+        num: '05',
+        category: 'Frontend - UX/UI',
+        title: 'Dada Media Design',
+        description: 'Desarrollé una landing page de alta conversión para un diseñador gráfico especializado en logos para emprendedores. El sitio web no solo funciona como un portafolio para exhibir sus mejores trabajos, sino que integra un embudo de ventas claro y directo, presentando planes y precios definidos para transformar visitantes en clientes. La estructura está diseñada estratégicamente para guiar al usuario desde la inspiración visual (los proyectos) hasta la decisión de compra (los planes y el contacto).',
         stack: [{ name: "React" }, { name: "Next.Js" }, { name: "TailwindCss" }],
         image: "/assets/dada.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
         live: "https://dada-react.vercel.app/",
         github: "https://github.com/codetech-jr/dada-react", 
     },
     {
-        num: '02',
+        num: '06',
         category: 'Frontend',
-        title: 'projecto 2',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, laboriosam.',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
         stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
         image: "/assets/homevista.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
         live: "https://homevista-js.vercel.app/",
         github: "https://github.com/codetech-jr/homevista-js", 
     },
     {
-        num: '03',
+        num: '07',
         category: 'Frontend',
-        title: 'projecto 3',
-        description: 'Consectetur adipisicing elit. Aliquam, assumenda perferendis dolores laudantium.',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
         stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
         image: "/assets/wecare.png", // Sin imagen, se mostrará un placeholder
         live: "https://landing-doctors-js.vercel.app/", // Sin enlace live
         github: "https://github.com/codetech-jr/landing-doctors-js",
     },
     {
-        num: '04',
+        num: '08',
         category: 'Frontend',
-        title: 'projecto 4',
-        description: 'Dolor sit amet consectetur adipisicing elit. Quaerat, voluptatem.',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
         stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
         image: "/assets/egator.png", // Ejemplo, asegúrate que exista en public/assets/
         live: "https://education-page-six.vercel.app/",
         github: "https://github.com/codetech-jr/education-page", // Sin enlace GitHub
     },
     {
-        num: '05',
+        num: '09',
         category: 'Frontend',
-        title: 'projecto 5',
-        description: 'Dolor sit amet consectetur adipisicing elit. Quaerat, voluptatem.',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
         stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
         image: "/assets/portfolio.png", // Ejemplo, asegúrate que exista en public/assets/
         live: "https://portfolio-ux-js.vercel.app/",
         github: "https://github.com/codetech-jr/portfolio-js", // Sin enlace GitHub
     },
     {
-        num: '06',
+        num: '10',
         category: 'Frontend',
-        title: 'projecto 6',
-        description: 'Dolor sit amet consectetur adipisicing elit. Quaerat, voluptatem.',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
         stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
         image: "/assets/lawyer.png", 
         live: "https://landing-lawyer.vercel.app/",
         github: "https://github.com/codetech-jr/landing-lawyer", 
     },
     {
-        num: '07',
+        num: '11',
         category: 'Frontend',
-        title: 'projecto 7',
-        description: 'Dolor sit amet consectetur adipisicing elit. Quaerat, voluptatem.',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
         stack: [{ name: "Html5" }, { name: "Css3" }, { name: "Javascript" }],
         image: "/assets/resto.png", 
         live: "https://restaurant-landing-ochre.vercel.app/",
@@ -114,13 +154,16 @@ const Work = () => {
                     <div className="w-full xl:w-[50%] xl:h-[700px] flex flex-col xl:justify-between order-2 xl:order-none">
                         <div className="flex flex-col gap-[30px] h-[50%]">
                             {/* outline num */}
-                            <div className="text-8xl leading-none font-extrabold text-transparent text-outline">
+                            <div className="font-extrabold leading-none text-transparent text-8xl text-outline">
                                 {project.num}
                             </div>
                             {/* project category */}
                             <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-[#00C6FF] transition-all duration-500 capitalize">
-                                {project.category} project
+                                {project.title}
                             </h2>
+                            <h3 className="text-[32px] font-bold leading-none text-white group-hover:text-[#00C6FF] transition-all duration-500 capitalize">
+                                {project.category} project
+                            </h3>
                             {/* project description */}
                             <p className="text-white/60">{project.description}</p>
                             {/* stack */}
@@ -138,7 +181,7 @@ const Work = () => {
                             {/* border */}
                             <div className="border border-white/20"></div>
                             {/* buttons */}
-                            <div className="flex gap-4 items-center">
+                            <div className="flex items-center gap-4">
                                 {/* Live Project Link */}
                                 {project.live && (
                                     <TooltipProvider delayDuration={100}>
@@ -195,7 +238,7 @@ const Work = () => {
                                     <SwiperSlide key={index} className="w-full">
                                         <div className="border-[#0C0C2C] h-[460px] relative group flex justify-center items-center bg-pink-50/20">
                                             {/* overlay */}
-                                            <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
+                                            <div className="absolute top-0 bottom-0 z-10 w-full h-full bg-black/10"></div>
                                             {/* image */}
                                             {item.image ? (
                                                 <Image
@@ -207,7 +250,7 @@ const Work = () => {
                                                     priority={index === 0} // Carga la primera imagen con prioridad
                                                 />
                                             ) : (
-                                                <div className="w-full h-full flex justify-center items-center bg-gray-600">
+                                                <div className="flex items-center justify-center w-full h-full bg-gray-600">
                                                     <p className="text-white">Sin imagen disponible</p>
                                                 </div>
                                             )}
