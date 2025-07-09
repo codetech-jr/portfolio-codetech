@@ -1,0 +1,145 @@
+/* --- Paleta de Colores Definida --- */
+:root {
+  --timeline-bg: #0C0C2C;
+  --card-bg: #1B1F3B;
+  --primary-color: #00C6FF;
+  --secondary-color: #003B8D;
+  --text-light: #FFFFFF;
+  --text-muted: #A3A8CC;
+}
+
+.timelineSection {
+  background-color: var(--timeline-bg); /* Fondo oscuro */
+  padding: 2.5rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--text-light); /* Color de texto principal */
+}
+
+.title span {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--primary-color); /* Color de acento para el subtítulo */
+  margin-top: 0.3rem;
+  font-weight: 400;
+}
+
+.timeline {
+  position: relative;
+  margin-left: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 0.7rem;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  /* Gradiente con los nuevos colores de acento */
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  border-radius: 3px;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-left: 2.5rem;
+  opacity: 1;
+  transform: none;
+}
+
+.description {
+  text-align: center;
+  max-width: 700px;
+  margin: -1.5rem auto 3rem auto; /* Ajusta el espaciado */
+  color: var(--text-muted); /* Usa el color de texto secundario */
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+
+.timelineDot {
+  position: absolute;
+  left: -2.1rem;
+  top: 0.1rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  /* Gradiente para el punto, usando los nuevos acentos */
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-light); /* Color del icono/número dentro del punto */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
+  z-index: 2;
+  /* El borde usa el color de fondo para crear un efecto de "corte" */
+  border: 3px solid var(--timeline-bg);
+  transition: transform 0.2s;
+}
+
+.timelineItem:hover .timelineDot {
+  transform: scale(1.08) rotate(-6deg);
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,0.13);
+}
+
+.timelineContent {
+  background: var(--card-bg); /* Fondo oscuro para la tarjeta */
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.06);
+  padding: 1.2rem 1.5rem 1.2rem 1.2rem;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 0.2s;
+}
+
+.timelineContent h3 {
+  margin: 0 0 0.7rem 0;
+  font-size: 1.15rem;
+  color: var(--primary-color); /* Título de la tarjeta con color de acento */
+  font-weight: 600;
+}
+
+.timelineContent ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.timelineContent li {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+  color: var(--text-muted); /* Color de texto suave para mejor legibilidad */
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .timelineItem {
+    padding-left: 1.5rem;
+  }
+  .timelineDot {
+    left: -1.3rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.1rem;
+  }
+  .timelineContent {
+    padding: 1rem 0.8rem 1rem 1rem;
+  }
+}

@@ -1,0 +1,48 @@
+.card {
+  background: var(--color-alt-background, #1B1F3B);
+  border: 2px solid var(--color-accent1, #00C6FF);
+  border-radius: var(--radius, 0.5rem);
+  box-shadow: 0 4px 24px 0 rgba(0, 198, 255, 0.10);
+  color: var(--color-text-primary, #fff);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px 0 rgba(0, 198, 255, 0.18);
+  border-color: var(--color-accent2, #003B8D);
+}
+
+.card h3 {
+  color: var(--color-accent1, #00C6FF);
+}
+
+.card a {
+  color: var(--color-accent1, #00C6FF);
+  font-weight: 600;
+}
+
+.card a:hover {
+  color: var(--color-accent2, #003B8D);
+}
+
+.card .bg-gray-200 {
+  background: var(--color-accent2, #003B8D) !important;
+  color: var(--color-text-primary, #fff) !important;
+}
+
+.card .text-gray-700 {
+  color: var(--color-accent1, #00C6FF) !important;
+}
+
+.card button {
+  background: var(--color-accent1, #00C6FF) !important;
+  color: var(--color-alt-background, #1B1F3B) !important;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(0, 198, 255, 0.15);
+}
+
+.card button:hover {
+  background: var(--color-accent2, #003B8D) !important;
+  color: var(--color-text-primary, #fff) !important;
+} 
