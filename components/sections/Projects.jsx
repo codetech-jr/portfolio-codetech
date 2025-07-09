@@ -124,7 +124,7 @@ const headerTextVariants = {
 // --- COMPONENTE PRINCIPAL ---
 const Projects = () => {
   return (
-    <section id="proyectos" className="py-16 bg-[#0C0C2C] sm:py-24">
+    <section id="projects" className="py-16 bg-[#0C0C2C] sm:py-24">
       <div className="container px-4 mx-auto">
         <motion.div
             className="text-center"

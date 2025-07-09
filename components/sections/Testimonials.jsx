@@ -1,7 +1,7 @@
 "use client";
-import { motion } from "framer-motion"; // 1. Importar Framer Motion
+import { motion } from "framer-motion";
 
-// --- DATOS (sin cambios) ---
+// --- DATOS ---
 const testimonials = [
   {
     name: "Pedro Salazar",
@@ -26,7 +26,7 @@ const testimonials = [
   },
 ];
 
-// --- Componente TestimonialCard (sin cambios en su lógica interna) ---
+// --- Componente TestimonialCard ---
 const TestimonialCard = ({ testimonial }) => {
   return (
     <div className="flex flex-col h-full p-8 rounded-2xl border-2 shadow-lg bg-[#1B1F3B] border-[#003B8D]">
@@ -53,13 +53,13 @@ const TestimonialCard = ({ testimonial }) => {
   );
 };
 
-// --- 2. DEFINIR VARIANTES DE ANIMACIÓN (reutilizables) ---
+// --- VARIANTES DE ANIMACIÓN ---
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25, // Retraso entre cada tarjeta
+      staggerChildren: 0.25,
     },
   },
 };
@@ -70,12 +70,11 @@ const itemVariants = {
 };
 
 
-// --- COMPONENTE PRINCIPAL CON ANIMACIONES ---
+// --- COMPONENTE PRINCIPAL CON ANIMACIONES Y HOVER ---
 export default function Testimonials() {
   return (
     <section id="testimonios" className="py-24 bg-[#0C0C2C]">
       <div className="container px-4 mx-auto">
-        {/* 3. Animar el encabezado de la sección */}
         <motion.div
           className="text-center"
           initial="hidden"
@@ -90,7 +89,6 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        {/* 4. Animar el grid de testimonios con 'staggering' */}
         <motion.div
           className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
@@ -99,8 +97,11 @@ export default function Testimonials() {
           viewport={{ once: true, amount: 0.2 }}
         >
           {testimonials.map((testimonial, idx) => (
-            // Cada tarjeta es ahora un hijo animado del contenedor
-            <motion.div key={idx} variants={itemVariants}>
+            <motion.div 
+              key={idx} 
+              variants={itemVariants}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+            >
               <TestimonialCard testimonial={testimonial} />
             </motion.div>
           ))}

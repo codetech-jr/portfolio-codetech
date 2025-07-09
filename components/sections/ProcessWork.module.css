@@ -1,15 +1,5 @@
-/* --- Paleta de Colores Definida --- */
-:root {
-  --timeline-bg: #0C0C2C;
-  --card-bg: #1B1F3B;
-  --primary-color: #00C6FF;
-  --secondary-color: #003B8D;
-  --text-light: #FFFFFF;
-  --text-muted: #A3A8CC;
-}
-
 .timelineSection {
-  background-color: var(--timeline-bg); /* Fondo oscuro */
+  background-color: #0C0C2C; /* Fondo oscuro */
   padding: 2.5rem 1rem;
   max-width: 900px;
   margin: 0 auto;
@@ -22,13 +12,13 @@
   margin-bottom: 2.5rem;
   font-weight: 700;
   letter-spacing: -1px;
-  color: var(--text-light); /* Color de texto principal */
+  color: #FFFFFF; /* Color de texto principal */
 }
 
 .title span {
   display: block;
   font-size: 1.1rem;
-  color: var(--primary-color); /* Color de acento para el subtítulo */
+  color: #00C6FF; /* Color de acento para el subtítulo */
   margin-top: 0.3rem;
   font-weight: 400;
 }
@@ -46,7 +36,7 @@
   width: 6px;
   height: 100%;
   /* Gradiente con los nuevos colores de acento */
-  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(to bottom, #00C6FF, #003B8D);
   border-radius: 3px;
   z-index: 0;
   opacity: 0.15;
@@ -64,7 +54,7 @@
   text-align: center;
   max-width: 700px;
   margin: -1.5rem auto 3rem auto; /* Ajusta el espaciado */
-  color: var(--text-muted); /* Usa el color de texto secundario */
+  color: #A3A8CC; /* Usa el color de texto secundario */
   font-size: 1.05rem;
   line-height: 1.6;
 }
@@ -77,8 +67,8 @@
   width: 3.2rem;
   height: 3.2rem;
   /* Gradiente para el punto, usando los nuevos acentos */
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: var(--text-light); /* Color del icono/número dentro del punto */
+  background: linear-gradient(135deg, #00C6FF, #003B8D);
+  color: #FFFFFF; /* Color del icono/número dentro del punto */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -87,7 +77,7 @@
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
   z-index: 2;
   /* El borde usa el color de fondo para crear un efecto de "corte" */
-  border: 3px solid var(--timeline-bg);
+  border: 3px solid #0C0C2C;
   transition: transform 0.2s;
 }
 
@@ -97,7 +87,7 @@
 }
 
 .timelineContent {
-  background: var(--card-bg); /* Fondo oscuro para la tarjeta */
+  background: #1B1F3B; /* Fondo oscuro para la tarjeta */
   border-radius: 1rem;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.06);
   padding: 1.2rem 1.5rem 1.2rem 1.2rem;
@@ -109,7 +99,7 @@
 .timelineContent h3 {
   margin: 0 0 0.7rem 0;
   font-size: 1.15rem;
-  color: var(--primary-color); /* Título de la tarjeta con color de acento */
+  color: #00C6FF; /* Título de la tarjeta con color de acento */
   font-weight: 600;
 }
 
@@ -121,7 +111,7 @@
 .timelineContent li {
   margin-bottom: 0.35rem;
   font-size: 1rem;
-  color: var(--text-muted); /* Color de texto suave para mejor legibilidad */
+  color: #A3A8CC; /* Color de texto suave para mejor legibilidad */
   line-height: 1.5;
 }
 

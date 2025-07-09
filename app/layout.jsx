@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <head>
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="text-white leading-loose"> 
+      <body className="leading-loose text-white scroll-smooth"> 
         
       <PageTransition>
       
