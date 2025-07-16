@@ -26,11 +26,21 @@ module.exports = {
         },
         extend: {
             colors:{
-                primary: '#1c1c22',
+                primary: '#0C0C2C',
                 accent: {
-                    DEFAULT: '#00ff99', // Usado con clases como bg-accent, text-accent
-                    hover: '#00e187',   // Usado explícitamente o en plugins/componentes
+                    DEFAULT: '#00C6FF', // Usado con clases como bg-accent, text-accent
+                    hover: '#00C6FF',   // Usado explícitamente o en plugins/componentes
                 }
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        p: {
+                            marginTop: '1.5em',
+                            marginBottom: '1.5em',
+                        },
+                    },
+                },
             },
             // Puedes añadir otras extensiones aquí (keyframes, animation, etc.)
             // keyframes: { ... },

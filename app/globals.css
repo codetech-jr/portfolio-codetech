@@ -89,3 +89,35 @@ body {
   }
 }
 
+/* Custom styles for prose strong tags */
+.prose strong {
+  color: #fff;
+}
+
+/* app/globals.css */
+
+/* ... tus otros estilos de Tailwind ... */
+
+.prose h2, .prose h3 {
+  /* Añade más espacio encima de los encabezados H2 y H3 */
+  margin-top: 2.5em; 
+}
+
+.prose p {
+  /* Aumenta el espacio entre párrafos */
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  /* Aumenta la altura de línea para mejor legibilidad */
+  line-height: 1.7; 
+}
+
+.prose ul, .prose ol {
+  /* Más espacio para las listas */
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.blog-content p {
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
+}
