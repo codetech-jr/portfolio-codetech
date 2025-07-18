@@ -6,3 +6,11 @@ export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-11
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'vzcmb61s' // <-- TU PROJECT ID AQUÍ
 export const useCdn = false
+
+// Verificar que las variables estén definidas
+console.log('Sanity env variables:', {
+  apiVersion,
+  dataset,
+  projectId,
+  useCdn
+});

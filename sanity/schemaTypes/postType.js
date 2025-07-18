@@ -81,6 +81,14 @@ const post = {
       of: [{type: 'reference', to: {type: 'category'}}],
     },
     {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      group: 'meta',
+      of: [{type: 'reference', to: {type: 'tag'}}],
+      description: 'Tags para mejorar la búsqueda y organización del contenido.',
+    },
+    {
       name: 'publishedAt',
       title: 'Fecha de Publicación',
       type: 'datetime',

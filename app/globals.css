@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/typography";
+/* @plugin "@tailwindcss/line-clamp"; no sé porque no está funcionando*/
 
 :root {
   /* Usa @theme en lugar de theme() */

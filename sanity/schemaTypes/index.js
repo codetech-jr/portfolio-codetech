@@ -5,6 +5,7 @@ import authorType from './authorType'
 import categoryType from './categoryType'
 import blockContentType from './blockContentType'
 import postType from './postType'
+import tagType from './tagType'
 
 // Los exportamos en el array
 export const schemaTypes = [
@@ -12,4 +13,5 @@ export const schemaTypes = [
   authorType,
   categoryType,
   blockContentType,
+  tagType,
 ]
