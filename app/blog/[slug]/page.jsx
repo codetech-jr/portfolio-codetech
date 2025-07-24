@@ -24,7 +24,7 @@ import {
 } from 'react-icons/fa';
 import React from 'react'; // Added missing import for React
 import TableOfContents from '@/components/sections/TableOfContents';
-import Comments from '@/components/sections/Comments';
+import Comments from '@/components/ui/Comments';
 import ReadingStats from '@/components/sections/ReadingStats';
 
 // Función para generar los metadatos dinámicos para SEO
@@ -365,57 +365,236 @@ async function getRelatedPosts(currentPostId, categories = []) {
 
 // La página del post
 export default async function BlogPostPage({ params }) {
-  const post = await getPost(params.slug);
-  const relatedPosts = await getRelatedPosts(post._id, post.categories);
-
-  // Componentes personalizados para PortableText
-  const ptComponents = {
-    types: {
-      code: ({ value }) => {
-        if (!value || !value.code) {
-          return null;
-        }
-        return (
-          <div className="my-6">
-            <SyntaxHighlighter
-              style={vscDarkPlus}
-              language={value.language}
-              showLineNumbers
-              className="rounded-lg"
-            >
-              {value.code.trim()}
-            </SyntaxHighlighter>
+  try {
+    const post = await getPost(params.slug);
+    
+    if (!post) {
+      return (
+        <div className="min-h-screen bg-[#0C0C2C] flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-[#00C6FF] mb-4">Post no encontrado</h1>
+            <Link href="/blog" className="text-[#A3A8CC] hover:text-[#00C6FF] transition-colors">
+              Volver al blog
+            </Link>
           </div>
-        );
-      },
-    },
-    block: {
-      normal: ({ children }) => {
-        return (
-          <p className="mb-6 leading-relaxed">
-            {children.map((child, i) => {
-              if (typeof child === 'string') {
-                const parts = child.split(/\n/g);
-                return parts.map((part, j) => (
-                  <React.Fragment key={j}>
-                    {part}
-                    {j < parts.length - 1 && <br />}
-                  </React.Fragment>
-                ));
-              }
-              return child;
-            })}
-          </p>
-        );
-      },
-    },
-  };
+        </div>
+      );
+    }
 
-  if (!post) {
+    const relatedPosts = await getRelatedPosts(post._id, post.categories || []);
+
+    // Componentes personalizados para PortableText
+    const ptComponents = {
+      types: {
+        code: ({ value }) => {
+          if (!value || !value.code) {
+            return null;
+          }
+          return (
+            <div className="my-6">
+              <SyntaxHighlighter
+                style={vscDarkPlus}
+                language={value.language}
+                showLineNumbers
+                className="rounded-lg"
+              >
+                {value.code.trim()}
+              </SyntaxHighlighter>
+            </div>
+          );
+        },
+      },
+      block: {
+        normal: ({ children }) => {
+          return (
+            <p className="mb-6 leading-relaxed">
+              {children.map((child, i) => {
+                if (typeof child === 'string') {
+                  const parts = child.split(/\n/g);
+                  return parts.map((part, j) => (
+                    <React.Fragment key={j}>
+                      {part}
+                      {j < parts.length - 1 && <br />}
+                    </React.Fragment>
+                  ));
+                }
+                return child;
+              })}
+            </p>
+          );
+        },
+      },
+    };
+
+    return (
+      <div className="min-h-screen bg-[#0C0C2C]">
+        <JsonLd post={post} />
+
+        <main className="container px-4 py-8 mx-auto">
+          <div className="max-w-6xl mx-auto">
+            {/* Breadcrumbs */}
+            <Breadcrumbs post={post} />
+
+            {/* Header del post */}
+            <header className="mb-8">
+              <h1 className="text-4xl md:text-5xl font-bold text-[#00C6FF] mb-6 leading-tight">
+                {post.title}
+              </h1>
+
+              {/* Meta información */}
+              <div className="flex flex-wrap items-center gap-6 text-[#A3A8CC] mb-6">
+                <div className="flex items-center space-x-2">
+                  <FaUser className="w-4 h-4" />
+                  <span>{post.author?.name || 'Autor desconocido'}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <FaCalendar className="w-4 h-4" />
+                  <span>
+                    {new Date(post.publishedAt).toLocaleDateString('es-ES', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </span>
+                </div>
+                {post.estimatedReadingTime && (
+                  <div className="flex items-center space-x-2">
+                    <FaClock className="w-4 h-4" />
+                    <span>{post.estimatedReadingTime} min de lectura</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Categorías */}
+              {post.categories && post.categories.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {post.categories.map((category, index) => (
+                    <Link
+                      key={index}
+                      href={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="px-3 py-1 bg-[#00C6FF] text-[#0C0C2C] text-sm font-semibold rounded-full hover:bg-[#00C6FF]/90 transition-colors"
+                    >
+                      {category}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {/* Tags */}
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex items-center space-x-2 text-[#A3A8CC]">
+                    <FaTag className="w-4 h-4" />
+                    <span className="text-sm">Tags:</span>
+                  </div>
+                  {post.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 text-sm font-semibold rounded-full ${tag.color || 'bg-[#00C6FF]'
+                        } text-[#0C0C2C]`}
+                    >
+                      {tag.title}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </header>
+
+            {/* Imagen principal */}
+            {post.mainImage && (
+              <div className="mb-8">
+                <Image
+                  src={urlFor(post.mainImage).width(1200).height(630).url()}
+                  alt={`Imagen principal para ${post.title}`}
+                  width={1200}
+                  height={630}
+                  className="w-full rounded-lg shadow-lg"
+                  priority
+                />
+              </div>
+            )}
+
+            {/* Layout de 2 columnas - MODIFICADO */}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+              {/* Contenido principal */}
+              <div className="lg:col-span-3">
+                {/* Contenido del post */}
+                <article className="prose prose-invert lg:prose-xl max-w-none prose-headings:text-[#00C6FF] prose-a:text-[#00C6FF] hover:prose-a:text-[#00C6FF]/80 prose-strong:text-white prose-code:text-[#00C6FF] prose-code:bg-[#1B1F3B] prose-code:px-2 prose-code:py-1 prose-code:rounded">
+                  <PortableText value={post.body} components={ptComponents} />
+                </article>
+
+                {/* Comentarios */}
+                <Comments
+                  postId={post._id}
+                  postSlug={post.slug}
+                  className="mt-12"
+                />
+
+                {/* Call to action */}
+                <div className="mt-12 bg-gradient-to-r from-[#00C6FF] to-[#003B8D] rounded-lg p-8 text-center">
+                  <h3 className="mb-4 text-2xl font-bold text-white">
+                    ¿Te gustó este artículo?
+                  </h3>
+                  <p className="mb-6 text-white/90">
+                    Si necesitas ayuda con tu proyecto web o tienes alguna pregunta,
+                    no dudes en contactarme. Estoy aquí para ayudarte a crear algo increíble.
+                  </p>
+                  <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                    <Link
+                      href="/contact"
+                      className="px-8 py-3 bg-white text-[#0C0C2C] font-semibold rounded-lg hover:bg-white/90 transition-colors"
+                    >
+                      Contactar
+                    </Link>
+                    <Link
+                      href="/work"
+                      className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#0C0C2C] transition-colors"
+                    >
+                      Ver Portfolio
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sidebar - MODIFICADO */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-8 space-y-6">
+                  {/* Tabla de contenidos */}
+                  <div className="w-full">
+                    <TableOfContents content={post.body} />
+                  </div>
+
+                  {/* Estadísticas de lectura */}
+                  <div className="w-full">
+                    <ReadingStats content={post.body} />
+                  </div>
+
+                  {/* Información del autor */}
+                  {post.author && (
+                    <AuthorInfo author={post.author} />
+                  )}
+
+                  {/* Botones de compartir */}
+                  <ShareButtons post={post} />
+                </div>
+              </div>
+            </div>
+
+            {/* Posts relacionados */}
+            {relatedPosts && relatedPosts.length > 0 && (
+              <RelatedPosts currentPost={post} relatedPosts={relatedPosts} />
+            )}
+          </div>
+        </main>
+      </div>
+    );
+  } catch (error) {
+    console.error('Error loading post:', error);
     return (
       <div className="min-h-screen bg-[#0C0C2C] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#00C6FF] mb-4">Post no encontrado</h1>
+          <h1 className="text-2xl font-bold text-[#00C6FF] mb-4">Error al cargar el post</h1>
+          <p className="text-[#A3A8CC] mb-4">Hubo un problema al cargar este artículo.</p>
           <Link href="/blog" className="text-[#A3A8CC] hover:text-[#00C6FF] transition-colors">
             Volver al blog
           </Link>
@@ -423,174 +602,4 @@ export default async function BlogPostPage({ params }) {
       </div>
     );
   }
-
-  return (
-    <div className="min-h-screen bg-[#0C0C2C]">
-      <JsonLd post={post} />
-
-      <main className="container px-4 py-8 mx-auto">
-        <div className="max-w-6xl mx-auto">
-          {/* Breadcrumbs */}
-          <Breadcrumbs post={post} />
-
-          {/* Header del post */}
-          <header className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#00C6FF] mb-6 leading-tight">
-              {post.title}
-            </h1>
-
-            {/* Meta información */}
-            <div className="flex flex-wrap items-center gap-6 text-[#A3A8CC] mb-6">
-              <div className="flex items-center space-x-2">
-                <FaUser className="w-4 h-4" />
-                <span>{post.author.name}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <FaCalendar className="w-4 h-4" />
-                <span>
-                  {new Date(post.publishedAt).toLocaleDateString('es-ES', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </span>
-              </div>
-              {post.estimatedReadingTime && (
-                <div className="flex items-center space-x-2">
-                  <FaClock className="w-4 h-4" />
-                  <span>{post.estimatedReadingTime} min de lectura</span>
-                </div>
-              )}
-            </div>
-
-            {/* Categorías */}
-            {post.categories && post.categories.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-6">
-                {post.categories.map((category, index) => (
-                  <Link
-                    key={index}
-                    href={`/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="px-3 py-1 bg-[#00C6FF] text-[#0C0C2C] text-sm font-semibold rounded-full hover:bg-[#00C6FF]/90 transition-colors"
-                  >
-                    {category}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-6">
-                <div className="flex items-center space-x-2 text-[#A3A8CC]">
-                  <FaTag className="w-4 h-4" />
-                  <span className="text-sm">Tags:</span>
-                </div>
-                {post.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className={`px-3 py-1 text-sm font-semibold rounded-full ${tag.color || 'bg-[#00C6FF]'
-                      } text-[#0C0C2C]`}
-                  >
-                    {tag.title}
-                  </span>
-                ))}
-              </div>
-            )}
-          </header>
-
-          {/* Imagen principal */}
-          {post.mainImage && (
-            <div className="mb-8">
-              <Image
-                src={urlFor(post.mainImage).width(1200).height(630).url()}
-                alt={`Imagen principal para ${post.title}`}
-                width={1200}
-                height={630}
-                className="w-full rounded-lg shadow-lg"
-                priority
-              />
-            </div>
-          )}
-
-          {/* Layout de 2 columnas - MODIFICADO */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-            {/* Contenido principal */}
-            <div className="lg:col-span-3">
-              {/* Contenido del post */}
-              <article className="prose prose-invert lg:prose-xl max-w-none prose-headings:text-[#00C6FF] prose-a:text-[#00C6FF] hover:prose-a:text-[#00C6FF]/80 prose-strong:text-white prose-code:text-[#00C6FF] prose-code:bg-[#1B1F3B] prose-code:px-2 prose-code:py-1 prose-code:rounded">
-                <PortableText value={post.body} components={ptComponents} />
-              </article>
-
-              {/* Comentarios */}
-              <Comments
-                postId={post._id}
-                postSlug={post.slug}
-                className="mt-12"
-              />
-
-              {/* Call to action */}
-              <div className="mt-12 bg-gradient-to-r from-[#00C6FF] to-[#003B8D] rounded-lg p-8 text-center">
-                <h3 className="mb-4 text-2xl font-bold text-white">
-                  ¿Te gustó este artículo?
-                </h3>
-                <p className="mb-6 text-white/90">
-                  Si necesitas ayuda con tu proyecto web o tienes alguna pregunta,
-                  no dudes en contactarme. Estoy aquí para ayudarte a crear algo increíble.
-                </p>
-                <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                  <Link
-                    href="/contact"
-                    className="px-8 py-3 bg-white text-[#0C0C2C] font-semibold rounded-lg hover:bg-white/90 transition-colors"
-                  >
-                    Contactar
-                  </Link>
-                  <Link
-                    href="/work"
-                    className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#0C0C2C] transition-colors"
-                  >
-                    Ver Portfolio
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Sidebar - MODIFICADO */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-8 space-y-6">
-                {/* Tabla de contenidos */}
-                <div className="w-full">
-                  <TableOfContents content={post.body} />
-                </div>
-
-                {/* Estadísticas de lectura */}
-                <div className="w-full">
-                  <ReadingStats
-                    postId={post._id}
-                    postSlug={post.slug}
-                  />
-                </div>
-
-                {/* Información del autor */}
-                <div className="w-full">
-                  <AuthorInfo author={post.author} />
-                </div>
-
-                {/* Botones de compartir */}
-                <div className="w-full">
-                  <ShareButtons post={post} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Posts relacionados */}
-          {relatedPosts.length > 0 && (
-            <div className="mt-16">
-              <RelatedPosts currentPost={post} relatedPosts={relatedPosts} />
-            </div>
-          )}
-        </div>
-      </main>
-    </div>
-  );
 }

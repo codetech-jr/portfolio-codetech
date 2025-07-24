@@ -19,6 +19,7 @@ import AdvancedFilters from '@/components/sections/AdvancedFilters';
 import SearchAutocomplete from '@/components/sections/SearchAutocomplete';
 import AnimatedPostCard from '@/components/sections/AnimatedPostCard';
 import FeaturedPost from '@/components/sections/FeaturedPost';
+import { getCategories } from '@/lib/sanityQueries';
 
 // Metadatos para la página principal del blog
 // export const metadata = {
@@ -104,34 +105,27 @@ function BlogHeader({ searchQuery, onSearchChange, onClearSearch, isSearching })
 }
 
 // Componente para las categorías
-function Categories() {
-  const categories = [
-    { name: 'Desarrollo Web', count: 12, color: 'bg-[#00C6FF]' },
-    { name: 'Diseño UX/UI', count: 8, color: 'bg-[#FF6B6B]' },
-    { name: 'SEO', count: 6, color: 'bg-[#4ECDC4]' },
-    { name: 'Tecnologías', count: 10, color: 'bg-[#45B7D1]' },
-    { name: 'Performance', count: 4, color: 'bg-[#96CEB4]' },
-  ];
-
+function Categories({ categories }) {
   return (
     <div className="bg-[#1B1F3B] rounded-lg p-6 border border-[#003B8D]">
       <h3 className="text-xl font-bold text-[#00C6FF] mb-4">Categorías</h3>
       <div className="space-y-3">
-        {categories.map((category, index) => (
+        {categories.length === 0 && (
+          <span className="text-[#A3A8CC]">No hay categorías disponibles.</span>
+        )}
+        {categories.map((category) => (
           <Link
-            key={index}
-            href={`/blog/category/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
+            key={category._id}
+            href={`/blog/category/${category.slug}`}
             className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C0C2C] transition-colors duration-200"
           >
             <div className="flex items-center space-x-3">
-              <div className={`w-3 h-3 rounded-full ${category.color}`}></div>
+              <div className="w-3 h-3 rounded-full bg-[#00C6FF]"></div>
               <span className="text-[#A3A8CC] hover:text-white transition-colors">
-                {category.name}
+                {category.title}
               </span>
             </div>
-            <span className="text-sm text-[#A3A8CC] bg-[#0C0C2C] px-2 py-1 rounded-full">
-              {category.count}
-            </span>
+            {/* Aquí podrías mostrar el número de posts por categoría si lo deseas */}
           </Link>
         ))}
       </div>
@@ -510,7 +504,7 @@ export default function BlogIndexPage() {
               tags={tags}
               onFiltersChange={handleFiltersChange}
             />
-            <Categories />
+            <Categories categories={categories} />
             <PopularPosts posts={popularPosts} />
             <NewsletterSignup />
           </div>

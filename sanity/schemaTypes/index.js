@@ -6,6 +6,7 @@ import categoryType from './categoryType'
 import blockContentType from './blockContentType'
 import postType from './postType'
 import tagType from './tagType'
+import commentType from './commentType'
 
 // Los exportamos en el array
 export const schemaTypes = [
@@ -14,4 +15,5 @@ export const schemaTypes = [
   categoryType,
   blockContentType,
   tagType,
+  commentType,
 ]
