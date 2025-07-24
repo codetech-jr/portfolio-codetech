@@ -2,7 +2,7 @@
 import { client } from '@/sanity/lib/client'; // Ajusta la ruta si es necesario
 
 export default async function sitemap() {
-  const baseUrl = 'https://tu-dominio.com'; // Cambia por tu dominio real
+  const baseUrl = 'https://codetechjr.com'; // Cambia por tu dominio real
 
   // Obtiene todos los posts
   const postsQuery = `*[_type == "post"]{ "slug": slug.current, _updatedAt }`;
