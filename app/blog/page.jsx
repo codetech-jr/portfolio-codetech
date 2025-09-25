@@ -20,6 +20,7 @@ import SearchAutocomplete from '@/components/sections/SearchAutocomplete';
 import AnimatedPostCard from '@/components/sections/AnimatedPostCard';
 import FeaturedPost from '@/components/sections/FeaturedPost';
 import { getCategories } from '@/lib/sanityQueries';
+import React from 'react'; // Added for React.useState
 
 // Metadatos para la página principal del blog
 // export const metadata = {
@@ -86,14 +87,14 @@ async function getAllTags() {
 function BlogHeader({ searchQuery, onSearchChange, onClearSearch, isSearching }) {
   return (
     <header className="bg-gradient-to-r from-[#0C0C2C] to-[#1B1F3B] border-b border-[#003B8D] py-8">
-      <div className="container mx-auto px-4 flex flex-col items-center">
+      <div className="container flex flex-col items-center px-4 mx-auto">
         <h1 className="text-5xl font-bold text-[#00C6FF] mb-4 text-center">
           Blog de Desarrollo Web
         </h1>
         <p className="text-xl text-[#A3A8CC] max-w-2xl mx-auto text-center mb-8">
           Artículos profesionales sobre diseño web, SEO, tecnologías modernas y mejores prácticas para crear experiencias digitales excepcionales.
         </p>
-        <div className="max-w-md w-full">
+        <div className="w-full max-w-md">
           <SearchAutocomplete 
             onSearch={onSearchChange}
             placeholder="Buscar artículos..."
@@ -165,23 +166,58 @@ function PopularPosts({ posts }) {
 
 // Componente para newsletter
 function NewsletterSignup() {
+  'use client'
+  const [email, setEmail] = React.useState('')
+  const [status, setStatus] = React.useState(null) // 'ok' | 'error' | null
+  const [loading, setLoading] = React.useState(false)
+
+  const subscribe = async () => {
+    setStatus(null)
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('error')
+      return
+    }
+    setLoading(true)
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      })
+      if (res.ok) {
+        setStatus('ok')
+        setEmail('')
+      } else {
+        setStatus('error')
+      }
+    } catch (e) {
+      setStatus('error')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="bg-gradient-to-br from-[#00C6FF] to-[#003B8D] rounded-lg p-6 text-center">
-      <h3 className="text-xl font-bold text-white mb-2">
+      <h3 className="mb-2 text-xl font-bold text-white">
         ¡Suscríbete al Newsletter!
       </h3>
-      <p className="text-white/90 mb-4 text-sm">
+      <p className="mb-4 text-sm text-white/90">
         Recibe los mejores artículos sobre desarrollo web directamente en tu email.
       </p>
       <div className="flex flex-col space-y-2">
         <input
           type="email"
           placeholder="Tu email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="flex-1 px-4 py-2 rounded-lg text-[#0C0C2C] placeholder-[#0C0C2C]/60 focus:outline-none focus:ring-2 focus:ring-white"
         />
-        <button className="px-6 py-2 bg-white text-[#0C0C2C] font-semibold rounded-lg hover:bg-white/90 transition-colors">
-          Suscribir
+        <button onClick={subscribe} disabled={loading} className="px-6 py-2 bg-white text-[#0C0C2C] font-semibold rounded-lg hover:bg-white/90 transition-colors disabled:opacity-50">
+          {loading ? 'Enviando...' : 'Suscribir'}
         </button>
+        {status === 'ok' && <span className="text-sm text-green-100">¡Listo! Revisa tu correo.</span>}
+        {status === 'error' && <span className="text-sm text-red-100">Email inválido o error al suscribir.</span>}
       </div>
     </div>
   );
@@ -199,7 +235,7 @@ function PostCard({ post, isFeatured = false, isSearchResult = false }) {
               alt={`Imagen de portada para ${post.title}`}
               width={600}
               height={400}
-              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-48 bg-gradient-to-br from-[#1B1F3B] to-[#003B8D] flex items-center justify-center">
@@ -218,7 +254,7 @@ function PostCard({ post, isFeatured = false, isSearchResult = false }) {
           
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
-            <div className="absolute bottom-4 left-4 flex flex-wrap gap-1">
+            <div className="absolute flex flex-wrap gap-1 bottom-4 left-4">
               {post.tags.slice(0, 3).map((tag, index) => (
                 <span
                   key={index}
@@ -293,7 +329,7 @@ function PostCard({ post, isFeatured = false, isSearchResult = false }) {
           
           <div className="mt-4 flex items-center text-[#00C6FF] group-hover:text-white transition-colors">
             <span className="text-sm font-medium">Leer más</span>
-            <FaArrowRight className="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" />
+            <FaArrowRight className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-1" />
           </div>
         </div>
       </Link>
@@ -317,8 +353,8 @@ function SearchResults({ searchResults, searchQuery, totalResults }) {
       </div>
       
       {searchResults.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="text-6xl mb-4">🔍</div>
+        <div className="py-12 text-center">
+          <div className="mb-4 text-6xl">🔍</div>
           <h3 className="text-xl font-semibold text-[#00C6FF] mb-2">
             No se encontraron resultados
           </h3>
@@ -328,7 +364,7 @@ function SearchResults({ searchResults, searchQuery, totalResults }) {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {searchResults.map((post, index) => (
             <AnimatedPostCard key={post._id} post={post} isSearchResult={true} index={index} />
           ))}
@@ -444,8 +480,8 @@ export default function BlogIndexPage() {
         isSearching={isSearching}
       />
       
-      <main className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <main className="container px-4 py-12 mx-auto">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
           {/* Contenido principal */}
           <div className="lg:col-span-3">
             {/* Resultados de búsqueda */}
@@ -469,7 +505,7 @@ export default function BlogIndexPage() {
                 {/* Grid de posts regulares */}
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold text-[#00C6FF] mb-6">Artículos Recientes</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                     {regularPosts.map((post, index) => (
                       <AnimatedPostCard key={post._id} post={post} index={index + 1} />
                     ))}
@@ -498,7 +534,7 @@ export default function BlogIndexPage() {
           </div>
           
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-8">
+          <div className="space-y-8 lg:col-span-1">
             <AdvancedFilters 
               categories={categories}
               tags={tags}

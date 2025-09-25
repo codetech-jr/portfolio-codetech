@@ -4,41 +4,56 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaEye, FaHeart, FaShare, FaBookmark, FaClock } from 'react-icons/fa';
 
-export default function ReadingStats({ postId, postSlug, className = "" }) {
+export default function ReadingStats({ postId, postSlug, readingTime = 0, className = "" }) {
   const [stats, setStats] = useState({
     views: 0,
     likes: 0,
     shares: 0,
     bookmarks: 0,
-    readingTime: 0
+    readingTime: readingTime || 0
   });
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    // Cargar estadísticas del post
-    loadStats();
-    
-    // Verificar si el usuario ya dio like o guardó el post
-    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
-    const bookmarkedPosts = JSON.parse(localStorage.getItem('bookmarkedPosts') || '[]');
-    
-    setIsLiked(likedPosts.includes(postId));
-    setIsBookmarked(bookmarkedPosts.includes(postId));
+    async function init() {
+      // Cargar estadísticas reales desde la API
+      await loadStats();
+
+      // Evitar duplicados de vista por 12h usando TTL en localStorage
+      const key = `viewed_${postId}`;
+      const last = Number(localStorage.getItem(key) || 0);
+      const twelveHoursMs = 12 * 60 * 60 * 1000;
+      const now = Date.now();
+      if (!last || now - last > twelveHoursMs) {
+        await fetch(`/api/stats`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ postId, type: 'views' })
+        }).catch(() => {});
+        localStorage.setItem(key, String(now));
+      }
+
+      // Verificar estado local de like y guardado
+      const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
+      const bookmarkedPosts = JSON.parse(localStorage.getItem('bookmarkedPosts') || '[]');
+      setIsLiked(likedPosts.includes(postId));
+      setIsBookmarked(bookmarkedPosts.includes(postId));
+    }
+    if (postId) init();
   }, [postId]);
 
   const loadStats = async () => {
     try {
-      // En producción, esto vendría de una API
-      // Por ahora, simulamos estadísticas
-      const mockStats = {
-        views: Math.floor(Math.random() * 1000) + 100,
-        likes: Math.floor(Math.random() * 50) + 5,
-        shares: Math.floor(Math.random() * 20) + 2,
-        bookmarks: Math.floor(Math.random() * 15) + 1,
-        readingTime: Math.floor(Math.random() * 10) + 3
-      };
-      setStats(mockStats);
+      const res = await fetch(`/api/stats?postId=${postId}`);
+      const data = await res.json();
+      setStats((prev) => ({
+        ...prev,
+        views: data?.views || 0,
+        likes: data?.likes || 0,
+        shares: data?.shares || 0,
+        readingTime: prev.readingTime || readingTime || 0,
+      }));
     } catch (error) {
       console.error('Error cargando estadísticas:', error);
     }
@@ -46,25 +61,23 @@ export default function ReadingStats({ postId, postSlug, className = "" }) {
 
   const handleLike = async () => {
     try {
-      const response = await fetch(`/api/posts/${postId}/like`, {
+      const response = await fetch(`/api/stats`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId, type: 'likes' })
       });
-      
       if (response.ok) {
-        setIsLiked(!isLiked);
-        setStats(prev => ({
-          ...prev,
-          likes: isLiked ? prev.likes - 1 : prev.likes + 1
-        }));
-        
-        // Guardar en localStorage
+        const nextLiked = !isLiked;
+        setIsLiked(nextLiked);
+        setStats(prev => ({ ...prev, likes: prev.likes + (nextLiked ? 1 : -1) }));
+
         const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '[]');
-        if (isLiked) {
+        if (nextLiked) {
+          if (!likedPosts.includes(postId)) likedPosts.push(postId);
+          localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+        } else {
           const updated = likedPosts.filter(id => id !== postId);
           localStorage.setItem('likedPosts', JSON.stringify(updated));
-        } else {
-          likedPosts.push(postId);
-          localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
         }
       }
     } catch (error) {
@@ -73,20 +86,17 @@ export default function ReadingStats({ postId, postSlug, className = "" }) {
   };
 
   const handleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-    setStats(prev => ({
-      ...prev,
-      bookmarks: isBookmarked ? prev.bookmarks - 1 : prev.bookmarks + 1
-    }));
-    
-    // Guardar en localStorage
+    const next = !isBookmarked;
+    setIsBookmarked(next);
+    setStats(prev => ({ ...prev, bookmarks: prev.bookmarks + (next ? 1 : -1) }));
+
     const bookmarkedPosts = JSON.parse(localStorage.getItem('bookmarkedPosts') || '[]');
-    if (isBookmarked) {
+    if (next) {
+      if (!bookmarkedPosts.includes(postId)) bookmarkedPosts.push(postId);
+      localStorage.setItem('bookmarkedPosts', JSON.stringify(bookmarkedPosts));
+    } else {
       const updated = bookmarkedPosts.filter(id => id !== postId);
       localStorage.setItem('bookmarkedPosts', JSON.stringify(updated));
-    } else {
-      bookmarkedPosts.push(postId);
-      localStorage.setItem('bookmarkedPosts', JSON.stringify(bookmarkedPosts));
     }
   };
 
@@ -98,13 +108,22 @@ export default function ReadingStats({ postId, postSlug, className = "" }) {
           text: 'Mira este artículo interesante',
           url: `${window.location.origin}/blog/${postSlug}`
         });
+        await fetch(`/api/stats`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ postId, type: 'shares' })
+        }).catch(() => {});
         setStats(prev => ({ ...prev, shares: prev.shares + 1 }));
       } catch (error) {
         console.error('Error compartiendo:', error);
       }
     } else {
-      // Fallback: copiar URL al portapapeles
       navigator.clipboard.writeText(`${window.location.origin}/blog/${postSlug}`);
+      await fetch(`/api/stats`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId, type: 'shares' })
+      }).catch(() => {});
       setStats(prev => ({ ...prev, shares: prev.shares + 1 }));
     }
   };

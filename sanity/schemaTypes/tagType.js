@@ -53,21 +53,17 @@ const tag = {
     },
     prepare(selection) {
       const {title, color} = selection;
+      const colorLabel = (
+        color === 'bg-[#00C6FF]' ? 'Azul' :
+        color === 'bg-[#FF6B6B]' ? 'Rojo' :
+        color === 'bg-[#4ECDC4]' ? 'Verde' :
+        color === 'bg-[#FFE66D]' ? 'Amarillo' :
+        color === 'bg-[#A8E6CF]' ? 'Morado' :
+        color === 'bg-[#FF8A80]' ? 'Naranja' : 'Azul'
+      );
       return {
         title: title,
-        subtitle: `Tag: ${title}`,
-        media: () => (
-          <div style={{
-            width: '100%',
-            height: '100%',
-            backgroundColor: color === 'bg-[#00C6FF]' ? '#00C6FF' : 
-                           color === 'bg-[#FF6B6B]' ? '#FF6B6B' :
-                           color === 'bg-[#4ECDC4]' ? '#4ECDC4' :
-                           color === 'bg-[#FFE66D]' ? '#FFE66D' :
-                           color === 'bg-[#A8E6CF]' ? '#A8E6CF' :
-                           color === 'bg-[#FF8A80]' ? '#FF8A80' : '#00C6FF'
-          }} />
-        )
+        subtitle: `Tag: ${title} · Color: ${colorLabel}`,
       };
     },
   },

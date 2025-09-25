@@ -7,6 +7,7 @@ import blockContentType from './blockContentType'
 import postType from './postType'
 import tagType from './tagType'
 import commentType from './commentType'
+import newsletterSubscriberType from './newsletterSubscriberType'
 
 // Los exportamos en el array
 export const schemaTypes = [
@@ -16,4 +17,5 @@ export const schemaTypes = [
   blockContentType,
   tagType,
   commentType,
+  newsletterSubscriberType,
 ]

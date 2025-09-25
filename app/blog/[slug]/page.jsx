@@ -566,7 +566,7 @@ export default async function BlogPostPage({ params }) {
 
                   {/* Estadísticas de lectura */}
                   <div className="w-full">
-                    <ReadingStats content={post.body} />
+                    <ReadingStats postId={post._id} postSlug={post.slug} readingTime={post.estimatedReadingTime || 0} />
                   </div>
 
                   {/* Información del autor */}

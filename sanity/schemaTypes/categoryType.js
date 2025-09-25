@@ -12,6 +12,16 @@ const category = {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'slug',
+      title: 'Slug (URL Amigable)',
+      type: 'slug',
+      options: {
+        source: 'title', // Genera el slug automáticamente desde el Título
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'description',
       title: 'Descripción',
       type: 'text',

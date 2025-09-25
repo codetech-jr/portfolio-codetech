@@ -79,11 +79,11 @@ function Breadcrumbs({ category }) {
           <Link href="/" className="hover:text-[#00C6FF] transition-colors">Inicio</Link>
         </li>
         <li className="flex items-center">
-          <FaArrowLeft className="w-3 h-3 rotate-180 mx-2" />
+          <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
           <Link href="/blog" className="hover:text-[#00C6FF] transition-colors">Blog</Link>
         </li>
         <li className="flex items-center">
-          <FaArrowLeft className="w-3 h-3 rotate-180 mx-2" />
+          <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
           <span className="text-[#00C6FF] font-medium">{category.title}</span>
         </li>
       </ol>
@@ -95,7 +95,7 @@ function Breadcrumbs({ category }) {
 function CategoryHeader({ category }) {
   return (
     <header className="mb-8">
-      <div className="flex items-center space-x-4 mb-6">
+      <div className="flex items-center mb-6 space-x-4">
         <FaFolder className="w-6 h-6 text-[#00C6FF]" />
         <h1 className="text-4xl md:text-5xl font-bold text-[#00C6FF]">{category.title}</h1>
       </div>
@@ -118,7 +118,7 @@ function PostCard({ post }) {
               alt={`Imagen de portada para ${post.title}`}
               width={600}
               height={400}
-              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+              className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="w-full h-48 bg-gradient-to-br from-[#1B1F3B] to-[#003B8D] flex items-center justify-center">
@@ -149,7 +149,7 @@ function PostCard({ post }) {
           </div>
           <div className="mt-4 flex items-center text-[#00C6FF] group-hover:text-white transition-colors">
             <span className="text-sm font-medium">Leer más</span>
-            <FaArrowRight className="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" />
+            <FaArrowRight className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-1" />
           </div>
         </div>
       </Link>
@@ -181,8 +181,8 @@ function CategoriesSidebar({ categories, currentCategory }) {
 function NewsletterSignup() {
   return (
     <div className="bg-gradient-to-br from-[#00C6FF] to-[#003B8D] rounded-lg p-6 text-center">
-      <h3 className="text-xl font-bold text-white mb-2">¡Suscríbete al Newsletter!</h3>
-      <p className="text-white/90 mb-4 text-sm">Recibe los mejores artículos sobre desarrollo web directamente en tu email.</p>
+      <h3 className="mb-2 text-xl font-bold text-white">¡Suscríbete al Newsletter!</h3>
+      <p className="mb-4 text-sm text-white/90">Recibe los mejores artículos sobre desarrollo web directamente en tu email.</p>
       <div className="flex space-x-2">
         <input type="email" placeholder="Tu email" className="flex-1 px-4 py-2 rounded-lg text-[#0C0C2C] placeholder-[#0C0C2C]/60 focus:outline-none focus:ring-2 focus:ring-white" />
         <button className="px-6 py-2 bg-white text-[#0C0C2C] font-semibold rounded-lg hover:bg-white/90 transition-colors">Suscribir</button>
@@ -211,28 +211,28 @@ export default async function CategoryPage({ params }) {
   }
   return (
     <div className="min-h-screen bg-[#0C0C2C]">
-      <main className="container mx-auto px-4 py-8">
+      <main className="container px-4 py-8 mx-auto">
         <div className="max-w-6xl mx-auto">
           <Breadcrumbs category={category} />
           <CategoryHeader category={category} />
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
             <div className="lg:col-span-3">
               {posts.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="text-6xl mb-4">📁</div>
+                <div className="py-12 text-center">
+                  <div className="mb-4 text-6xl">📁</div>
                   <h3 className="text-xl font-semibold text-[#00C6FF] mb-2">No hay artículos en esta categoría</h3>
                   <p className="text-[#A3A8CC] mb-6">Aún no hemos publicado artículos en la categoría "{category.title}".</p>
                   <Link href="/blog" className="px-6 py-3 bg-[#00C6FF] text-[#0C0C2C] font-semibold rounded-lg hover:bg-[#00C6FF]/90 transition-colors">Ver todos los artículos</Link>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                   {posts.map((post) => (
                     <PostCard key={post._id} post={post} />
                   ))}
                 </div>
               )}
             </div>
-            <div className="lg:col-span-1 space-y-8">
+            <div className="space-y-8 lg:col-span-1">
               <CategoriesSidebar categories={allCategories} currentCategory={category} />
               <NewsletterSignup />
             </div>
@@ -241,4 +241,4 @@ export default async function CategoryPage({ params }) {
       </main>
     </div>
   );
-} 
+}

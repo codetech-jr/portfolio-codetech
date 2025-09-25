@@ -11,16 +11,25 @@ function timeAgo(date) {
   return past.toLocaleDateString();
 }
 
-function CommentItem({ comment, onReply, onLike, replyingTo, onSubmitReply }) {
+function CommentItem({ comment, onReply, onLike, replyingTo, onSubmitReply, onDelete, canDelete }) {
   const [showReply, setShowReply] = useState(false);
   const [reply, setReply] = useState("");
   const [replyAuthor, setReplyAuthor] = useState("");
   const [replyEmail, setReplyEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   return (
     <div className="mb-6">
       <div className="flex items-center gap-2">
         <span className="font-semibold text-[#00C6FF]">{comment.author}</span>
         <span className="text-xs text-[#A3A8CC]">{timeAgo(comment.createdAt)}</span>
+        {canDelete && (
+          <button
+            className="ml-2 text-xs text-[#FF4C61] hover:underline"
+            onClick={() => onDelete(comment._id)}
+          >
+            Eliminar
+          </button>
+        )}
       </div>
       <div className="text-[#A3A8CC] mb-2">{comment.content}</div>
       <div className="flex items-center gap-4 text-sm">
@@ -41,14 +50,16 @@ function CommentItem({ comment, onReply, onLike, replyingTo, onSubmitReply }) {
       {showReply && (
         <form
           className="mt-2 flex flex-col gap-2"
-          onSubmit={e => {
+          onSubmit={async e => {
             e.preventDefault();
-            onSubmitReply({
+            setSubmitting(true);
+            await onSubmitReply({
               content: reply,
               author: replyAuthor,
               email: replyEmail,
               parent: comment._id
             });
+            setSubmitting(false);
             setReply("");
             setReplyAuthor("");
             setReplyEmail("");
@@ -76,10 +87,9 @@ function CommentItem({ comment, onReply, onLike, replyingTo, onSubmitReply }) {
             onChange={e => setReply(e.target.value)}
             required
           />
-          <button className="self-end px-4 py-1 bg-[#00C6FF] text-[#0C0C2C] rounded hover:bg-[#0099cc] font-semibold">Enviar</button>
+          <button disabled={submitting} className="self-end px-4 py-1 bg-[#00C6FF] text-[#0C0C2C] rounded hover:bg-[#0099cc] font-semibold disabled:opacity-50">{submitting ? 'Enviando...' : 'Enviar'}</button>
         </form>
       )}
-      {/* Respuestas */}
       {comment.replies && comment.replies.length > 0 && (
         <div className="ml-6 mt-2 border-l border-[#003B8D] pl-4">
           {comment.replies.map(reply => (
@@ -90,6 +100,8 @@ function CommentItem({ comment, onReply, onLike, replyingTo, onSubmitReply }) {
               onLike={onLike}
               replyingTo={replyingTo}
               onSubmitReply={onSubmitReply}
+              onDelete={onDelete}
+              canDelete={canDelete}
             />
           ))}
         </div>
@@ -107,16 +119,17 @@ export default function Comments({ postId }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [mounted, setMounted] = useState(false);
+  const [canDelete, setCanDelete] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  // Verificar que estamos en el cliente
   useEffect(() => {
     setMounted(true);
+    const k = localStorage.getItem('adminKey');
+    setCanDelete(Boolean(k));
   }, []);
 
-  // Cargar comentarios
   useEffect(() => {
     if (!mounted) return;
-    
     async function fetchComments() {
       setLoading(true);
       try {
@@ -132,7 +145,6 @@ export default function Comments({ postId }) {
     fetchComments();
   }, [postId, success, mounted]);
 
-  // Crear comentario
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -142,40 +154,43 @@ export default function Comments({ postId }) {
       return;
     }
     try {
+      setSubmitting(true);
       const res = await fetch('/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ postId, author, email, content })
       });
+      const data = await res.json().catch(() => ({}));
       if (res.ok) {
         setSuccess("¡Comentario enviado!");
         setAuthor("");
         setEmail("");
         setContent("");
       } else {
-        setError("Error al enviar comentario");
+        setError(data?.error || "Error al enviar comentario");
       }
     } catch (error) {
       setError("Error de conexión");
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  // Responder comentario
   const handleReply = async ({ content, author, email, parent }) => {
-    if (!author || !content) return;
     try {
-      await fetch('/api/comments', {
+      const res = await fetch('/api/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ postId, author, email, content, parent })
       });
-      setSuccess("¡Respuesta enviada!");
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) setSuccess("¡Respuesta enviada!");
+      else setError(data?.error || "Error al enviar respuesta");
     } catch (error) {
       setError("Error al enviar respuesta");
     }
   };
 
-  // Like a comentario
   const handleLike = async (commentId) => {
     try {
       await fetch('/api/comments', {
@@ -189,7 +204,25 @@ export default function Comments({ postId }) {
     }
   };
 
-  // No renderizar nada hasta que estemos en el cliente
+  const handleDelete = async (commentId) => {
+    const adminKey = localStorage.getItem('adminKey') || '';
+    if (!adminKey) return alert('Falta adminKey. Guarda tu clave en localStorage como "adminKey".');
+    if (!confirm('¿Eliminar este comentario y sus respuestas?')) return;
+    try {
+      const res = await fetch(`/api/comments?commentId=${commentId}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-key': adminKey }
+      });
+      if (res.ok) setSuccess('Comentario eliminado');
+      else {
+        const data = await res.json().catch(() => ({}));
+        alert(data?.error || 'No autorizado o error al eliminar');
+      }
+    } catch (e) {
+      alert('Error de conexión');
+    }
+  };
+
   if (!mounted) {
     return (
       <section className="bg-[#1B1F3B] rounded-lg p-6 border border-[#003B8D] mt-8">
@@ -201,7 +234,6 @@ export default function Comments({ postId }) {
 
   return (
     <section className="bg-[#1B1F3B] rounded-lg p-6 border border-[#003B8D] mt-8">
-      <h3 className="text-xl font-bold text-[#00C6FF] mb-4">Comentarios</h3>
       <form className="flex flex-col gap-2 mb-6" onSubmit={handleSubmit}>
         <input
           className="px-2 py-1 rounded bg-[#0C0C2C] text-[#A3A8CC] border border-[#003B8D]"
@@ -224,7 +256,7 @@ export default function Comments({ postId }) {
           onChange={e => setContent(e.target.value)}
           required
         />
-        <button className="self-end px-4 py-1 bg-[#00C6FF] text-[#0C0C2C] rounded hover:bg-[#0099cc] font-semibold">Comentar</button>
+        <button disabled={submitting} className="self-end px-4 py-1 bg-[#00C6FF] text-[#0C0C2C] rounded hover:bg-[#0099cc] font-semibold disabled:opacity-50">{submitting ? 'Enviando...' : 'Comentar'}</button>
         {error && <p className="text-[#FF4C61] text-sm">{error}</p>}
         {success && <p className="text-[#00D68F] text-sm">{success}</p>}
       </form>
@@ -241,6 +273,8 @@ export default function Comments({ postId }) {
               onReply={handleReply}
               onLike={handleLike}
               onSubmitReply={handleReply}
+              onDelete={handleDelete}
+              canDelete={canDelete}
             />
           ))}
         </div>

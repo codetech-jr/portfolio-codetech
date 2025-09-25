@@ -113,18 +113,23 @@ export default function AdvancedFilters({
               >
                 Todas
               </button>
-              {categories.map((category) => (
-                <button
-                  key={category._id}
-                  onClick={() => handleFilterChange('category', category.title)}
-                  className={`px-3 py-2 text-sm rounded-lg transition-colors ${
-                    filters.category === category.title 
-                      ? 'bg-[#00C6FF] text-[#0C0C2C]' 
-                      : 'bg-[#0C0C2C] text-[#A3A8CC] hover:text-white'
-                  }`}
-                >
-                  {category.title}
-                </button>
+              {categories
+                // Filtramos para ignorar categorías sin slug y evitar errores
+                .filter(category => category.slug && category.slug.current) 
+                .map((category) => (
+                  <button
+                    key={category._id}
+                    // Usamos category.slug.current para la lógica del filtro
+                    onClick={() => handleFilterChange('category', category.slug.current)}
+                    className={`px-3 py-2 text-sm rounded-lg transition-colors ${
+                      // Comparamos con category.slug.current para el estilo activo
+                      filters.category === category.slug.current
+                        ? 'bg-[#00C6FF] text-[#0C0C2C]' 
+                        : 'bg-[#0C0C2C] text-[#A3A8CC] hover:text-white'
+                    }`}
+                  >
+                    {category.title}
+                  </button>
               ))}
             </div>
           </div>
@@ -195,4 +200,4 @@ export default function AdvancedFilters({
       )}
     </div>
   );
-} 
+}
