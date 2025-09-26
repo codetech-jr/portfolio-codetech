@@ -32,6 +32,16 @@ const projects = [
     },
     {
         num: '02',
+        category: 'Frontend - UI/UX',
+        title: 'Grupo Legal Barboza, Deylena Barboza Abogada',
+        description: 'Diseñé y desarrollé una landing page para la abogada Deylena Barboza, enfocándome en una experiencia de usuario (UX) clara y profesional. El diseño visual refleja los valores de confianza y seriedad, utilizando una paleta de colores sobria y una tipografía legible. La estructura del sitio guía al usuario de manera intuitiva hacia la información sobre los servicios legales ofrecidos y facilita el contacto, optimizando el recorrido del cliente potencial.',
+        stack: [{ name: "React" }, { name: "TailwindCss" }, { name: "Typescript" }, { name: "Next.Js"}],
+        image: "/assets/grupo-legal-barboza.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
+        live: "https://grupolegalbarboza.com/",
+        github: "https://github.com/codetech-jr/grupo-legal-barboza-landing-page", 
+    },
+    {
+        num: '03',
         category: 'Frontend - UI/UX - Branding',
         title: 'Pedro Salazar Abogado',
         description: 'Lideré el diseño y desarrollo del sitio web para el abogado Pedro Salazar, con un enfoque principal en la creación de una identidad visual sólida y una experiencia de usuario (UX) impecable. Mi labor incluyó la traducción de los atributos de la marca (seriedad, experiencia, confianza) a un diseño visual efectivo, seleccionando colores y tipografías acordes. El sitio está estructurado para guiar al usuario de forma intuitiva hacia los servicios y el contacto, optimizando el camino para la conversión.',
@@ -41,7 +51,7 @@ const projects = [
         github: "https://github.com/codetech-jr/abogado-pedro-salazar", 
     },
     {
-        num: '03',
+        num: '04',
         category: 'Frontend - UI/UX - Branding',
         title: 'Miri Model Portfolio',
         description: 'Responsable del ciclo completo de diseño y desarrollo del portafolio para una modelo profesional. El objetivo fue crear una experiencia de usuario (UX) inmersiva y visualmente impactante. Mi labor principal fue conceptualizar la identidad visual, seleccionando una paleta de colores sofisticada y un diseño limpio que pusiera el foco en la fotografía. El corazón del proyecto es una galería de alta resolución, diseñada para una navegación fluida y elegante que refleja el profesionalismo de la modelo.',
@@ -51,7 +61,7 @@ const projects = [
         github: "https://github.com/codetech-jr/miri-portfolio-model",
     },
     {
-        num: '04',
+        num: '05',
         category: 'Frontend - UI/UX',
         title: 'Dada Videos',
         description: 'Creé una página de aterrizaje optimizada para la conversión, dirigida a un editor de vídeo profesional. El objetivo principal del sitio es transformar visitantes en clientes potenciales mediante la exhibición impactante de su portafolio de trabajos y la inclusión de llamadas a la acción claras y efectivas. La estructura está pensada para guiar al usuario a través de la calidad y el estilo de la edición, generando confianza e incentivando el contacto.',
@@ -61,7 +71,7 @@ const projects = [
         github: "https://github.com/codetech-jr/dada-videos",
     },
     {
-        num: '05',
+        num: '06',
         category: 'Frontend - UX/UI',
         title: 'Dada Media Design',
         description: 'Desarrollé una landing page de alta conversión para un diseñador gráfico especializado en logos para emprendedores. El sitio web no solo funciona como un portafolio para exhibir sus mejores trabajos, sino que integra un embudo de ventas claro y directo, presentando planes y precios definidos para transformar visitantes en clientes. La estructura está diseñada estratégicamente para guiar al usuario desde la inspiración visual (los proyectos) hasta la decisión de compra (los planes y el contacto).',
@@ -72,6 +82,16 @@ const projects = [
     },
     {
         num: '06',
+        category: 'Frontend - UI/UX - Branding',
+        title: 'Proyecto Educativo Autodidacta',
+        description: 'Desarrollé una landing page para un diseño educativo autodidacta sobre un spa de golden doodles, responsable del ciclo de diseño e interacción con el usuario, animaciones y transiciones.',
+        stack: [{ name: "React" }, { name: "TailwindCss" }, { name: "Typescript" }, { name: "Next.Js"}, {name: "Gsap"}, {name: "Framer Motion"}],
+        image: "/assets/golden-doodle-spa.png", // Ruta corregida (asumiendo que está en public/assets/alejo.png)
+        live: "https://landing-doodles.vercel.app/",
+        github: "https://github.com/codetech-jr/landing-doodles",
+    },
+    {
+        num: '07',
         category: 'Frontend',
         title: 'Proyecto Educativo Autodidacta',
         description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
@@ -81,7 +101,7 @@ const projects = [
         github: "https://github.com/codetech-jr/homevista-js", 
     },
     {
-        num: '07',
+        num: '08',
         category: 'Frontend',
         title: 'Proyecto Educativo Autodidacta',
         description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
@@ -91,7 +111,7 @@ const projects = [
         github: "https://github.com/codetech-jr/landing-doctors-js",
     },
     {
-        num: '08',
+        num: '09',
         category: 'Frontend',
         title: 'Proyecto Educativo Autodidacta',
         description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
@@ -101,7 +121,7 @@ const projects = [
         github: "https://github.com/codetech-jr/education-page", // Sin enlace GitHub
     },
     {
-        num: '09',
+        num: '10',
         category: 'Frontend',
         title: 'Proyecto Educativo Autodidacta',
         description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
@@ -111,7 +131,7 @@ const projects = [
         github: "https://github.com/codetech-jr/portfolio-js", // Sin enlace GitHub
     },
     {
-        num: '10',
+        num: '11',
         category: 'Frontend',
         title: 'Proyecto Educativo Autodidacta',
         description: 'Proyecto para medir mis capacidades en lenguajes de programación.',
@@ -121,7 +141,7 @@ const projects = [
         github: "https://github.com/codetech-jr/landing-lawyer", 
     },
     {
-        num: '11',
+        num: '12',
         category: 'Frontend',
         title: 'Proyecto Educativo Autodidacta',
         description: 'Proyecto para medir mis capacidades en lenguajes de programación.',

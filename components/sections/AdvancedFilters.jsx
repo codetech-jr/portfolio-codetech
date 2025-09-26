@@ -137,7 +137,7 @@ export default function AdvancedFilters({
           {/* Tags */}
           {tags.length > 0 && (
             <div>
-              <label className="block text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
+              <label className="text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
                 <FaTag className="w-3 h-3 mr-2" />
                 Tags
               </label>
@@ -161,7 +161,7 @@ export default function AdvancedFilters({
 
           {/* Rango de fechas */}
           <div>
-            <label className="block text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
+            <label className="text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
               <FaCalendar className="w-3 h-3 mr-2" />
               Rango de fechas
             </label>
@@ -180,7 +180,7 @@ export default function AdvancedFilters({
 
           {/* Ordenamiento */}
           <div>
-            <label className="block text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
+            <label className="text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
               <FaSort className="w-3 h-3 mr-2" />
               Ordenar por
             </label>
