@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaFilter, FaTimes, FaCalendar, FaSort, FaTag } from 'react-icons/fa';
 
 export default function AdvancedFilters({ 
@@ -10,12 +10,11 @@ export default function AdvancedFilters({
   className = "" 
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [filters, setFilters] = useState({
+  const [localFilters, setLocalFilters] = useState({
     category: '',
     tags: [],
     dateRange: '',
     sortBy: 'newest',
-    searchQuery: ''
   });
 
   const sortOptions = [
@@ -33,18 +32,17 @@ export default function AdvancedFilters({
     { value: 'year', label: 'Este año' },
   ];
 
+  // Manejar cambios en los filtros
   const handleFilterChange = (key, value) => {
-    const newFilters = { ...filters, [key]: value };
-    setFilters(newFilters);
-    onFiltersChange(newFilters);
+    setLocalFilters((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
 
-  const handleTagToggle = (tag) => {
-    const newTags = filters.tags.includes(tag)
-      ? filters.tags.filter(t => t !== tag)
-      : [...filters.tags, tag];
-    
-    handleFilterChange('tags', newTags);
+  // Aplicar los filtros seleccionados
+  const handleApplyFilters = () => {
+    onFiltersChange(localFilters);
   };
 
   const clearFilters = () => {
@@ -55,11 +53,11 @@ export default function AdvancedFilters({
       sortBy: 'newest',
       searchQuery: ''
     };
-    setFilters(clearedFilters);
+    setLocalFilters(clearedFilters);
     onFiltersChange(clearedFilters);
   };
 
-  const hasActiveFilters = filters.category || filters.tags.length > 0 || filters.dateRange || filters.sortBy !== 'newest';
+  const hasActiveFilters = localFilters.category || localFilters.tags.length > 0 || localFilters.dateRange || localFilters.sortBy !== 'newest';
 
   return (
     <div className={`bg-[#1B1F3B] rounded-lg border border-[#003B8D] ${className}`}>
@@ -71,7 +69,7 @@ export default function AdvancedFilters({
             <h3 className="text-lg font-semibold text-[#00C6FF]">Filtros Avanzados</h3>
             {hasActiveFilters && (
               <span className="px-2 py-1 bg-[#00C6FF] text-[#0C0C2C] text-xs font-semibold rounded-full">
-                {filters.tags.length + (filters.category ? 1 : 0) + (filters.dateRange ? 1 : 0)}
+                {localFilters.tags.length + (localFilters.category ? 1 : 0) + (localFilters.dateRange ? 1 : 0)}
               </span>
             )}
           </div>
@@ -106,7 +104,7 @@ export default function AdvancedFilters({
               <button
                 onClick={() => handleFilterChange('category', '')}
                 className={`px-3 py-2 text-sm rounded-lg transition-colors ${
-                  filters.category === '' 
+                  localFilters.category === '' 
                     ? 'bg-[#00C6FF] text-[#0C0C2C]' 
                     : 'bg-[#0C0C2C] text-[#A3A8CC] hover:text-white'
                 }`}
@@ -123,7 +121,7 @@ export default function AdvancedFilters({
                     onClick={() => handleFilterChange('category', category.slug.current)}
                     className={`px-3 py-2 text-sm rounded-lg transition-colors ${
                       // Comparamos con category.slug.current para el estilo activo
-                      filters.category === category.slug.current
+                      localFilters.category === category.slug.current
                         ? 'bg-[#00C6FF] text-[#0C0C2C]' 
                         : 'bg-[#0C0C2C] text-[#A3A8CC] hover:text-white'
                     }`}
@@ -147,7 +145,7 @@ export default function AdvancedFilters({
                     key={tag._id}
                     onClick={() => handleTagToggle(tag.title)}
                     className={`px-3 py-1 text-xs rounded-full transition-all ${
-                      filters.tags.includes(tag.title)
+                      localFilters.tags.includes(tag.title)
                         ? `${tag.color || 'bg-[#00C6FF]'} text-[#0C0C2C] font-semibold`
                         : 'bg-[#0C0C2C] text-[#A3A8CC] hover:text-white border border-[#003B8D]'
                     }`}
@@ -166,7 +164,7 @@ export default function AdvancedFilters({
               Rango de fechas
             </label>
             <select
-              value={filters.dateRange}
+              value={localFilters.dateRange}
               onChange={(e) => handleFilterChange('dateRange', e.target.value)}
               className="w-full px-3 py-2 bg-[#0C0C2C] border border-[#003B8D] rounded-lg text-[#A3A8CC] focus:outline-none focus:border-[#00C6FF]"
             >
@@ -185,7 +183,7 @@ export default function AdvancedFilters({
               Ordenar por
             </label>
             <select
-              value={filters.sortBy}
+              value={localFilters.sortBy}
               onChange={(e) => handleFilterChange('sortBy', e.target.value)}
               className="w-full px-3 py-2 bg-[#0C0C2C] border border-[#003B8D] rounded-lg text-[#A3A8CC] focus:outline-none focus:border-[#00C6FF]"
             >
@@ -196,6 +194,13 @@ export default function AdvancedFilters({
               ))}
             </select>
           </div>
+
+          <button
+            className="mt-4 w-full px-4 py-2 bg-[#00C6FF] text-[#0C0C2C] rounded-lg font-semibold"
+            onClick={handleApplyFilters}
+          >
+            Aplicar filtros
+          </button>
         </div>
       )}
     </div>

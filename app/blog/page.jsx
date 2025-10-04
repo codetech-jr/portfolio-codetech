@@ -19,41 +19,8 @@ import AdvancedFilters from '@/components/sections/AdvancedFilters';
 import SearchAutocomplete from '@/components/sections/SearchAutocomplete';
 import AnimatedPostCard from '@/components/sections/AnimatedPostCard';
 import FeaturedPost from '@/components/sections/FeaturedPost';
-import { getCategories } from '@/lib/sanityQueries';
-import React from 'react'; // Added for React.useState
-
-// Metadatos para la página principal del blog
-// export const metadata = {
-//   title: 'Blog de Desarrollo Web | Codetech Junior - Artículos sobre Diseño Web, SEO y Tecnologías',
-//   description: 'Explora artículos profesionales sobre desarrollo web, diseño UX/UI, SEO, y las últimas tecnologías web. Consejos prácticos para mejorar tu presencia digital.',
-//   openGraph: {
-//     title: 'Blog de Desarrollo Web | Codetech Junior',
-//     description: 'Artículos profesionales sobre desarrollo web, diseño y tecnologías modernas',
-//     type: 'website',
-//     url: 'https://codetechjunior.com/blog',
-//   },
-// };
-
-// Función para obtener los posts con más datos
-async function getPosts() {
-  const query = `
-    *[_type == "post"] | order(publishedAt desc) {
-      _id,
-      title,
-      "slug": slug.current,
-      mainImage,
-      excerpt,
-      publishedAt,
-      "authorName": author->name,
-      "authorImage": author->image,
-      "categories": categories[]->title,
-      "tags": tags[]->{title, color},
-      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 )
-    }
-  `;
-  const posts = await client.fetch(query);
-  return posts;
-}
+import { getCategories, getTags, getFilteredPosts } from '@/lib/sanityQueries';
+import React from 'react';
 
 // Función para obtener posts populares (los más recientes por ahora)
 async function getPopularPosts() {
@@ -69,18 +36,6 @@ async function getPopularPosts() {
   `;
   const posts = await client.fetch(query);
   return posts;
-}
-
-// Función para obtener todas las categorías
-async function getAllCategories() {
-  const query = `*[_type == 'category'] | order(title asc){_id, title, "slug": slug.current}`;
-  return await client.fetch(query);
-}
-
-// Función para obtener todos los tags
-async function getAllTags() {
-  const query = `*[_type == 'tag'] | order(title asc){_id, title, "slug": slug.current, color}`;
-  return await client.fetch(query);
 }
 
 // Componente para el header del blog
@@ -126,7 +81,6 @@ function Categories({ categories }) {
                 {category.title}
               </span>
             </div>
-            {/* Aquí podrías mostrar el número de posts por categoría si lo deseas */}
           </Link>
         ))}
       </div>
@@ -166,9 +120,8 @@ function PopularPosts({ posts }) {
 
 // Componente para newsletter
 function NewsletterSignup() {
-  'use client'
   const [email, setEmail] = React.useState('')
-  const [status, setStatus] = React.useState(null) // 'ok' | 'error' | null
+  const [status, setStatus] = React.useState(null)
   const [loading, setLoading] = React.useState(false)
 
   const subscribe = async () => {
@@ -223,120 +176,6 @@ function NewsletterSignup() {
   );
 }
 
-// Componente para una card de post
-function PostCard({ post, isFeatured = false, isSearchResult = false }) {
-  return (
-    <article className={`group overflow-hidden rounded-lg border border-[#003B8D] transition-all duration-300 hover:border-[#00C6FF] hover:shadow-xl hover:shadow-[#00C6FF]/10 ${isFeatured ? 'bg-[#1B1F3B]' : 'bg-[#0C0C2C]'}`}>
-      <Link href={`/blog/${post.slug}`}>
-        <div className="relative overflow-hidden">
-          {post.mainImage ? (
-            <Image
-              src={urlFor(post.mainImage).width(600).height(400).url()}
-              alt={`Imagen de portada para ${post.title}`}
-              width={600}
-              height={400}
-              className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
-            />
-          ) : (
-            <div className="w-full h-48 bg-gradient-to-br from-[#1B1F3B] to-[#003B8D] flex items-center justify-center">
-              <span className="text-[#A3A8CC] text-lg">Sin imagen</span>
-            </div>
-          )}
-          
-          {/* Badge de categoría */}
-          {post.categories && post.categories.length > 0 && (
-            <div className="absolute top-4 left-4">
-              <span className="px-3 py-1 bg-[#00C6FF] text-[#0C0C2C] text-xs font-semibold rounded-full">
-                {post.categories[0]}
-              </span>
-            </div>
-          )}
-          
-          {/* Tags */}
-          {post.tags && post.tags.length > 0 && (
-            <div className="absolute flex flex-wrap gap-1 bottom-4 left-4">
-              {post.tags.slice(0, 3).map((tag, index) => (
-                <span
-                  key={index}
-                  className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                    tag.color || 'bg-[#00C6FF]'
-                  } text-[#0C0C2C]`}
-                >
-                  {tag.title}
-                </span>
-              ))}
-            </div>
-          )}
-          
-          {/* Badge de resultado de búsqueda */}
-          {isSearchResult && post.matchType && (
-            <div className="absolute top-4 right-4">
-              <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                post.matchType === 'title' ? 'bg-green-500 text-white' :
-                post.matchType === 'excerpt' ? 'bg-yellow-500 text-black' :
-                'bg-blue-500 text-white'
-              }`}>
-                {post.matchType === 'title' ? 'Título' :
-                 post.matchType === 'excerpt' ? 'Extracto' : 'Contenido'}
-              </span>
-            </div>
-          )}
-        </div>
-        
-        <div className="p-6">
-          <h2 className="text-xl font-bold text-[#00C6FF] mb-3 group-hover:text-white transition-colors line-clamp-2">
-            {post.title}
-          </h2>
-          
-          <div className="mb-4">
-            {isSearchResult && post.highlightedExcerpt ? (
-              <div 
-                className="text-[#A3A8CC] line-clamp-3"
-                dangerouslySetInnerHTML={{ __html: post.highlightedExcerpt }}
-              />
-            ) : (
-              <p className="text-[#A3A8CC] line-clamp-3">
-                {post.excerpt}
-              </p>
-            )}
-          </div>
-          
-          <div className="flex items-center justify-between text-sm text-[#A3A8CC]">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-1">
-                <FaUser className="w-3 h-3" />
-                <span>{post.authorName}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <FaCalendar className="w-3 h-3" />
-                <span>
-                  {new Date(post.publishedAt).toLocaleDateString('es-ES', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </span>
-              </div>
-            </div>
-            
-            {post.estimatedReadingTime && (
-              <div className="flex items-center space-x-1">
-                <FaClock className="w-3 h-3" />
-                <span>{post.estimatedReadingTime} min</span>
-              </div>
-            )}
-          </div>
-          
-          <div className="mt-4 flex items-center text-[#00C6FF] group-hover:text-white transition-colors">
-            <span className="text-sm font-medium">Leer más</span>
-            <FaArrowRight className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-1" />
-          </div>
-        </div>
-      </Link>
-    </article>
-  );
-}
-
 // Componente para resultados de búsqueda
 function SearchResults({ searchResults, searchQuery, totalResults }) {
   if (!searchQuery) return null;
@@ -377,6 +216,7 @@ function SearchResults({ searchResults, searchQuery, totalResults }) {
 // La página principal del blog
 export default function BlogIndexPage() {
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [popularPosts, setPopularPosts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
@@ -384,6 +224,7 @@ export default function BlogIndexPage() {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
+  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
   const [filters, setFilters] = useState({
     category: '',
     tags: [],
@@ -391,27 +232,49 @@ export default function BlogIndexPage() {
     sortBy: 'newest'
   });
 
-  // Cargar posts iniciales
+  // Cargar datos iniciales (categorías, tags, posts populares)
   useEffect(() => {
     const loadInitialData = async () => {
       try {
-        const [postsData, popularData, categoriesData, tagsData] = await Promise.all([
-          getPosts(),
+        console.log('📥 Cargando datos iniciales...');
+        const [popularData, categoriesData, tagsData] = await Promise.all([
           getPopularPosts(),
-          getAllCategories(),
-          getAllTags()
+          getCategories(),
+          getTags()
         ]);
-        setPosts(postsData);
+        
         setPopularPosts(popularData);
         setCategories(categoriesData);
         setTags(tagsData);
+        
+        console.log('✅ Datos iniciales cargados');
       } catch (error) {
-        console.error('Error cargando posts:', error);
+        console.error('❌ Error cargando datos iniciales:', error);
       }
     };
     
     loadInitialData();
   }, []);
+
+  // Cargar posts filtrados cuando cambien los filtros
+  useEffect(() => {
+    const loadFilteredPosts = async () => {
+      setIsLoadingPosts(true);
+      try {
+        console.log('🔍 Aplicando filtros:', filters);
+        const postsData = await getFilteredPosts(filters);
+        setFilteredPosts(postsData);
+        setPosts(postsData); // También actualizamos posts para mantener compatibilidad
+        console.log(`✅ ${postsData.length} posts obtenidos con filtros`);
+      } catch (error) {
+        console.error('❌ Error cargando posts filtrados:', error);
+      } finally {
+        setIsLoadingPosts(false);
+      }
+    };
+    
+    loadFilteredPosts();
+  }, [filters]);
 
   // Función de búsqueda con debounce
   const searchPosts = useCallback(async (query) => {
@@ -463,13 +326,12 @@ export default function BlogIndexPage() {
   };
 
   const handleFiltersChange = (newFilters) => {
+    console.log('🎯 Nuevos filtros aplicados:', newFilters);
     setFilters(newFilters);
-    // Aquí podrías aplicar los filtros a los posts
-    // Por ahora solo actualizamos el estado
   };
 
-  const featuredPost = posts[0];
-  const regularPosts = posts.slice(1);
+  const featuredPost = filteredPosts[0];
+  const regularPosts = filteredPosts.slice(1);
 
   return (
     <div className="min-h-screen bg-[#0C0C2C]">
@@ -494,41 +356,110 @@ export default function BlogIndexPage() {
             {/* Contenido normal (solo si no hay búsqueda activa) */}
             {!searchQuery && (
               <>
-                {/* Post destacado */}
-                {featuredPost && (
-                  <div className="mb-12">
-                    <h2 className="text-2xl font-bold text-[#00C6FF] mb-6">Post Destacado</h2>
-                    <FeaturedPost post={featuredPost} />
+                {/* Indicador de filtros activos */}
+                {(filters.category || filters.tags.length > 0 || filters.dateRange) && (
+                  <div className="mb-6 p-4 bg-[#1B1F3B] border border-[#003B8D] rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <FaTag className="text-[#00C6FF]" />
+                        <span className="text-[#A3A8CC]">
+                          Filtros activos: 
+                          {filters.category && ` Categoría`}
+                          {filters.tags.length > 0 && ` ${filters.tags.length} Tag(s)`}
+                          {filters.dateRange && ` Fecha`}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => setFilters({
+                          category: '',
+                          tags: [],
+                          dateRange: '',
+                          sortBy: 'newest'
+                        })}
+                        className="text-sm text-[#00C6FF] hover:text-white transition-colors"
+                      >
+                        Limpiar filtros
+                      </button>
+                    </div>
                   </div>
                 )}
-                
-                {/* Grid de posts regulares */}
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-[#00C6FF] mb-6">Artículos Recientes</h2>
+
+                {/* Loading state */}
+                {isLoadingPosts ? (
                   <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                    {regularPosts.map((post, index) => (
-                      <AnimatedPostCard key={post._id} post={post} index={index + 1} />
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <div 
+                        key={i} 
+                        className="bg-[#1B1F3B] rounded-lg border border-[#003B8D] overflow-hidden animate-pulse"
+                      >
+                        <div className="h-48 bg-[#0C0C2C]" />
+                        <div className="p-6 space-y-3">
+                          <div className="h-4 bg-[#0C0C2C] rounded" />
+                          <div className="h-4 bg-[#0C0C2C] rounded w-3/4" />
+                          <div className="h-20 bg-[#0C0C2C] rounded" />
+                        </div>
+                      </div>
                     ))}
                   </div>
-                </div>
-                
-                {/* Paginación básica */}
-                <div className="flex justify-center mt-12">
-                  <nav className="flex space-x-2">
-                    <button className="px-4 py-2 bg-[#1B1F3B] border border-[#003B8D] text-[#A3A8CC] rounded-lg hover:bg-[#00C6FF] hover:text-[#0C0C2C] transition-colors">
-                      Anterior
+                ) : filteredPosts.length > 0 ? (
+                  <>
+                    {/* Post destacado */}
+                    {featuredPost && (
+                      <div className="mb-12">
+                        <h2 className="text-2xl font-bold text-[#00C6FF] mb-6">Post Destacado</h2>
+                        <FeaturedPost post={featuredPost} />
+                      </div>
+                    )}
+                    
+                    {/* Grid de posts regulares */}
+                    <div className="mb-8">
+                      <h2 className="text-2xl font-bold text-[#00C6FF] mb-6">
+                        Artículos {filters.category || filters.tags.length > 0 || filters.dateRange ? 'Filtrados' : 'Recientes'}
+                      </h2>
+                      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        {regularPosts.map((post, index) => (
+                          <AnimatedPostCard key={post._id} post={post} index={index + 1} />
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  // No hay posts con los filtros actuales
+                  <div className="py-16 text-center bg-[#1B1F3B] rounded-lg border border-[#003B8D]">
+                    <div className="mb-4">
+                      <svg 
+                        className="mx-auto w-16 h-16 text-[#003B8D]" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="mb-2 text-xl font-semibold text-white">
+                      No se encontraron artículos
+                    </h3>
+                    <p className="text-[#A3A8CC] mb-4">
+                      No hay posts que coincidan con los filtros seleccionados
+                    </p>
+                    <button
+                      onClick={() => setFilters({
+                        category: '',
+                        tags: [],
+                        dateRange: '',
+                        sortBy: 'newest'
+                      })}
+                      className="px-6 py-2 bg-[#00C6FF] text-[#0C0C2C] font-semibold rounded-lg hover:bg-[#00C6FF]/90 transition-colors"
+                    >
+                      Limpiar filtros
                     </button>
-                    <button className="px-4 py-2 bg-[#00C6FF] text-[#0C0C2C] rounded-lg font-semibold">
-                      1
-                    </button>
-                    <button className="px-4 py-2 bg-[#1B1F3B] border border-[#003B8D] text-[#A3A8CC] rounded-lg hover:bg-[#00C6FF] hover:text-[#0C0C2C] transition-colors">
-                      2
-                    </button>
-                    <button className="px-4 py-2 bg-[#1B1F3B] border border-[#003B8D] text-[#A3A8CC] rounded-lg hover:bg-[#00C6FF] hover:text-[#0C0C2C] transition-colors">
-                      Siguiente
-                    </button>
-                  </nav>
-                </div>
+                  </div>
+                )}
               </>
             )}
           </div>

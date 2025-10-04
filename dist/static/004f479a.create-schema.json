@@ -1,0 +1,691 @@
+[
+  {
+    "fields": [
+      {
+        "name": "language",
+        "type": "string"
+      },
+      {
+        "name": "filename",
+        "type": "string"
+      },
+      {
+        "name": "code",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "type": "number",
+            "title": "Highlighted line"
+          }
+        ],
+        "name": "highlightedLines",
+        "type": "array",
+        "title": "Highlighted lines"
+      }
+    ],
+    "name": "code",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error",
+            "message": "El título es obligatorio."
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Título"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "Slug (URL Amigable)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "description": "Describe la imagen para accesibilidad y SEO.",
+            "name": "alt",
+            "type": "string",
+            "title": "Texto Alternativo"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image",
+        "title": "Imagen Principal"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ],
+            "level": "warning",
+            "message": "Un extracto corto es mejor para SEO."
+          }
+        ],
+        "description": "Un resumen corto para vistas previas y SEO. Máx 200 caracteres.",
+        "name": "excerpt",
+        "type": "text",
+        "title": "Extracto / Resumen"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "body",
+        "type": "blockContent",
+        "title": "Cuerpo del Post"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "author"
+          }
+        ],
+        "name": "author",
+        "type": "reference",
+        "title": "Autor"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to categoría"
+          }
+        ],
+        "name": "categories",
+        "type": "array",
+        "title": "Categorías"
+      },
+      {
+        "description": "Tags para mejorar la búsqueda y organización del contenido.",
+        "of": [
+          {
+            "to": [
+              {
+                "type": "tag"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to tag"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "publishedAt",
+        "type": "datetime",
+        "title": "Fecha de Publicación"
+      },
+      {
+        "initialValue": 0,
+        "readOnly": true,
+        "name": "views",
+        "type": "number",
+        "title": "Vistas"
+      },
+      {
+        "initialValue": 0,
+        "readOnly": true,
+        "name": "likes",
+        "type": "number"
+      },
+      {
+        "initialValue": 0,
+        "readOnly": true,
+        "name": "shares",
+        "type": "number",
+        "title": "Compartidos"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ],
+            "level": "warning",
+            "message": "Un título más corto es mejor para SEO."
+          }
+        ],
+        "description": "Título que aparecerá en Google (máx. 60 caracteres). Si se deja vacío, se usará el título principal del post.",
+        "name": "seoTitle",
+        "type": "string",
+        "title": "Título para SEO"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 155
+              }
+            ],
+            "level": "error",
+            "message": "La meta descripción no puede exceder los 155 caracteres."
+          }
+        ],
+        "description": "Descripción para Google (máx. 155 caracteres). Crucial para el CTR.",
+        "name": "seoDescription",
+        "type": "text",
+        "title": "Meta Descripción"
+      },
+      {
+        "description": "Imagen que se mostrará al compartir el enlace (ej. en Twitter, LinkedIn). Dimensiones recomendadas: 1200x630px.",
+        "name": "seoImage",
+        "type": "image",
+        "title": "Imagen para Redes Sociales (Open Graph)"
+      }
+    ],
+    "name": "post",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Nombre"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Imagen"
+      },
+      {
+        "rows": 3,
+        "name": "bio",
+        "type": "text",
+        "title": "Biografía"
+      }
+    ],
+    "name": "author",
+    "type": "document",
+    "title": "Autor"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Título"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "Slug (URL Amigable)"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "title": "Descripción"
+      }
+    ],
+    "name": "category",
+    "type": "document",
+    "title": "Categoría"
+  },
+  {
+    "of": [
+      {
+        "marks": {
+          "annotations": [
+            {
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/"
+                              ],
+                              "allowRelative": false,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "name": "href",
+                  "type": "url",
+                  "title": "URL"
+                }
+              ],
+              "name": "link",
+              "type": "object",
+              "title": "URL"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Negrita"
+            },
+            {
+              "value": "em",
+              "title": "Énfasis"
+            },
+            {
+              "value": "code",
+              "title": "Código"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Viñetas"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h2",
+            "title": "H2"
+          },
+          {
+            "value": "h3",
+            "title": "H3"
+          },
+          {
+            "value": "h4",
+            "title": "H4"
+          },
+          {
+            "value": "blockquote",
+            "title": "Cita"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "type": "image"
+      },
+      {
+        "options": {
+          "withFilename": true
+        },
+        "type": "code"
+      }
+    ],
+    "name": "blockContent",
+    "type": "array"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error",
+            "message": "El nombre del tag es obligatorio."
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Nombre del Tag"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "description": "Descripción opcional del tag para SEO.",
+        "name": "description",
+        "type": "text",
+        "title": "Descripción"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Azul",
+              "value": "bg-[#00C6FF]"
+            },
+            {
+              "title": "Rojo",
+              "value": "bg-[#FF6B6B]"
+            },
+            {
+              "title": "Verde",
+              "value": "bg-[#4ECDC4]"
+            },
+            {
+              "title": "Amarillo",
+              "value": "bg-[#FFE66D]"
+            },
+            {
+              "title": "Morado",
+              "value": "bg-[#A8E6CF]"
+            },
+            {
+              "title": "Naranja",
+              "value": "bg-[#FF8A80]"
+            }
+          ]
+        },
+        "initialValue": "bg-[#00C6FF]",
+        "name": "color",
+        "type": "string",
+        "title": "Color del Tag"
+      }
+    ],
+    "name": "tag",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "post"
+          }
+        ],
+        "name": "post",
+        "type": "reference"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "author",
+        "type": "string",
+        "title": "Autor"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "content",
+        "type": "text",
+        "title": "Contenido"
+      },
+      {
+        "name": "createdAt",
+        "type": "datetime",
+        "title": "Fecha de creación"
+      },
+      {
+        "initialValue": 0,
+        "name": "likes",
+        "type": "number"
+      },
+      {
+        "description": "Si es una respuesta, referencia al comentario padre",
+        "to": [
+          {
+            "type": "comment"
+          }
+        ],
+        "name": "parent",
+        "type": "reference",
+        "title": "Comentario padre"
+      }
+    ],
+    "name": "comment",
+    "type": "document",
+    "title": "Comentario"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "regex",
+                "constraint": {
+                  "pattern": "/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/",
+                  "name": "email",
+                  "invert": false
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "description": "Token de confirmación para doble opt-in",
+        "name": "token",
+        "type": "string",
+        "title": "Confirm Token"
+      },
+      {
+        "name": "confirmedAt",
+        "type": "datetime",
+        "title": "Confirmado en"
+      },
+      {
+        "name": "unsubscribedAt",
+        "type": "datetime",
+        "title": "Dado de baja en"
+      },
+      {
+        "name": "createdAt",
+        "type": "datetime",
+        "title": "Fecha de suscripción"
+      }
+    ],
+    "name": "newsletterSubscriber",
+    "type": "document"
+  }
+]

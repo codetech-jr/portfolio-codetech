@@ -25,7 +25,7 @@ export default function FeaturedPost({ post, className = "" }) {
     >
       {/* Badge de destacado */}
       <motion.div
-        className="absolute top-4 left-4 z-10"
+        className="absolute z-10 top-4 left-4"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
@@ -37,10 +37,10 @@ export default function FeaturedPost({ post, className = "" }) {
       </motion.div>
 
       <Link href={`/blog/${post.slug}`}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        <div className="grid grid-cols-1 gap-0 lg:grid-cols-2">
           {/* Imagen */}
           <motion.div 
-            className="relative overflow-hidden h-64 lg:h-full"
+            className="relative h-64 overflow-hidden lg:h-full"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
@@ -63,7 +63,7 @@ export default function FeaturedPost({ post, className = "" }) {
           </motion.div>
 
           {/* Contenido */}
-          <div className="p-8 lg:p-12 flex flex-col justify-center">
+          <div className="flex flex-col justify-center p-8 lg:p-12">
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
