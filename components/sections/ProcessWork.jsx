@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import PropTypes from 'prop-types';
 import { timelinePhases } from "./timelineData";
 import styles from "./ProcessWork.module.css";
 
-// Sub-componente para renderizar cada item de la línea de tiempo
+// --- SUB-COMPONENTE ---
+// Limpio, sin estilos globales repetidos.
 const TimelineItem = ({ phase, animationDelay }) => {
   const Icon = phase.icon;
   return (
@@ -23,7 +25,7 @@ const TimelineItem = ({ phase, animationDelay }) => {
   );
 };
 
-// Definición de los tipos de props para validación y autocompletado
+// --- DEFINICIÓN DE PROPS ---
 TimelineItem.propTypes = {
   phase: PropTypes.shape({
     icon: PropTypes.elementType.isRequired,
@@ -33,16 +35,29 @@ TimelineItem.propTypes = {
   animationDelay: PropTypes.string.isRequired,
 };
 
-// Componente principal
+// --- COMPONENTE PRINCIPAL ---
+// Ahora contiene el bloque de estilos globales que se aplica a toda la sección.
 export default function ProcessWork() {
   return (
     <section className={styles.timelineSection}>
+      {/* Estilos globales específicos para esta sección, inyectados una sola vez */}
+      <style jsx global>{`
+       h1, h2, h3 {
+         font-family: 'JetBrains Mono', monospace !important;
+       }
+       
+       p, div, li, ul, span, a {
+         font-family: 'Roboto', Arial, sans-serif;
+       }
+       `}</style>
+
       <h2 className={styles.title}>
         ¿Cómo trabajo? <span>Metodología en 8 fases</span>
       </h2>
       <p className={styles.description}>
         Creo en la total transparencia y la comunicación constante. Un proyecto exitoso se construye sobre un proceso claro y bien definido, donde cada paso está diseñado para garantizar que estamos alineados con tus objetivos. A continuación, detallo mi metodología de trabajo en 8 fases, desde nuestra primera conversación hasta el soporte post-lanzamiento, para que sepas exactamente qué esperar en cada etapa del camino.
       </p>
+      
       <div className={styles.timeline}>
         {timelinePhases.map((phase, idx) => (
           <TimelineItem
