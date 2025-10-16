@@ -25,7 +25,7 @@ export default function Home() {
             <h1 className="mb-6 h1">
               Hola, Soy <br /> <span className="text-[#00C6FF]">Junior Daniel</span>
             </h1>
-            <p className="max-w-[500px] mb-9 text-white/80">
+            <p className="max-w-[500px] mb-9 text-white/80 text-xl">
             Ayudo a negocios a crear experiencias digitales elegantes que atraen y retienen usuarios.
             </p>
             {/* btn and socials */}
