@@ -5,6 +5,8 @@ import Socials from "@/components/Socials"
 import Photo from "@/components/Photo"
 import Stats from "@/components/Stats"
 import Projects from "@/components/sections/Projects";
+import Service from "@/components/Service";
+import StatsServices from "@/components/sections/StatsServices";
 import Services from "@/components/sections/Services";
 import Testimonials from "@/components/sections/Testimonials";
 import ProcessWork from "@/components/sections/ProcessWork";
@@ -29,8 +31,8 @@ export default function Home() {
             {/* btn and socials */}
             <div className="flex flex-col items-center gap-8 xl:flex-row">
 <Button className="uppercase flex items-center gap-2 border-2 border-[#00C6FF] text-[#0C0C2C] hover:bg-[#0C0C2C] hover:text-[#00C6FF] transition-transform duration-300 ease-in-out px-4 py-2 rounded-full shadow-md hover:shadow-lg transform hover:scale-105">
-              <a href="#projects" className="flex items-center gap-2">
-                <span>Ver mis trabajos</span>
+              <a href="#contact" className="flex items-center gap-2">
+                <span>Contrátame</span>
                 <FaBriefcase className="text-xl" />
               </a>
             </Button>
@@ -49,6 +51,8 @@ export default function Home() {
       </div>
       <Stats />
       <Projects />
+      <Service />
+      <StatsServices />
       <Services />
       <Testimonials />
       <ProcessWork />

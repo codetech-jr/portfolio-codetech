@@ -1,3 +1,14 @@
+:global(h1),
+:global(h2),
+:global(h3) {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+:global(p),
+:global(div) {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
 .timelineSection {
   background-color: #0C0C2C; /* Fondo oscuro */
   padding: 2.5rem 1rem;

@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
       <body className="leading-loose text-white scroll-smooth"> 
         

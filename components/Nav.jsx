@@ -6,7 +6,7 @@ const links = [
     { name: "Home", path: "/" },
     { name: "Servicios", path: "/services" },
     { name: "Resumen", path: "/resume" },
-    { name: "Trabajos", path: "/work" },
+    { name: "Portafolio", path: "/work" },
     { name: "Contacto", path: "/contact" },
     { name: "Blog", path: "/blog" },
     { name: "Guardados", path: "/blog/saved", icon: (

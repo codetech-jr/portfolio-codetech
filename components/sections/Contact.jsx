@@ -30,7 +30,7 @@ const itemVariants = {
 
 export default function ContactModule() {
   return (
-    <section className={styles.contactSection}>
+    <section className={styles.contactSection} id="contact">
       <motion.div
         className={styles.contactCard}
         variants={cardVariants}

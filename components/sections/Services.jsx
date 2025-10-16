@@ -18,22 +18,22 @@ const packages = [
   {
     name: "Presencia Inicial",
     description: "Ideal para emprendedores o negocios que necesitan una presencia profesional en internet de forma rápida.",
-    features: ["Landing Page profesional (varias secciones)", "Diseño 100% adaptable (responsive)", "Formulario de contacto funcional", "Conexión con redes sociales", "Optimización SEO básica", "Construido con React/Next.js"],
-    price: "$150 USD",
+    features: ["Landing Page profesional (varias secciones)", "Diseño 100% adaptable (responsive)", "Formulario de contacto funcional", "Conexión con redes sociales", "Optimización SEO básica", "Construido con React/Next.js","Hosting y dominio gratis por 1 año", "Entrega de 1 a 2 semanas"],
+    price: "$220 USD",
     highlight: false,
   },
   {
     name: "Negocio Profesional",
     description: "Para empresas y negocios que necesitan un sitio web completo, personalizado y fácil de gestionar.",
-    features: ["Todo lo de 'Presencia Inicial'", "Hasta 5 páginas (Inicio, Sobre Nosotros, Servicios, Blog, Contacto)", "CMS para el blog", "Diseño alineado a tu marca", "Mapa de ubicación (Google Maps)"],
-    price: "$350 USD",
+    features: ["Todo lo de 'Presencia Inicial'", "Hasta 5 páginas (Inicio, Sobre Nosotros, Servicios, Blog, Contacto)", "CMS para el blog", "Diseño alineado a tu marca", "Mapa de ubicación (Google Maps)", "Hosting y dominio gratis por 1 año"],
+    price: "$380 USD",
     highlight: true,
   },
   {
     name: "E-commerce / Catálogo Avanzado",
     description: "Para negocios que quieren vender o mostrar productos en línea de manera profesional.",
-    features: ["Todo lo de 'Negocio Profesional'", "Catálogo de productos con filtros y búsqueda", "Carrito de compras", "Integración con pasarela de pago", "Panel de administración sencillo", "Carga inicial de hasta 20 productos"],
-    price: "Desde $750 USD",
+    features: ["Todo lo de 'Negocio Profesional'", "Catálogo de productos con filtros y búsqueda", "Carrito de compras", "Integración con pasarela de pago", "Panel de administración sencillo", "Carga inicial de hasta 20 productos", "Hosting y dominio gratis por 1 año"],
+    price: "Desde $780 USD",
     highlight: false,
   },
 ];
