@@ -17,6 +17,7 @@ import TrustedBy from "@/components/TrustedBy";
 // import GlobalReach from "@/components/GlobalReach";
 import GlobalMap from "@/components/GlobalMap";
 import DigitalBenefits from "@/components/DigitalBenefits";
+
 import Benefits from "@/components/Benefits";
 
 export default function Home() {
