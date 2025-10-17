@@ -1,14 +1,14 @@
 // /data/case-studies/pedro-salazar.jsx
 
 export const caseStudyData = {
-  slug: "pedro-salazar-abogado",
-  title: "Web Profesional para Pedro Salazar",
-  tagline: "Modernizando la presencia online de un abogado.",
-  heroImage: "/assets/pedro-salazar-abogado-logo.png", // Una imagen grande y de alta calidad del proyecto
+  slug: "deylena-barboza-abogada",
+  title: "landing page para Deylena Barboza",
+  tagline: "Rediseño de la presencia online de Deylena Barboza, abogada en trámites migratorios.",
+  heroImage: "/assets/deylena-abogada-logo.png", // Una imagen grande y de alta calidad del proyecto
 
   challenge: {
     title: "El Desafío",
-    description: "El abogado Pedro Salazar necesitaba una web profesional que reflejara su experiencia y confiabilidad. Esta primera página web debía ser una vitrina efectiva para sus servicios legales.",
+    description: "La abogada Deylena Barboza necesitaba una landing page que reflejara su experiencia y confiabilidad en el ámbito de los trámites migratorios. Esta página debía ser una vitrina efectiva para sus servicios legales. Su anterior sitio web no transmitía profesionalismo ni generaba confianza en los visitantes.",
   },
 
   solution: {
@@ -18,17 +18,17 @@ export const caseStudyData = {
       {
         title: "1. Investigación y Arquitectura de la Información",
         content: "Realicé una investigación exhaustiva sobre la competencia y las mejores prácticas en sitios web legales. Luego, diseñé una arquitectura de la información clara y lógica, asegurando que los usuarios pudieran encontrar fácilmente la información que necesitaban.",
-        image: "/assets/mockup-pedro-1.png", // Mockup o captura de pantalla
+        image: "/assets/mockup-deylena-1.png", // Mockup o captura de pantalla
       },
       {
         title: "2. Diseño UX/UI Centrado en la Búsqueda",
         content: "El diseño se centró en la usabilidad y la accesibilidad, con un enfoque 'mobile-first'. Utilicé una paleta de colores sobria y profesional, tipografía legible y elementos visuales que reforzaran la confianza. La navegación fue simplificada para facilitar el acceso a los servicios y la información de contacto.",
-        image: "/assets/mockup-pedro-2.png",
+        image: "/assets/mockup-deylena-2.png",
       },
       {
         title: "3. Desarrollo del Frontend Interactivo",
         content: "Utilicé Next.js y TailwindCSS para construir una interfaz de usuario dinámica y completamente responsive. La web incluye formularios de contacto optimizados para la conversión, integración con Google Maps para la ubicación de la oficina, y optimización SEO para mejorar la visibilidad en buscadores.",
-        image: "/assets/mockup-pedro-3.png",
+        image: "/assets/mockup-deylena-3.png",
       }
     ]
   },

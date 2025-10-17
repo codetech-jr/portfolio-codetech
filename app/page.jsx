@@ -13,6 +13,11 @@ import ProcessWork from "@/components/sections/ProcessWork";
 import FAQs from "@/components/sections/FAQs";
 import Contact from "@/components/sections/Contact"
 import Footer from "@/components/Footer"
+import TrustedBy from "@/components/TrustedBy";
+// import GlobalReach from "@/components/GlobalReach";
+import GlobalMap from "@/components/GlobalMap";
+import DigitalBenefits from "@/components/DigitalBenefits";
+import Benefits from "@/components/Benefits";
 
 export default function Home() {
   return (
@@ -50,10 +55,14 @@ export default function Home() {
         </div>
       </div>
       <Stats />
+      <TrustedBy />
       <Projects />
+      <GlobalMap />
       <Service />
       <StatsServices />
       <Services />
+      <DigitalBenefits  />
+      <Benefits />
       <Testimonials />
       <ProcessWork />
       <FAQs />

@@ -4,7 +4,7 @@ export const caseStudyData = {
   slug: "miri-portfolio",
   title: "Portafolio para Modelo Profesional",
   tagline: "Una vitrina digital para el talento de una modelo.",
-  heroImage: "/assets/hero-miri.jpg", // Una imagen grande y de alta calidad del proyecto
+  heroImage: "/assets/hero-miri.png", // Una imagen grande y de alta calidad del proyecto
 
   challenge: {
     title: "El Desafío",
@@ -18,17 +18,17 @@ export const caseStudyData = {
       {
         title: "1. Investigación y Arquitectura de la Información",
         content: "Realicé una investigación exhaustiva sobre la competencia y las mejores prácticas en sitios web de portafolios. Luego, diseñé una arquitectura de la información clara y lógica, asegurando que los usuarios pudieran encontrar fácilmente la información que necesitaban.",
-        image: "/assets/mockup-miri-1.jpg", // Mockup o captura de pantalla
+        image: "/assets/mockup-miri-1.png", // Mockup o captura de pantalla
       },
       {
         title: "2. Diseño UX/UI Centrado en la Búsqueda",
-        content: "El diseño se centró en la usabilidad y la accesibilidad, con un enfoque 'mobile-first'. Utilicé una paleta de colores sobria y profesional, tipografía legible y elementos visuales que reforzaran la confianza. La navegación fue simplificada para facilitar el acceso a los servicios y la información de contacto.",
-        image: "/assets/mockup-miri-2.jpg",
+        content: "El diseño se centró en la usabilidad y la accesibilidad para una galería de imágenes impactante, con un enfoque 'mobile-first'. Utilicé una paleta de colores sobria y profesional, tipografía legible y elementos visuales que reforzaran la confianza. La navegación fue simplificada para facilitar el acceso a las diferentes secciones del portafolio.",
+        image: "/assets/mockup-miri-2.png",
       },
       {
         title: "3. Desarrollo del Frontend Interactivo",
         content: "Utilicé Next.js y TailwindCSS para construir una interfaz de usuario dinámica y completamente responsive. La web incluye formularios de contacto optimizados para la conversión, integración con Google Maps para la ubicación de la oficina, y optimización SEO para mejorar la visibilidad en buscadores.",
-        image: "/assets/mockup-miri-3.jpg",
+        image: "/assets/mockup-miri-3.png",
       }
     ]
   },

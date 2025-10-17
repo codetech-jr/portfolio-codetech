@@ -1,0 +1,32 @@
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Movemos el contenedor el 50% de su ancho total. Como hemos duplicado el contenido,
+       esto crea un bucle perfecto. */
+    transform: translateX(-50%);
+  }
+}
+
+.logoSlider {
+  width: 100%;
+  overflow: hidden; /* Oculta el contenido que se sale de la pantalla */
+  position: relative;
+  /* Efecto de desvanecido en los bordes para una entrada/salida suave */
+  mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+}
+
+.sliderTrack {
+  display: flex;
+  width: fit-content; /* Se ajusta al ancho de todos los logos juntos */
+  
+  /* Aplicamos la animación */
+  animation: scroll 30s linear infinite; /* 30s controla la velocidad. Ajústalo a tu gusto */
+}
+
+/* Detiene la animación cuando el usuario pasa el cursor por encima (buena UX) */
+.logoSlider:hover .sliderTrack {
+  animation-play-state: paused;
+}

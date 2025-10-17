@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import PageTransition from "@/components/PageTransition";
 import { Button } from "@/components/ui/button";
 import StairTransition from "@/components/StairTransition";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 // 1. IMPORTA EL COMPONENTE SCRIPT
 import Script from "next/script";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
 
         {/* --- 2. AÑADE EL SCRIPT DEL CHATBOT AQUÍ --- */}
         {/* Está fuera del PageTransition para asegurar que siempre esté presente */}
+        <WhatsAppButton />
         <Script id="crisp-chat" strategy="lazyOnload">
           {`
             window.$crisp=[];

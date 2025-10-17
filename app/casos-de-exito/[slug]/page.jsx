@@ -1,46 +1,42 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { notFound } from 'next/navigation'; // Importamos una función para manejar errores 404
+import { allCaseStudies } from "@/data/case-studies";
 
-// --- 1. IMPORTAMOS NUESTRO "MAPA" DE CASOS DE ÉXITO ---
-import { allCaseStudies } from "@/data/case-studies"; 
+// --- 1. IMPORTA LOS NUEVOS COMPONENTES REUTILIZABLES ---
+import AnimatedNumber from "@/components/ui/AnimatedNumber";
+import BrowserMockup from "@/components/ui/BrowserMockup";
 
-// --- 2. EL COMPONENTE AHORA RECIBE 'params' DE NEXT.JS ---
 const CaseStudyPage = ({ params }) => {
-  // Obtenemos el slug de la URL. Ej: "pedro-salazar"
-  const { slug } = params; 
-
-  // --- 3. BUSCAMOS LOS DATOS CORRECTOS USANDO EL SLUG ---
+  const { slug } = params;
   const data = allCaseStudies[slug];
 
-  // --- 4. MANEJO DE ERRORES: ¿QUÉ PASA SI LA URL NO COINCIDE CON NINGÚN CASO? ---
-  // Si no se encuentran datos para ese slug, mostramos una página 404.
   if (!data) {
-    notFound();
+    return (
+      <div className="flex items-center justify-center h-screen text-white bg-[#0C0C2C]">
+        <h1 className="text-3xl">Caso de Éxito No Encontrado</h1>
+      </div>
+    );
   }
 
-  // Las variantes de animación no cambian
   const sectionVariants = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  // El resto de tu JSX es idéntico, ya que ahora 'data' contendrá
-  // la información correcta según la URL.
   return (
     <div className="bg-[#0C0C2C] text-white">
       {/* --- SECCIÓN HERO --- */}
       <motion.header 
         className="relative flex items-center justify-center h-96"
-        // Le añadimos una key para forzar el re-renderizado al cambiar de página
         key={slug} 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 z-0">
-          <img src={data.heroImage} alt={data.title} className="object-cover w-full h-full opacity-30" />
+          {/* --- MEJORA 1: Opacidad del logo de fondo ajustada --- */}
+          <img src={data.heroImage} alt={data.title} className="object-cover w-full h-full opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C2C] to-transparent"></div>
         </div>
         <div className="relative z-10 text-center">
@@ -72,7 +68,8 @@ const CaseStudyPage = ({ params }) => {
                   <p className="text-[#A3A8CC]">{step.content}</p>
                 </div>
                 <div className={index % 2 === 0 ? 'md:order-2' : 'md:order-1'}>
-                  <img src={step.image} alt={step.title} className="rounded-lg shadow-2xl" />
+                  {/* --- MEJORA 2: Imágenes ahora usan el mockup de navegador --- */}
+                  <BrowserMockup imgSrc={step.image} altText={step.title} />
                 </div>
               </motion.div>
             ))}
@@ -90,9 +87,24 @@ const CaseStudyPage = ({ params }) => {
           <p className="mb-12 text-lg text-center text-[#A3A8CC]">{data.results.description}</p>
 
           <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
+            {/* --- MEJORA 3: Las métricas ahora son animadas --- */}
             {data.results.stats.map((stat) => (
               <div key={stat.label} className="p-6 bg-[#0C0C2C] rounded-lg">
-                <p className="text-4xl font-bold text-[#00C6FF]">{stat.value}</p>
+                <p className="text-4xl font-bold text-[#00C6FF]">
+                  {stat.value.includes('%') ? (
+                    <>
+                      {stat.value.startsWith('+') ? '+' : ''}
+                      {stat.value.startsWith('-') ? '-' : ''}
+                      <AnimatedNumber value={parseInt(stat.value.replace(/[^0-9]/g, ''))} />%
+                    </>
+                  ) : stat.value.startsWith('Nº') ? (
+                    <>
+                      Nº <AnimatedNumber value={parseInt(stat.value.replace(/[^0-9]/g, ''))} />
+                    </>
+                  ) : (
+                    <AnimatedNumber value={parseInt(stat.value)} />
+                  )}
+                </p>
                 <p className="mt-2 text-[#A3A8CC]">{stat.label}</p>
               </div>
             ))}

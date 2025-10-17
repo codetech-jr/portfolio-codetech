@@ -4,7 +4,7 @@ export const caseStudyData = {
   slug: "repuestos-temuco",
   title: "Catálogo Digital para Repuestos Temuco",
   tagline: "Modernizando el inventario para una mejor experiencia de cliente.",
-  heroImage: "/assets/hero-temuco.jpg", // Una imagen grande y de alta calidad del proyecto
+  heroImage: "/assets/repuestos-temuco.png", // Una imagen grande y de alta calidad del proyecto
   
   challenge: {
     title: "El Desafío",
@@ -18,17 +18,17 @@ export const caseStudyData = {
       {
         title: "1. Arquitectura y Base de Datos",
         content: "Diseñé una base de datos en Supabase para gestionar miles de productos y categorías de forma eficiente. La elección de Next.js permitió un renderizado rápido del lado del servidor (SSR), asegurando que el sitio fuera veloz y estuviera optimizado para SEO desde el principio.",
-        image: "/assets/mockup-temuco-1.jpg", // Mockup o captura de pantalla
+        image: "/assets/mockup-temuco-1.png", // Mockup o captura de pantalla
       },
       {
         title: "2. Diseño UX/UI Centrado en la Búsqueda",
         content: "El corazón de la experiencia es un potente motor de búsqueda y un sistema de filtrado por categorías. El diseño es limpio y directo, eliminando cualquier distracción para que el usuario encuentre lo que necesita en segundos. Se priorizó un diseño 'mobile-first', ya que la mayoría de las consultas se realizan desde el móvil.",
-        image: "/assets/mockup-temuco-2.jpg",
+        image: "/assets/mockup-temuco-2.png",
       },
       {
         title: "3. Desarrollo del Frontend Interactivo",
         content: "Utilicé React y TailwindCSS para construir una interfaz de usuario dinámica y completamente responsive. La interacción es fluida, con cargas de productos casi instantáneas que mejoran drásticamente la percepción del usuario sobre el negocio.",
-        image: "/assets/mockup-temuco-3.jpg",
+        image: "/assets/mockup-temuco-3.png",
       }
     ]
   },
