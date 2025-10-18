@@ -42,8 +42,8 @@ export const caseStudyData = {
         { value: "4.5/5", label: "Satisfacción del cliente" },
     ],
     testimonial: {
-      quote: "La nueva web ha sido un cambio radical para mí. Mis clientes ahora encuentran lo que necesitan al instante y he notado un aumento en las consultas. El trabajo fue impecable.",
-      author: "Pedro Salazar, Abogado",
+      quote: "Mi landing page ha dado un giro radical de 160 grados. El diseño es impecable y mis clientes ahora encuentran lo que necesitan al instante. He notado un aumento significativo en las consultas gracias a este rediseño.",
+      author: "Deylena Barboza, Abogada en trámites migratorios",
     }
   },
 
