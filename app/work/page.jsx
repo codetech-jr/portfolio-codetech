@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import dynamic from 'next/dynamic'; // Importamos la función 'dynamic' de Next.js
 
-// 1. Importamos el nuevo componente de tarjeta que creamos
+// Asegúrate de que la ruta a ProjectCard sea correcta
 import ProjectCard from "@/components/ProjectCard"; 
 
+// --- Datos de los Proyectos ---
 // 2. Aquí va tu array de datos de proyectos ya actualizado con los 'tags'
 const projectsData = [
     {
@@ -153,17 +155,15 @@ const projectsData = [
     },
 ];
 
+const uniqueTags = ["Todos", ...new Set(projectsData.flatMap((project) => project.tags || []))];
 
-// 3. Obtenemos todas las etiquetas únicas para crear los botones de filtro dinámicamente
-const uniqueTags = ["Todos", ...new Set(projectsData.flatMap((project) => project.tags))];
-
-
-const Work = () => {
-  // 4. Creamos los estados para manejar el filtrado
+// --- Componente de la Galería ---
+// Contiene toda la lógica visual de tu página.
+// Este será el componente que cargaremos de forma dinámica.
+const Gallery = () => {
   const [filteredProjects, setFilteredProjects] = useState(projectsData);
   const [activeTag, setActiveTag] = useState("Todos");
 
-  // 5. Lógica para filtrar los proyectos
   const handleTagChange = (tag) => {
     setActiveTag(tag);
 
@@ -171,7 +171,7 @@ const Work = () => {
       setFilteredProjects(projectsData);
     } else {
       const filtered = projectsData.filter((project) =>
-        project.tags.includes(tag)
+        project.tags && project.tags.includes(tag)
       );
       setFilteredProjects(filtered);
     }
@@ -180,7 +180,7 @@ const Work = () => {
   return (
     <motion.section
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { delay: 0.5, duration: 0.4, ease: "easeIn" } }}
+      animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.4, ease: "easeIn" } }}
       className="min-h-[80vh] py-12 xl:py-24"
     >
       <div className="container mx-auto">
@@ -189,7 +189,7 @@ const Work = () => {
             Explora una selección de mi trabajo. Usa los filtros para navegar por categorías.
         </p>
 
-        {/* 6. Botones de Filtro */}
+        {/* Botones de Filtro */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {uniqueTags.map((tag, index) => (
             <button
@@ -197,8 +197,8 @@ const Work = () => {
               onClick={() => handleTagChange(tag)}
               className={`px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ${
                 activeTag === tag
-                  ? "bg-[#00C6FF] text-[#0C0C2C]" // Estilo activo
-                  : "bg-[#1B1F3B] text-white hover:bg-[#00C6FF]/20" // Estilo inactivo
+                  ? "bg-[#00C6FF] text-[#0C0C2C]"
+                  : "bg-[#1B1F3B] text-white hover:bg-[#00C6FF]/20"
               }`}
             >
               {tag}
@@ -206,9 +206,9 @@ const Work = () => {
           ))}
         </div>
 
-        {/* 7. La Galería Animada */}
+        {/* La Galería Animada */}
         <motion.div
-          layout // ¡LA MAGIA DE LA ANIMACIÓN ESTÁ AQUÍ!
+          layout
           className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {filteredProjects.map((project) => (
@@ -220,5 +220,21 @@ const Work = () => {
   );
 };
 
-export default Work;
+// --- Envoltorio de Carga Dinámica ---
+// Aquí le decimos a Next.js que renderice el componente 'Gallery'
+// solo en el cliente (navegador), evitando errores de hidratación.
+const WorkPage = dynamic(() => Promise.resolve(Gallery), {
+    ssr: false, // ¡Esta es la clave! No renderizar en el servidor.
+    // Muestra un mensaje de carga útil mientras el componente se prepara en el navegador.
+    loading: () => (
+      <div className="flex items-center justify-center w-full h-screen">
+          <p className="text-lg text-center text-white/60">Cargando proyectos...</p>
+      </div>
+    ),
+});
+
+export default WorkPage;
+
+
+
 
