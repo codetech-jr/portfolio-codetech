@@ -1,44 +1,40 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-/* @plugin "@tailwindcss/line-clamp"; no sé porque no está funcionando*/
+
+/* Configuración Tailwind v4 para modo Oscuro manual (next-themes) */
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #0C0C2C;
+  --color-accent: #00C6FF;
+  --color-accent-hover: #00C6FF;
+  --color-alt-background: #1B1F3B;
+  
+  --font-primary: var(--font-inter);
+  --font-display: var(--font-fraunces);
+
+  --animate-in: fadeIn 0.3s ease-out;
+  --animate-out: fadeOut 0.3s ease-in;
+  --animate-slide-in-from-right: slide-in-from-right 0.5s ease-out forwards;
+  --animate-slide-out-to-right: slide-out-to-right 0.3s ease-in forwards;            
+  --animate-slide-in-from-left: slide-in-from-left 0.5s ease-out forwards;
+  --animate-slide-out-to-left: slide-out-to-left 0.3s ease-in forwards;
+  --animate-slide-in-from-top: slide-in-from-top 0.5s ease-out forwards;
+  --animate-slide-out-to-top: slide-out-to-top 0.3s ease-in forwards;
+  --animate-slide-in-from-bottom: slide-in-from-bottom 0.5s ease-out forwards;
+  --animate-slide-out-to-bottom: slide-out-to-bottom 0.3s ease-in forwards;
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
 
 :root {
-  /* Usa @theme en lugar de theme() */
-  --color-primary: @theme colors.primary; 
-  --color-accent: @theme colors.accent.DEFAULT;
-  --color-accent-hover: @theme colors.accent.hover;
-
-      /* Colores principales */
-      --color-background: #0C0C2C;
-      --color-accent1: #00C6FF;
-      --color-accent2: #003B8D;
-      --color-text-primary: #FFFFFF;
-      --color-text-secondary: #A3A8CC;
-  
-      /* Colores complementarios */
-      --color-alt-background: #1B1F3B;
-      --color-success: #00D68F;
-      --color-warning: #FFC857;
-      --color-error: #FF4C61;
-
   --background: 0 0% 100%; /* Blanco */
   --foreground: 222.2 84% 4.9%; /* Negro/Gris oscuro */
 
-  --primary: 262.1 83.3% 57.8%; /* Ejemplo: Violeta */
-  --primary-foreground: 210 40% 98%; /* Ejemplo: Casi blanco */
-
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-
-  /* ...otras variables: destructive, muted, accent, popover, card... */
-
-  --border: 214.3 31.8% 91.4%; /* Gris claro para borde */
-  --input: 214.3 31.8% 91.4%;
-  --ring: 262.1 83.3% 57.8%; /* Mismo color que primary para el anillo de foco */
-
-  --radius: 0.5rem; /* ¡ASEGÚRATE QUE ESTA VARIABLE EXISTE! */
-
-  /* La variable de fuente definida en layout.tsx sigue siendo correcta */
+  --radius: 0.5rem;
 }
 
 .stair-bg {
@@ -51,17 +47,26 @@
 
 body {
   font-family: 'Roboto', Arial, sans-serif;
-  background-color: #0C0C2C;
-  /* Usa @theme aquí también */
-  /* background-color: @theme colors.primary;  */
-
-  /* Alternativamente, usa la variable CSS si la definiste en :root */
-  /* background-color: var(--color-primary); */
-
 }
 
-h1, h2, h3, h1, h2, h3 {
-  font-family: 'JetBrains Mono', monospace !important;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-fraunces), serif !important;
+}
+
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw; 
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 @layer base{

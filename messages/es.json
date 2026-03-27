@@ -1,0 +1,294 @@
+{
+  "hero": {
+    "role": "Consultor de Soluciones Digitales",
+    "greeting": "Hola, soy",
+    "name": "Junior Daniel",
+    "typewriterWords": [
+      "Software Engineer",
+      "UX/UI Designer",
+      "Automation Expert"
+    ],
+    "description": "Diseño y desarrollo experiencias digitales de alto impacto. Especializado en sistemas de conversión web, e-commerce, apps y chatbots impulsados por IA.",
+    "ctaProjects": "Ver Proyectos",
+    "ctaContact": "Contáctame"
+  },
+  "nav": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "services": "Servicios",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "stats": {
+    "experience": "Años de experiencia",
+    "projects": "Proyectos completados",
+    "technologies": "Tecnologías dominadas",
+    "lighthouse": "Lighthouse Score"
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "description": "Ecosistema de tecnologías modernas y escalables para soluciones robustas."
+  },
+  "methodology": {
+    "title": "Metodología de",
+    "titleHighlight": "Impacto",
+    "subtitle": "No hago 'páginas web', desarrollo sistemas comerciales efectivos mediante un proceso guiado de 4 fases.",
+    "steps": [
+      {
+        "title": "Análisis Consultivo",
+        "desc": "Entiendo tu negocio, cuello de botella y objetivos comerciales antes de pensar en código."
+      },
+      {
+        "title": "Estrategia & UX",
+        "desc": "Diseño flujos de conversión de alta fricción 0 y mapas de usuario orientados a ventas."
+      },
+      {
+        "title": "Desarrollo Nativo",
+        "desc": "Construyo con React, Next.js y Tailwind para un rendimiento 100/100."
+      },
+      {
+        "title": "Integración Automatizada",
+        "desc": "Conecto endpoints, CRMs y bots de WhatsApp para un ecosistema autónomo."
+      }
+    ]
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Soluciones digitales que generan resultados medibles para tu negocio.",
+    "items": [
+      {
+        "title": "Sitios Web Premium",
+        "desc": "Landing pages y sitios corporativos optimizados para convertir visitantes en clientes."
+      },
+      {
+        "title": "E-commerce",
+        "desc": "Tiendas online con experiencias de compra fluidas y sistemas de pago integrados."
+      },
+      {
+        "title": "Chatbots IA",
+        "desc": "Automatiza la atención al cliente y captura leads 24/7 con inteligencia artificial."
+      },
+      {
+        "title": "Apps Móviles",
+        "desc": "Aplicaciones React Native con experiencia nativa en iOS y Android."
+      }
+    ]
+  },
+  "contact": {
+    "title": "¡Trabajemos Juntos!",
+    "subtitle": "¿Tienes una idea o un proyecto en mente? Estoy listo para escucharte y ayudarte a convertir esa visión en una realidad digital. ¡Envíame un mensaje y empecemos a construir algo increíble!",
+    "cta": "Contactar por WhatsApp"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  },
+  "projects": {
+    "title": "Casos de éxito de mis proyectos más relevantes",
+    "subtitle": "Aquí tienes una selección de mis trabajos. Cada proyecto es una historia de cómo transformo desafíos en soluciones digitales efectivas y atractivas.",
+    "ctaTitle": "¿Quieres ver más?",
+    "ctaSubtitle": "Estos son solo algunos de los proyectos que he liderado. Explora mi portafolio completo para conocer la diversidad de mi trabajo.",
+    "ctaButton": "Ver Mi Portafolio Completo",
+    "viewCase": "Ver Caso de Éxito",
+    "viewProject": "Ver Proyecto →",
+    "items": [
+      {
+        "title": "Catálogo Digital para Repuestos Temuco",
+        "description": "Creé un catálogo digital para modernizar la consulta de inventario. El resultado es una vitrina online rápida y fácil de usar, con un potente buscador y navegación por categorías que ha mejorado la presencia digital.",
+        "technologies": [
+          "React",
+          "Node.js",
+          "TailwindCSS",
+          "Supabase",
+          "Express",
+          "Next.js"
+        ]
+      },
+      {
+        "title": "Web Profesional para Pedro Salazar",
+        "description": "Diseñé una identidad visual y una experiencia de usuario (UX) que transmiten confianza y profesionalismo. La web está estructurada para guiar a los usuarios hacia los servicios y contacto, optimizando la conversión de clientes.",
+        "technologies": [
+          "Next.js",
+          "TailwindCSS",
+          "TypeScript",
+          "React"
+        ]
+      },
+      {
+        "title": "Landing Page para la abogada Deylena Barboza",
+        "description": "Diseñé una landing page moderna y profesional para destacar los servicios legales ofrecidos. La página está optimizada para conversiones, con un diseño claro y llamado a la acción enfocado en captar clientes potenciales.",
+        "technologies": [
+          "Next.js",
+          "TailwindCSS",
+          "React",
+          "Vercel"
+        ]
+      },
+      {
+        "title": "Portafolio para Modelo Profesional",
+        "description": "Desarrollé un portafolio con una experiencia de usuario inmersiva y un diseño limpio que realza la fotografía. El foco principal fue crear una galería de alta resolución que refleja la sofisticación y profesionalismo.",
+        "technologies": [
+          "Next.js",
+          "TailwindCSS",
+          "TypeScript",
+          "React"
+        ]
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "subtitle": "Nada habla mejor de mi trabajo que la satisfacción de mis clientes. Estas son sus palabras sobre la experiencia de colaborar juntos.",
+    "items": [
+      {
+        "name": "Pedro Salazar",
+        "role": "Abogado Corporativo",
+        "testimonial": "Tenía una visión muy específica para mi web y Junior fue la elección perfecta para materializarla. Su capacidad para entender y plasmar mis ideas en un diseño tangible fue excepcional. Su trabajo fue rápido, puntual y muy profesional."
+      },
+      {
+        "name": "Miri Hernández",
+        "role": "Modelo Internacional",
+        "testimonial": "¡Mi portafolio quedó increíble! Ahora puedo mostrar mi trabajo a agencias y clientes de todo el mundo. El diseño es elegante y la web carga rapidísimo. El proceso fue rápido y muy profesional."
+      },
+      {
+        "name": "Guido Gaviola",
+        "role": "CEO de Repuestos Temuco",
+        "testimonial": "Necesitaba una web competitiva y fácil de entender, y Junior superó las expectativas. Lo que más destaco es su increíble profesionalismo: es puntual, eficiente y muestra un compromiso total con el proyecto."
+      },
+      {
+        "name": "Deylena Barboza",
+        "role": "Abogada Migratoria",
+        "testimonial": "¡Estoy encantada con la página web! El trabajo es espectacular. Los colores, el mensaje, las imágenes... Todo está en orden y la letra es completamente legible. Es exactamente lo que pedí."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Invertir en una página web es una decisión importante. Aquí he recopilado las dudas más comunes para darte toda la claridad que necesitas.",
+    "categories": {
+      "investment": "Sobre la Inversión (Costos y Presupuesto)",
+      "process": "Sobre el Proceso y los Tiempos",
+      "tech": "Sobre la Tecnología y el Mantenimiento"
+    },
+    "items": [
+      {
+        "question": "¿Cuánto cuesta una página web?",
+        "answer": "Esta es la pregunta más importante, y la respuesta honesta es: depende. Cada proyecto es único.\n\nPara darte una idea, una página web informativa estándar suele partir de 950 USD. Este precio puede variar según la complejidad.\n\nLa mejor forma de saber el precio exacto para tu proyecto es que me cuentes tu idea.",
+        "category": "investment"
+      },
+      {
+        "question": "¿Qué suele incluir un presupuesto estándar?",
+        "answer": "Un proyecto web estándar conmigo incluye:\n- Diseño personalizado y único.\n- Desarrollo responsive.\n- Hasta 5 páginas internas.\n- Formulario de contacto.\n- Optimización SEO básica.\n- Conexión con RRSS.\n- Capacitación básica.",
+        "category": "investment"
+      },
+      {
+        "question": "¿Hay costos adicionales que deba tener en cuenta?",
+        "answer": "¡Transparencia total! Hay dos costos externos:\n- Dominio: Aprox 10-15$ al año.\n- Hosting (Alojamiento): Aprox 80-150$ al año.\n\nPuedes gestionarlos tú, o yo me encargo de todo. Se discute claramente en el presupuesto.",
+        "category": "investment"
+      },
+      {
+        "question": "¿Cómo es la forma de pago?",
+        "answer": "El plan de pago consta de 3 partes: cancelas el 50% al inicializar el proyecto, 25% al llegar a Desarrollo y el último 25% tras la entrega y facturación.",
+        "category": "investment"
+      },
+      {
+        "question": "¿Cuánto tiempo tardarás en tener mi web lista?",
+        "answer": "Un proyecto estándar suele tomar entre 1 y 2 semanas desde que tenemos todo el material necesario (textos, imágenes).\n\nMi proceso está diseñado para ser eficiente y mantenerte informado.",
+        "category": "process"
+      },
+      {
+        "question": "¿Qué necesitas de mí para empezar el proyecto?",
+        "answer": "Para empezar necesito:\n- El logo de tu marca y colores corporativos.\n- Textos para cada sección.\n- Imágenes y videos.\n\nNuestra primera reunión servirá para definir todo y te daré una guía.",
+        "category": "process"
+      },
+      {
+        "question": "¿Ofreces soporte o mantenimiento?",
+        "answer": "¡Sí! Todos mis proyectos incluyen 30 días de soporte gratuito post-lanzamiento.\n\nAdemás, ofrezco planes de mantenimiento mensual opcionales que incluyen actualizaciones, copias de seguridad y soporte continuo.",
+        "category": "tech"
+      }
+    ]
+  },
+  "work": {
+    "title": "Mis Proyectos",
+    "subtitle": "Explora una selección de mi trabajo. Usa los filtros para navegar por categorías.",
+    "allFilter": "Todos",
+    "viewProject": "Ver Proyecto",
+    "viewCase": "Ver Caso de Estudio",
+    "items": {
+      "repuestos-temuco": {
+        "title": "Repuestos Temuco",
+        "description": "Desarrollé un catálogo digital interactivo para una tienda de repuestos y electrodomésticos. El sitio funciona como una vitrina online moderna que mejora la presencia digital del negocio.",
+        "category": "E-commerce"
+      },
+      "grupo-legal-barboza": {
+        "title": "Grupo Legal Barboza",
+        "description": "Diseñé y desarrollé una landing page para la abogada Deylena Barboza, enfocándome en una experiencia de usuario (UX) clara y profesional.",
+        "category": "Landing Page"
+      },
+      "pedro-salazar": {
+        "title": "Pedro Salazar Abogado",
+        "description": "Lideré el diseño y desarrollo del sitio web para el abogado Pedro Salazar, con un enfoque principal en la creación de una identidad visual sólida y una experiencia de usuario (UX) impecable.",
+        "category": "Sitio Web"
+      },
+      "miri-model": {
+        "title": "Miri Model Portfolio",
+        "description": "Responsable del ciclo completo de diseño y desarrollo del portafolio para una modelo profesional. El objetivo fue crear una experiencia de usuario inmersiva y visualmente impactante.",
+        "category": "Portafolio"
+      },
+      "dada-videos": {
+        "title": "Dada Videos",
+        "description": "Creé una página de aterrizaje optimizada para la conversión, dirigida a un editor de vídeo profesional mediante la exhibición impactante de su portafolio de trabajos.",
+        "category": "Landing Page"
+      },
+      "dada-media": {
+        "title": "Dada Media Design",
+        "description": "Desarrollé una landing page de alta conversión para un diseñador gráfico. El sitio web no solo funciona como un portafolio sino que integra un embudo de ventas claro y directo.",
+        "category": "Landing Page"
+      },
+      "golden-spa": {
+        "title": "Golden Doodle Spa",
+        "description": "Landing page con interacciones y transiciones premium utilizando GSAP y Framer Motion.",
+        "category": "Landing Page"
+      },
+      "homevista": {
+        "title": "Homevista JS",
+        "description": "Proyecto educativo para explorar capacidades frontend en Vanilla JS.",
+        "category": "Landing Page"
+      },
+      "wecare": {
+        "title": "WeCare Platform",
+        "description": "Proyecto educativo simulando una plataforma para clínicas médicas.",
+        "category": "Landing Page"
+      },
+      "education-page": {
+        "title": "Education Page",
+        "description": "Maquetado avanzado y diseño responsive puro.",
+        "category": "Sitio Web"
+      },
+      "portfolio-ux": {
+        "title": "Portfolio Concept",
+        "description": "Refinamiento de UX en un portafolio conceptual clásico.",
+        "category": "Portafolio"
+      },
+      "landing-lawyer": {
+        "title": "Landing Lawyer",
+        "description": "Plantilla de alta conversión orientada a servicios legales.",
+        "category": "Landing Page"
+      },
+      "restaurant-landing": {
+        "title": "Restaurant Experience",
+        "description": "Landing page inmersiva para un restaurante.",
+        "category": "Landing Page"
+      },
+      "botpress-assistant": {
+        "title": "AI Booking Assistant (Botpress + Cal.com)",
+        "description": "Diseñé y programé un flujo automatizado de reservas operando a través de Telegram. El chatbot responde consultas 24/7, agenda en Google Calendar via Cal.com y extrae datos hacia Google Sheets usando Make.",
+        "category": "Chatbot IA"
+      },
+      "react-native-app": {
+        "title": "Mobile App Demo (React Native)",
+        "description": "Creación de una aplicación móvil con Expo y NativeWind (Tailwind), demostrando una interfaz minimalista, animaciones nativas y autenticación fluida.",
+        "category": "App Móvil"
+      }
+    }
+  }
+}

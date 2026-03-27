@@ -1,8 +1,8 @@
 "use client"
 
-import style from "@/app/services/ServicesPage.module.css"
 import { BsArrowDownRight } from "react-icons/bs"
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 const services = [
     {
@@ -54,11 +54,11 @@ const Services = () => {
                                 </Link>
                             </div>
                             {/* title */}
-                            <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-[#00C6FF] transition-all duration-500">{service.title}</h2>
+                            <h2 className="text-[42px] font-bold leading-none text-slate-900 dark:text-white group-hover:text-[#00C6FF] transition-all duration-500">{service.title}</h2>
                             {/* description */}
-                            <p className="text-white/60">{service.description}</p>
+                            <p className="text-slate-600 dark:text-white/60">{service.description}</p>
                             {/* border */}
-                            <div className="border-b border-white/20 w-full"></div>
+                            <div className="border-b border-slate-200 dark:border-white/20 w-full"></div>
                         </div>
                         );
                     })}

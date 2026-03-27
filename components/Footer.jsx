@@ -16,22 +16,22 @@ const COLORS = {
 
 const socialLinks = [
   {
-    href: "https://www.instagram.com/tuusuario", // Cambia por tu usuario real
-    icon: <FaInstagram />,
-    label: "Instagram",
-  },
-  {
-    href: "https://www.linkedin.com/in/tuusuario", // Cambia por tu usuario real
-    icon: <FaLinkedin />,
-    label: "LinkedIn",
-  },
-  {
-    href: "https://github.com/tuusuario", // Cambia por tu usuario real
+    href: "https://github.com/codetech-jr",
     icon: <FaGithub />,
     label: "GitHub",
   },
   {
-    href: "mailto:tuemail@dominio.com", // Cambia por tu email real
+    href: "https://www.linkedin.com/in/alejandro-gabriel-daniel-919a17187/",
+    icon: <FaLinkedin />,
+    label: "LinkedIn",
+  },
+  {
+    href: "https://www.instagram.com/codetechjunior/",
+    icon: <FaInstagram />,
+    label: "Instagram",
+  },
+  {
+    href: "mailto:codetechjr@gmail.com",
     icon: <FaEnvelope />,
     label: "Email",
   },
@@ -61,8 +61,7 @@ const socialIconContainerVariants = {
 export default function Footer() {
   return (
     <motion.footer
-      className="w-full border-t"
-      style={{ background: COLORS.bg, borderColor: COLORS.card }}
+      className="w-full border-t bg-white dark:bg-[#0C0C2C] border-slate-200 dark:border-[#1B1F3B]"
       // 3. Animar el footer cuando entre en la vista
       variants={footerContainerVariants}
       initial="hidden"
@@ -72,10 +71,10 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-between max-w-5xl gap-4 px-4 py-8 mx-auto md:flex-row">
         {/* Animar el bloque de texto */}
         <motion.div className="text-center md:text-left" variants={itemVariants}>
-          <span className="font-mono text-lg font-bold" style={{ color: COLORS.accent }}>
+          <span className="font-mono text-lg font-bold text-accent">
             © {new Date().getFullYear()} Codetech Junior
           </span>
-          <span className="block mt-1 text-sm" style={{ color: COLORS.muted }}>
+          <span className="block mt-1 text-sm text-slate-500 dark:text-[#A3A8CC]">
             Todos los derechos reservados.
           </span>
         </motion.div>
@@ -93,10 +92,9 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="text-2xl"
-              style={{ color: COLORS.accent }}
+              className="text-2xl text-accent"
               variants={itemVariants} // Reutilizamos la variante para el efecto de entrada
-              whileHover={{ scale: 1.25, y: -2, color: COLORS.white }}
+              whileHover={{ scale: 1.25, y: -2, color: "#00C6FF" }} // Keep accent on hover or adjust if needed
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >

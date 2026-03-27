@@ -35,7 +35,7 @@ export const caseStudyData = {
 
   results: {
     title: "El Resultado",
-    description: "La nueva web profesional transformó la presencia online de Pedro Salazar, posicionándolo como un abogado confiable y accesible, y generando un impacto medible en la captación de clientes.",
+    description: "La nueva web profesional transformó la presencia online de Deylena Barboza, posicionándolo como un abogado confiable y accesible, y generando un impacto medible en la captación de clientes.",
     stats: [
         { value: "+150%", label: "Visitas al sitio web" },
         { value: "+40%", label: "Consultas de clientes potenciales" },

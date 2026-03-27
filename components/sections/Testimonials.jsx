@@ -1,163 +1,106 @@
 "use client";
+
 import React from "react";
 import { motion } from "framer-motion";
-
-// --- 1. IMPORTAMOS SLICK Y SUS ESTILOS ---
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useTranslations } from "next-intl";
+import { Quote } from "lucide-react";
 
+export function Testimonials() {
+  const t = useTranslations("testimonials");
+  const testimonials = t.raw("items");
 
-// --- DATOS DE TESTIMONIOS (Sin cambios) ---
-const testimonials = [
-    {
-        name: "Pedro Salazar",
-        role: "Abogado Corporativo",
-        testimonial:
-          "Tenía una visión muy específica para mi web y Junior fue la elección perfecta para materializarla. Su capacidad para entender y plasmar mis ideas en un diseño tangible fue excepcional. Además, su trabajo fue rápido, puntual y muy profesional...",
-        avatar: "/assets/avatar-pedro.png",
-      },
-      {
-        name: "Miri Hernández",
-        role: "Modelo Internacional",
-        testimonial:
-          "¡Mi portafolio quedó increíble! Ahora puedo mostrar mi trabajo a agencias y clientes de todo el mundo. El diseño es elegante y la web carga rapidísimo. El proceso fue rápido y muy profesional, él es el mejor.",
-        avatar: "/assets/avatar-miri.jpg",
-      },
-      {
-        name: "Guido Gaviola",
-        role: "CEO de Repuestos Temuco",
-        testimonial:
-          "Necesitaba una web competitiva y fácil de entender, y Junior superó las expectativas. Lo que más destaco es su increíble profesionalismo: es puntual, eficiente y muestra un compromiso total con el proyecto de principio a fin...",
-        avatar: "/assets/avatar-guido.png",
-      },
-      { 
-        name: "Deylena Barboza",
-        role: "Abogada en Trámites Migratorios",
-        testimonial:
-          "¡Estoy encantada con la página web que Daniel me hizo! El trabajo que ha hecho es súper chévere. Los colores, el mensaje, las imágenes y toda la información contenida en la página quedaron espectaculares. Todo está en orden y la letra es completamente legible, lo cual valoro mucho. Me encanta que, al abrir la página, los colores sean armónicos a la vista. Es exactamente lo que pedí. ¡Súper alegre con los resultados!",
-        avatar: "/assets/avatar-deylena.jpg",
-      },
-];
+  const avatars = [
+    "/assets/avatar-pedro.png",
+    "/assets/avatar-miri.jpg",
+    "/assets/avatar-guido.png",
+    "/assets/avatar-deylena.jpg"
+  ];
 
-// --- Componente TestimonialCard (Sin cambios) ---
-const TestimonialCard = ({ testimonial }) => {
-    return (
-        <div className="flex flex-col h-full p-8 mx-2 rounded-2xl border-2 shadow-lg bg-[#1B1F3B] border-[#003B8D]">
-          <div className="flex items-center gap-4 mb-6">
-            {testimonial.avatar && (
-              <img
-                src={testimonial.avatar}
-                alt={`Avatar de ${testimonial.name}`}
-                className="w-16 h-16 rounded-full object-cover border-2 border-[#00C6FF]"
-                loading="lazy"
-              />
-            )}
-            <div>
-              <div className="text-lg font-bold text-[#00C6FF]">{testimonial.name}</div>
-              <div className="text-sm text-[#A3A8CC]">{testimonial.role}</div>
-            </div>
-          </div>
-          <div className="flex-grow">
-            <p className="text-[#A3A8CC] italic leading-relaxed">
-              “{testimonial.testimonial}”
-            </p>
-          </div>
-        </div>
-      );
-};
-
-
-// --- COMPONENTE PRINCIPAL ACTUALIZADO CON SLICK CAROUSEL ---
-export default function Testimonials() {
-
-  // --- 2. CONFIGURACIÓN PARA SLICK CAROUSEL ---
   const settings = {
-    dots: true,       // Muestra los puntos de paginación
-    infinite: true,   // Habilita el loop infinito
-    speed: 500,       // Velocidad de la transición en ms
-    slidesToShow: 3,  // Cuántos testimonios mostrar en escritorio
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 6000, // Igual que el delay de Swiper
-    responsive: [     // Configuración para diferentes tamaños de pantalla
-      {
-        breakpoint: 1024, // Para tablets
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 768, // Para móviles
-        settings: {
-          slidesToShow: 1,
-        }
-      }
+    autoplaySpeed: 6000,
+    arrows: false,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 1 } }
     ]
   };
 
   return (
-    <section id="testimonios" className="py-24 bg-[#0C0C2C]">
-      <div className="container px-4 mx-auto">
+    <section id="testimonios" className="py-24 relative z-10 overflow-hidden">
+      {/* Glow background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="text-center"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <h2 className="mb-6 text-4xl font-bold text-white">Testimonios</h2>
-          <p className="max-w-3xl mx-auto text-[#A3A8CC] mb-16">
-            Nada habla mejor de mi trabajo que la satisfacción de mis clientes. 
-            Estas son sus palabras sobre la experiencia de colaborar juntos.
+          <h2 className="text-4xl md:text-5xl font-bold font-display text-slate-900 dark:text-white mb-4">
+            {t("title")}
+          </h2>
+          <p className="max-w-2xl mx-auto text-slate-600 dark:text-white/70 font-primary">
+            {t("subtitle")}
           </p>
         </motion.div>
 
-        {/* --- 3. IMPLEMENTACIÓN DEL SLIDER CON SLICK --- */}
         <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
-            className="pb-8" // Padding para los dots
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="pb-12 slick-portfolio-theme"
         >
           <Slider {...settings}>
-            {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="h-full px-2">
-                <TestimonialCard testimonial={testimonial} />
+            {testimonials.map((test, idx) => (
+              <div key={idx} className="h-full px-3 py-4">
+                <div className="bg-slate-50 dark:bg-[#1B1F3B]/40 backdrop-blur-md border border-slate-200 dark:border-white/5 rounded-3xl p-8 h-full flex flex-col hover:border-accent/30 dark:hover:border-accent/30 transition-colors relative group shadow-sm dark:shadow-none">
+                  <Quote className="absolute top-6 right-8 w-12 h-12 text-slate-200 dark:text-accent/10 group-hover:text-accent/20 transition-colors" />
+                  
+                  <div className="flex items-center gap-4 mb-6">
+                    <img
+                      src={avatars[idx]}
+                      alt={test.name}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-accent/50"
+                      loading="lazy"
+                    />
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white">{test.name}</h4>
+                      <p className="text-sm text-accent">{test.role}</p>
+                    </div>
+                  </div>
+                  
+                  <p className="text-slate-600 dark:text-white/70 italic leading-relaxed font-primary flex-grow text-sm">
+                    "{test.testimonial}"
+                  </p>
+                </div>
               </div>
             ))}
           </Slider>
         </motion.div>
       </div>
 
-       {/* --- 4. NUEVOS ESTILOS PERSONALIZADOS PARA SLICK --- */}
-       <style jsx global>{`
-        /* Personalización de los Puntos (Dots) */
-        .slick-dots li button:before {
+      <style jsx global>{`
+        .slick-portfolio-theme .slick-dots li button:before {
             font-size: 10px;
-            color: #003B8D !important;
-            opacity: 0.7;
-            transition: all 0.2s ease;
-        }
-        
-        .slick-dots li.slick-active button:before {
-            color: #00C6FF !important;
+            color: rgba(255,255,255,0.2) !important;
             opacity: 1;
+            transition: all 0.3s ease;
         }
-
-        /* Personalización de las Flechas (Arrows) */
-        .slick-prev:before, .slick-next:before {
-            font-size: 24px;
+        .slick-portfolio-theme .slick-dots li.slick-active button:before {
             color: #00C6FF !important;
-            opacity: 0.8;
-            transition: all 0.2s ease;
+            transform: scale(1.5);
         }
-
-        .slick-prev:hover:before, .slick-next:hover:before {
-            opacity: 1;
-        }
-       `}</style>
+      `}</style>
     </section>
   );
 }

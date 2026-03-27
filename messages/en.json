@@ -1,0 +1,294 @@
+{
+  "hero": {
+    "role": "Digital Solutions Consultant",
+    "greeting": "Hi, I'm",
+    "name": "Junior Daniel",
+    "typewriterWords": [
+      "Software Engineer",
+      "UX/UI Designer",
+      "Automation Expert"
+    ],
+    "description": "I design and develop high-impact digital experiences. Specialized in web conversion systems, e-commerce, apps, and AI-powered chatbots.",
+    "ctaProjects": "View Projects",
+    "ctaContact": "Contact Me"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "stats": {
+    "experience": "Years of experience",
+    "projects": "Projects completed",
+    "technologies": "Technologies mastered",
+    "lighthouse": "Lighthouse Score"
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "description": "Modern and scalable technology ecosystem for robust solutions."
+  },
+  "methodology": {
+    "title": "Impact",
+    "titleHighlight": "Methodology",
+    "subtitle": "I don't make 'websites', I develop effective commercial systems through a guided 4-phase process.",
+    "steps": [
+      {
+        "title": "Consultive Analysis",
+        "desc": "I understand your business, bottlenecks and commercial goals before thinking about code."
+      },
+      {
+        "title": "Strategy & UX",
+        "desc": "I design zero high-friction conversion flows and sales-oriented user maps."
+      },
+      {
+        "title": "Native Development",
+        "desc": "I build with React, Next.js and Tailwind for 100/100 performance."
+      },
+      {
+        "title": "Automated Integration",
+        "desc": "I connect endpoints, CRMs and WhatsApp bots for an autonomous ecosystem."
+      }
+    ]
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Digital solutions that generate measurable results for your business.",
+    "items": [
+      {
+        "title": "Premium Websites",
+        "desc": "Landing pages and corporate sites optimized to convert visitors into clients."
+      },
+      {
+        "title": "E-commerce",
+        "desc": "Online stores with seamless shopping experiences and integrated payment systems."
+      },
+      {
+        "title": "AI Chatbots",
+        "desc": "Automate customer service and capture leads 24/7 with artificial intelligence."
+      },
+      {
+        "title": "Mobile Apps",
+        "desc": "React Native applications with native experience on iOS and Android."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's work together!",
+    "subtitle": "Do you have an idea or project in mind? I'm ready to listen and help you turn that vision into a digital reality. Send me a message and let's build something amazing!",
+    "cta": "Contact via WhatsApp"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Here is a selection of my work. Each project is a story of how I transform challenges into effective and attractive digital solutions.",
+    "ctaTitle": "Want to see more?",
+    "ctaSubtitle": "These are just a few of the projects I've led. Explore my full portfolio to see the diversity of my work.",
+    "ctaButton": "View Full Portfolio",
+    "viewCase": "View Case Study",
+    "viewProject": "View Project →",
+    "items": [
+      {
+        "title": "Digital Catalog for Repuestos Temuco",
+        "description": "I created a digital catalog to modernize inventory checking. The result is a fast and easy-to-use online showcase, with a powerful search engine and category navigation that improved their digital presence.",
+        "technologies": [
+          "React",
+          "Node.js",
+          "TailwindCSS",
+          "Supabase",
+          "Express",
+          "Next.js"
+        ]
+      },
+      {
+        "title": "Professional Website for Pedro Salazar",
+        "description": "I designed a visual identity and a user experience (UX) that conveys trust and professionalism. The website is structured to guide users towards services and contact, optimizing customer conversion.",
+        "technologies": [
+          "Next.js",
+          "TailwindCSS",
+          "TypeScript",
+          "React"
+        ]
+      },
+      {
+        "title": "Landing Page for lawyer Deylena Barboza",
+        "description": "I designed a modern and professional landing page to highlight legal services. The page is optimized for conversions, with a clear layout and a focused call to action to capture leads.",
+        "technologies": [
+          "Next.js",
+          "TailwindCSS",
+          "React",
+          "Vercel"
+        ]
+      },
+      {
+        "title": "Portfolio for Professional Model",
+        "description": "I developed a portfolio with an immersive user experience and a clean design that highlights photography. The main focus was to create a high-resolution gallery that reflects the model's sophistication.",
+        "technologies": [
+          "Next.js",
+          "TailwindCSS",
+          "TypeScript",
+          "React"
+        ]
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Nothing speaks better of my work than client satisfaction. These are their words about the experience of collaborating together.",
+    "items": [
+      {
+        "name": "Pedro Salazar",
+        "role": "Corporate Lawyer",
+        "testimonial": "I had a very specific vision for my website and Junior was the perfect choice to materialize it. His ability to understand and translate my ideas into a tangible design was exceptional. His work was fast, punctual, and very professional."
+      },
+      {
+        "name": "Miri Hernández",
+        "role": "International Model",
+        "testimonial": "My portfolio looks amazing! Now I can show my work to agencies and clients worldwide. The design is elegant and the website loads super fast. The process was quick and very professional."
+      },
+      {
+        "name": "Guido Gaviola",
+        "role": "CEO of Repuestos Temuco",
+        "testimonial": "I needed a competitive and easy-to-understand website, and Junior exceeded expectations. What I highlight most is his incredible professionalism: he is punctual, efficient, and shows total commitment to the project."
+      },
+      {
+        "name": "Deylena Barboza",
+        "role": "Immigration Lawyer",
+        "testimonial": "I am delighted with the website! The work is spectacular. The colors, the message, the images... Everything is in order and clearly readable. It's exactly what I asked for."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Investing in a website is a major decision. Here I have compiled the most common questions to give you all the clarity you need.",
+    "categories": {
+      "investment": "About Investment (Costs & Budget)",
+      "process": "About the Process and Timelines",
+      "tech": "About Technology and Maintenance"
+    },
+    "items": [
+      {
+        "question": "How much does a website cost?",
+        "answer": "This is the most important question, and the honest answer is: it depends. Every project is unique.\n\nTo give you an idea, a standard informative website usually starts at 950 USD. This price can vary depending on complexity.\n\nThe best way to know the exact price for your project is to tell me your idea.",
+        "category": "investment"
+      },
+      {
+        "question": "What is usually included in a standard quote?",
+        "answer": "A standard web project with me includes:\n- Custom and unique design.\n- Responsive development.\n- Up to 5 internal pages.\n- Contact form.\n- Basic SEO optimization.\n- Social media connection.\n- Basic training.",
+        "category": "investment"
+      },
+      {
+        "question": "Are there any additional costs I should consider?",
+        "answer": "Total transparency! There are two external costs:\n- Domain: Approx 10-15$ per year.\n- Hosting: Approx 80-150$ per year.\n\nYou can manage them yourself, or I can handle everything. This is clearly discussed in the quote.",
+        "category": "investment"
+      },
+      {
+        "question": "What is the payment method?",
+        "answer": "The payment plan consists of 3 parts: 50% upon initializing the project, 25% upon reaching Development, and the final 25% after delivery.",
+        "category": "investment"
+      },
+      {
+        "question": "How long will it take to have my website ready?",
+        "answer": "A standard project usually takes 1 to 2 weeks once we have all necessary material (texts, images).\n\nMy process is designed to be efficient and keep you informed.",
+        "category": "process"
+      },
+      {
+        "question": "What do you need from me to start?",
+        "answer": "To start I need:\n- Your brand logo and corporate colors.\n- Texts for each section.\n- Images and videos.\n\nOur first meeting will serve to define everything and I'll give you a guide.",
+        "category": "process"
+      },
+      {
+        "question": "Do you offer support or maintenance?",
+        "answer": "Yes! All my projects include 30 days of free post-launch support.\n\nAdditionally, I offer optional monthly maintenance plans that include updates, backups, and continuous support.",
+        "category": "tech"
+      }
+    ]
+  },
+  "work": {
+    "title": "My Projects",
+    "subtitle": "Explore a selection of my work. Use the filters to browse by category.",
+    "allFilter": "All",
+    "viewProject": "View Project",
+    "viewCase": "View Case Study",
+    "items": {
+      "repuestos-temuco": {
+        "title": "Repuestos Temuco",
+        "description": "I developed an interactive digital catalog for a spare parts and appliance store. The site works as a modern online showcase that improves the business presence.",
+        "category": "E-commerce"
+      },
+      "grupo-legal-barboza": {
+        "title": "Grupo Legal Barboza",
+        "description": "Designed and developed a landing page for attorney Deylena Barboza, focusing on a clear and professional user experience (UX).",
+        "category": "Landing Page"
+      },
+      "pedro-salazar": {
+        "title": "Pedro Salazar Lawyer",
+        "description": "Led the design and development of the website for attorney Pedro Salazar, focusing mainly on creating a solid visual identity and flawless UX.",
+        "category": "Website"
+      },
+      "miri-model": {
+        "title": "Miri Model Portfolio",
+        "description": "Responsible for the complete design and development cycle of a portfolio for a professional model. The goal was an immersive and visually striking user experience.",
+        "category": "Portfolio"
+      },
+      "dada-videos": {
+        "title": "Dada Videos",
+        "description": "Created a highly optimized landing page for a professional video editor to convert visitors into clients by showcasing their portfolio heavily.",
+        "category": "Landing Page"
+      },
+      "dada-media": {
+        "title": "Dada Media Design",
+        "description": "Developed a high-conversion landing page for a graphic designer. It integrates a direct sales funnel, transforming visitors into customers.",
+        "category": "Landing Page"
+      },
+      "golden-spa": {
+        "title": "Golden Doodle Spa",
+        "description": "Landing page with premium interactions and smooth transitions using GSAP and Framer Motion.",
+        "category": "Landing Page"
+      },
+      "homevista": {
+        "title": "Homevista JS",
+        "description": "Educational project to explore Vanilla JS frontend capabilities.",
+        "category": "Landing Page"
+      },
+      "wecare": {
+        "title": "WeCare Platform",
+        "description": "Educational project simulating a platform for medical clinics.",
+        "category": "Landing Page"
+      },
+      "education-page": {
+        "title": "Education Page",
+        "description": "Advanced layout design and pure responsive styling.",
+        "category": "Website"
+      },
+      "portfolio-ux": {
+        "title": "Portfolio Concept",
+        "description": "UX refinement in a classic conceptual portfolio.",
+        "category": "Portfolio"
+      },
+      "landing-lawyer": {
+        "title": "Landing Lawyer",
+        "description": "High-conversion template oriented towards legal services.",
+        "category": "Landing Page"
+      },
+      "restaurant-landing": {
+        "title": "Restaurant Experience",
+        "description": "Immersive landing page for a boutique restaurant.",
+        "category": "Landing Page"
+      },
+      "botpress-assistant": {
+        "title": "AI Booking Assistant (Botpress + Cal.com)",
+        "description": "Designed and programmed an automated booking flow operating via Telegram. The chatbot answers queries 24/7, schedules on Google Calendar via Cal.com, and extracts data to Google Sheets using Make.",
+        "category": "AI Chatbot"
+      },
+      "react-native-app": {
+        "title": "Mobile App Demo (React Native)",
+        "description": "Created a mobile application with Expo and NativeWind (Tailwind), demonstrating a minimalist interface, native animations, and smooth authentication.",
+        "category": "Mobile App"
+      }
+    }
+  }
+}

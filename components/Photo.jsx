@@ -38,7 +38,7 @@ const Photo = () => {
                                transform -translate-x-1/2 -translate-y-1/2"
                 >
                     <Image
-                        src="/assets/alejo.png" // Ensure this path is correct
+                        src="/assets/alejo-1.png" // Ensure this path is correct
                         alt="Foto de Alejo"
                         fill // `fill` makes the image expand to its parent div's dimensions
                         priority

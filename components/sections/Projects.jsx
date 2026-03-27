@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
+import { Link } from "@/i18n/routing";
 import "../../app/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -50,7 +51,7 @@ const projectsData = [
 const PlayIcon = () => (
     <div className="relative flex items-center justify-center w-20 h-20 transition-transform duration-300 rounded-full group-hover:scale-110">
       <div className="absolute inset-0 bg-[#00C6FF] rounded-full opacity-40 blur-lg transition-opacity duration-300 group-hover:opacity-60"></div>
-      <div className="absolute inset-0 rounded-full bg-white/10 ring-1 ring-inset ring-white/20"></div>
+      <div className="absolute inset-0 rounded-full bg-slate-200/50 dark:bg-white/10 ring-1 ring-inset ring-slate-300 dark:ring-white/20"></div>
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         width="48" 
@@ -68,7 +69,7 @@ const ProjectCard = ({ project }) => {
     const [playing, setPlaying] = useState(false);
   
     return (
-      <div className="flex flex-col h-full overflow-hidden transition-transform duration-300 transform bg-[#1B1F3B] border border-[#003B8D] rounded-lg shadow-lg hover:-translate-y-2">
+      <div className="flex flex-col h-full overflow-hidden transition-transform duration-300 transform bg-white dark:bg-[#1B1F3B] border border-slate-200 dark:border-[#003B8D] rounded-lg shadow-lg hover:-translate-y-2">
         <div className="relative w-full aspect-video">
           {!playing ? (
             <div className="relative w-full h-full cursor-pointer group" onClick={() => setPlaying(true)}>
@@ -99,8 +100,8 @@ const ProjectCard = ({ project }) => {
           )}
         </div>
         <div className="flex flex-col flex-grow p-6">
-          <h3 className="mb-3 text-xl font-bold text-white">{project.title}</h3>
-          <p className="mb-4 text-left text-base text-[#A3A8CC]">{project.description}</p>
+          <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
+          <p className="mb-4 text-left text-base text-slate-600 dark:text-[#A3A8CC]">{project.description}</p>
           
           <div className="flex flex-wrap gap-2 mb-6">
             {project.technologies.map((tech) => (
@@ -111,17 +112,17 @@ const ProjectCard = ({ project }) => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 mt-auto">
-            <a
+            <Link
               href={project.caseStudyLink}
               className="inline-block px-5 py-2 font-bold text-[#0C0C2C] transition-opacity duration-300 bg-[#00C6FF] rounded-md hover:opacity-90"
             >
               Ver Caso de Éxito
-            </a>
+            </Link>
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-white transition-colors duration-300 hover:text-[#00C6FF]"
+              className="font-semibold text-slate-700 dark:text-white transition-colors duration-300 hover:text-[#00C6FF] dark:hover:text-[#00C6FF]"
             >
               Ver Proyecto →
             </a>
@@ -164,7 +165,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-16 bg-[#0C0C2C] sm:py-24">
+    <section id="projects" className="py-16 bg-slate-50 dark:bg-[#0C0C2C] sm:py-24">
       <div className="container px-4 mx-auto">
         <motion.div
             className="text-center"
@@ -173,8 +174,8 @@ const Projects = () => {
             viewport={{ once: true, amount: 0.5 }}
             variants={headerTextVariants}
         >
-          <h2 className="mb-4 text-4xl font-bold text-white">Proyectos Destacados</h2>
-          <p className="max-w-3xl mx-auto mb-12 text-lg text-[#A3A8CC]">
+          <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">Proyectos Destacados</h2>
+          <p className="max-w-3xl mx-auto mb-12 text-lg text-slate-600 dark:text-[#A3A8CC]">
             Aquí tienes una selección de mis trabajos. Cada proyecto es una historia de cómo transformo desafíos en soluciones digitales efectivas y atractivas.
           </p>
         </motion.div>
@@ -198,16 +199,16 @@ const Projects = () => {
           viewport={{ once: true, amount: 0.5 }}
           variants={headerTextVariants}
         >
-          <h3 className="text-2xl font-semibold text-white">¿Quieres ver más?</h3>
-          <p className="max-w-xl mx-auto mt-4 mb-8 text-lg text-[#A3A8CC]">
+          <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">¿Quieres ver más?</h3>
+          <p className="max-w-xl mx-auto mt-4 mb-8 text-lg text-slate-600 dark:text-[#A3A8CC]">
             Estos son solo algunos de los proyectos que he liderado. Explora mi portafolio completo para conocer la diversidad de mi trabajo.
           </p>
-          <a
+          <Link
             href="/work"
             className="inline-block px-8 py-4 text-lg font-bold text-[#0C0C2C] transition-transform duration-300 bg-[#00C6FF] rounded-md hover:scale-105"
           >
             Ver Mi Portafolio Completo
-          </a>
+          </Link>
         </motion.div>
         {/* --- FIN: NUEVO BLOQUE DE CTA --- */}
         

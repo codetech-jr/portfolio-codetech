@@ -2,10 +2,10 @@ import Link from "next/link";
 import { FaGithub, FaLinkedinIn, FaInstagram, FaFacebook } from "react-icons/fa";
 
 const socials = [
-  { icon: <FaGithub />, path: "https://github.com/codetech-jr" },
-  { icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/alejandro-gabriel-daniel-919a17187/" },
-  { icon: <FaInstagram />, path: "https://www.instagram.com/codetechjunior/" },
-  { icon: <FaFacebook />, path: "https://facebook.com/" },
+  { icon: <FaGithub />, path: "https://github.com/codetech-jr", label: "Visitar GitHub" },
+  { icon: <FaLinkedinIn />, path: "https://www.linkedin.com/in/alejandro-gabriel-daniel-919a17187/", label: "Visitar LinkedIn" },
+  { icon: <FaInstagram />, path: "https://www.instagram.com/codetechjunior/", label: "Visitar Instagram" },
+  { icon: <FaFacebook />, path: "https://facebook.com/", label: "Visitar Facebook" },
 ];
 
 const Social = ({ containerStyles = "flex gap-4 justify-center", iconStyles = "" }) => {
@@ -17,7 +17,8 @@ const Social = ({ containerStyles = "flex gap-4 justify-center", iconStyles = ""
           href={item.path}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 border rounded-full flex justify-center items-center border-[#00C6FF] text-[#00C6FF]  hover:bg-[#00C6FF] hover:text-[#0C0C2C] text-base hover:transition-all duration-500"
+          aria-label={item.label}
+          className="w-9 h-9 border rounded-full flex justify-center items-center border-accent text-accent hover:bg-accent hover:text-primary text-base hover:transition-all duration-500"
         >
           {item.icon}
         </Link>
