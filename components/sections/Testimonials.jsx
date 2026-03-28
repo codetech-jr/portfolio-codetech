@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,6 +9,12 @@ import { useTranslations } from "next-intl";
 import { Quote } from "lucide-react";
 
 export function Testimonials() {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const t = useTranslations("testimonials");
   const testimonials = t.raw("items");
 
@@ -58,34 +64,40 @@ export function Testimonials() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="pb-12 slick-portfolio-theme"
+          className="pb-12 slick-portfolio-theme w-full max-w-full overflow-hidden"
         >
-          <Slider {...settings}>
-            {testimonials.map((test, idx) => (
-              <div key={idx} className="h-full px-3 py-4">
-                <div className="bg-slate-50 dark:bg-[#1B1F3B]/40 backdrop-blur-md border border-slate-200 dark:border-white/5 rounded-3xl p-8 h-full flex flex-col hover:border-accent/30 dark:hover:border-accent/30 transition-colors relative group shadow-sm dark:shadow-none">
-                  <Quote className="absolute top-6 right-8 w-12 h-12 text-slate-200 dark:text-accent/10 group-hover:text-accent/20 transition-colors" />
-                  
-                  <div className="flex items-center gap-4 mb-6">
-                    <img
-                      src={avatars[idx]}
-                      alt={test.name}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-accent/50"
-                      loading="lazy"
-                    />
-                    <div>
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white">{test.name}</h4>
-                      <p className="text-sm text-accent">{test.role}</p>
+          {mounted ? (
+            <Slider {...settings}>
+              {testimonials.map((test, idx) => (
+                <div key={idx} className="h-full px-3 py-4">
+                  <div className="bg-slate-50 dark:bg-[#1B1F3B]/40 backdrop-blur-md border border-slate-200 dark:border-white/5 rounded-3xl p-8 h-full flex flex-col hover:border-accent/30 dark:hover:border-accent/30 transition-colors relative group shadow-sm dark:shadow-none min-h-[300px]">
+                    <Quote className="absolute top-6 right-8 w-12 h-12 text-slate-200 dark:text-accent/10 group-hover:text-accent/20 transition-colors" />
+                    
+                    <div className="flex items-center gap-4 mb-6">
+                      <img
+                        src={avatars[idx]}
+                        alt={test.name}
+                        className="w-16 h-16 rounded-full object-cover border-2 border-accent/50"
+                        loading="lazy"
+                      />
+                      <div>
+                        <h4 className="text-lg font-bold text-slate-900 dark:text-white">{test.name}</h4>
+                        <p className="text-sm text-accent">{test.role}</p>
+                      </div>
                     </div>
+                    
+                    <p className="text-slate-600 dark:text-white/70 italic leading-relaxed font-primary flex-grow text-sm">
+                      "{test.testimonial}"
+                    </p>
                   </div>
-                  
-                  <p className="text-slate-600 dark:text-white/70 italic leading-relaxed font-primary flex-grow text-sm">
-                    "{test.testimonial}"
-                  </p>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          ) : (
+            <div className="h-[300px] flex items-center justify-center">
+               <span className="text-slate-400">Cargando testimonios...</span>
+            </div>
+          )}
         </motion.div>
       </div>
 
