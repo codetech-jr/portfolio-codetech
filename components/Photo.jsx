@@ -42,7 +42,7 @@ const Photo = () => {
                         alt="Foto de Alejo"
                         fill // `fill` makes the image expand to its parent div's dimensions
                         priority
-                        quality={100}
+                        quality={95}
                         // `object-cover` maintains aspect ratio, `rounded-full` makes it circular.
                         // Keeping `mix-blend-lighten` as per your original.
                         className="object-cover rounded-full mix-blend-lighten" 
