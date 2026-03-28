@@ -8,10 +8,12 @@ import AnimatedNumber from "@/components/ui/AnimatedNumber";
 import BrowserMockup from "@/components/ui/BrowserMockup";
 import { Link } from "@/i18n/routing";
 
-const CaseStudyPage = ({ params }) => {
-  const resolvedParams = React.use(params);
-  const { slug } = resolvedParams;
-  const data = allCaseStudies[slug];
+import { useParams } from 'next/navigation';
+
+const CaseStudyPage = () => {
+  const params = useParams();
+  const slug = params?.slug;
+  const data = slug ? allCaseStudies[slug] : null;
 
   if (!data) {
     return (
