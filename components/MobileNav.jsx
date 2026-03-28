@@ -1,6 +1,6 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { Link, usePathname } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { CiMenuFries } from 'react-icons/ci'
@@ -29,31 +29,34 @@ const MobileNav = () => {
             <SheetContent className="flex flex-col">
                 {/* logo */}
                 <div className="flex flex-col items-center gap-4 mt-32 mb-32 text-2xl">
-                    <Link href="/" className="flex flex-col items-center gap-2">
-                        <div className="relative w-20 h-20 overflow-hidden">
-                            <Image 
-                                src="/logo.png" 
-                                alt="Codetech Logo" 
-                                fill
-                                className="object-contain"
-                            />
-                        </div>
-                        <h1 className="text-4xl font-bold font-display">
-                            Codetech<span className="text-accent">.</span>
-                        </h1>
-                    </Link>
+                    <SheetClose asChild>
+                        <Link href="/" className="flex flex-col items-center gap-2">
+                            <div className="relative w-20 h-20 overflow-hidden">
+                                <Image 
+                                    src="/logo.png" 
+                                    alt="Codetech Logo" 
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                            <h1 className="text-4xl font-bold font-display">
+                                Codetech<span className="text-accent">.</span>
+                            </h1>
+                        </Link>
+                    </SheetClose>
                 </div>
                 {/*nav*/}
                 <nav className="flex flex-col items-center justify-center gap-8">
                     {links.map((link, index) => {
                         return (
-                            <Link
-                                href={link.path}
-                                key={index}
-                                className={`${link.path === pathname && "text-accent border-b-2 border-accent"} text-xl capitalize hover:text-accent transition-all`}
-                            >
-                                {link.name}
-                            </Link>
+                            <SheetClose asChild key={index}>
+                                <Link
+                                    href={link.path}
+                                    className={`${link.path === pathname && "text-accent border-b-2 border-accent"} text-xl capitalize hover:text-accent transition-all`}
+                                >
+                                    {link.name}
+                                </Link>
+                            </SheetClose>
                         );
                     })}
                 </nav>
