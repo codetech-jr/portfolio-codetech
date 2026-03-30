@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useInView } from "react-intersection-observer";
 import { Play } from "lucide-react";
+import Image from "next/image";
 
 export function FeaturedProjects() {
   const t = useTranslations("projects");
