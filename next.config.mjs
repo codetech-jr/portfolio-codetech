@@ -7,6 +7,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.js');
 const nextConfig = {
   transpilePackages: ['@nivo/core', '@nivo/geo', 'd3-geo'],
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
