@@ -17,9 +17,54 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap', weight: ['400', '700'] });
 
 export async function generateMetadata({ params }) {
-// ... (metadata lines omit for brevity in replacement, but kept in actual edit)
-// ...
+const { locale } = await params;
+  const isEs = locale === 'es';
+  return {
+    title: isEs
+      ? 'Codetech JR | Consultor de Soluciones Digitales'
+      : 'Codetech JR | Digital Solutions Consultant',
+    description: isEs
+      ? 'Diseño y desarrollo experiencias digitales de alto impacto. Especializado en sistemas de conversión web, e-commerce, apps y chatbots impulsados por IA.'
+      : 'Design and develop high-impact digital experiences. Specialized in web conversion systems, e-commerce, apps and AI-powered chatbots.',
+    keywords: isEs
+      ? ['portafolio', 'desarrollador web', 'next.js', 'chatbot', 'react native', 'automatización']
+      : ['portfolio', 'web developer', 'next.js', 'chatbot', 'react native', 'automation'],
+    authors: [{ name: 'Alejandro Daniel', url: 'https://codetechjr.com' }],
+    openGraph: {
+      title: isEs ? 'Codetech JR | Consultor Digital' : 'Codetech JR | Digital Consultant',
+      description: isEs
+        ? 'Soluciones digitales premium: webs, apps, chatbots IA.'
+        : 'Premium digital solutions: websites, apps, AI chatbots.',
+      url: 'https://codetechjr.com',
+      siteName: 'Codetech JR',
+      locale: locale === 'es' ? 'es_VE' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: isEs ? 'Codetech JR | Consultor Digital' : 'Codetech JR | Digital Consultant',
+    },
+    alternates: {
+      canonical: `https://codetechjr.com/${locale}`,
+      languages: {
+        'en': 'https://codetechjr.com/en',
+        'es': 'https://codetechjr.com/es',
+      },
+    },
+    manifest: '/manifest.json',
+    applicationName: 'Codetech JR',
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: 'Codetech JR',
+    },
+    formatDetection: {
+      telephone: false,
+    },
+  };
 }
+
+
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
