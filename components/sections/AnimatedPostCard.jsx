@@ -12,7 +12,7 @@ import {
   FaTag
 } from 'react-icons/fa';
 
-export default function AnimatedPostCard({ post, isFeatured = false, isSearchResult = false, index = 0 }) {
+export default function AnimatedPostCard({ post, isFeatured = false, isSearchResult = false, index = 0, priority = false }) {
   const cardVariants = {
     hidden: { 
       opacity: 0, 
@@ -66,6 +66,7 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
                 alt={`Imagen de portada para ${post.title}`}
                 width={600}
                 height={400}
+                priority={priority}
                 className="w-full h-48 object-cover"
               />
             </motion.div>

@@ -7,6 +7,7 @@ import { allCaseStudies } from "@/data/case-studies";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
 import BrowserMockup from "@/components/ui/BrowserMockup";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 
 import { useParams } from 'next/navigation';
 
@@ -39,8 +40,15 @@ const CaseStudyPage = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 z-0">
-          {/* --- MEJORA 1: Opacidad del logo de fondo ajustada --- */}
-          <img src={data.heroImage} alt={data.title} className="object-cover w-full h-full opacity-10" />
+          {/* --- MEJORA 1: Hero Image LCP con Next Image --- */}
+          <Image 
+              src={data.heroImage} 
+              alt={data.title} 
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-10" 
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-50 dark:from-[#0C0C2C] to-transparent"></div>
         </div>
         <div className="relative z-10 text-center">

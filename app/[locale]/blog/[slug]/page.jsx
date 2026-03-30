@@ -23,8 +23,8 @@ import {
   FaTag
 } from 'react-icons/fa';
 import React from 'react'; // Added missing import for React
-import TableOfContents from '@/components/sections/TableOfContents';
-import Comments from '@/components/ui/Comments';
+import LazyTableOfContents from '@/components/LazyTableOfContents';
+import LazyComments from '@/components/LazyComments';
 import ReadingStats from '@/components/sections/ReadingStats';
 
 // Función para generar los metadatos dinámicos para SEO
@@ -524,7 +524,7 @@ export default async function BlogPostPage({ params }) {
                 </article>
 
                 {/* Comentarios */}
-                <Comments
+                <LazyComments
                   postId={post._id}
                   postSlug={post.slug}
                   className="mt-12"
@@ -561,7 +561,7 @@ export default async function BlogPostPage({ params }) {
                 <div className="sticky top-8 space-y-6">
                   {/* Tabla de contenidos */}
                   <div className="w-full">
-                    <TableOfContents content={post.body} />
+                    <LazyTableOfContents content={post.body} />
                   </div>
 
                   {/* Estadísticas de lectura */}
