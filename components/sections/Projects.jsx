@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 import "../../app/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -72,10 +73,12 @@ const ProjectCard = ({ project }) => {
       <div className="flex flex-col h-full overflow-hidden transition-transform duration-300 transform bg-white dark:bg-[#1B1F3B] border border-slate-200 dark:border-[#003B8D] rounded-lg shadow-lg hover:-translate-y-2">
         <div className="relative w-full aspect-video">
           {!playing ? (
-            <div className="relative w-full h-full cursor-pointer group" onClick={() => setPlaying(true)}>
-              <img
+            <div className="relative w-full h-full cursor-pointer group bg-slate-200 dark:bg-primary/20" onClick={() => setPlaying(true)}>
+              <Image
                 src={project.thumbnail}
                 alt={`Thumbnail de ${project.title}`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover w-full h-full"
                 loading="lazy" 
               />

@@ -77,7 +77,7 @@ function ProjectCard({ project, assets, index }) {
       transition={{ delay: index * 0.1 }}
       className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden group hover:border-accent/30 dark:hover:border-accent/30 transition-colors flex flex-col h-full shadow-sm dark:shadow-none"
     >
-      <div className="relative aspect-video w-full bg-black/50 overflow-hidden">
+      <div className="relative aspect-video w-full bg-slate-200 dark:bg-white/5 overflow-hidden">
         <AnimatePresence mode="wait">
           {!playing ? (
             <motion.div 
@@ -88,9 +88,11 @@ function ProjectCard({ project, assets, index }) {
               className="absolute inset-0 cursor-pointer"
               onClick={() => setPlaying(true)}
             >
-              <img 
+              <Image 
                 src={assets.thumb} 
                 alt={project.title} 
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
@@ -108,7 +110,7 @@ function ProjectCard({ project, assets, index }) {
               controls
               autoPlay
               className="w-full h-full object-cover"
-              poter={assets.thumb}
+              poster={assets.thumb}
               onEnded={() => setPlaying(false)}
             />
           )}
