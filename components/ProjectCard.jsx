@@ -6,7 +6,7 @@ import { BsArrowUpRight, BsGithub } from "react-icons/bs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTranslations } from "next-intl";
 
-const ProjectCard = ({ project, priority = false }) => {
+const ProjectCard = ({ project }) => {
   const t = useTranslations("work");
 
   return (
@@ -16,7 +16,6 @@ const ProjectCard = ({ project, priority = false }) => {
         <Image
           src={project.image}
           fill
-          priority={priority}
           alt={`Imagen de ${project.title}`}
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

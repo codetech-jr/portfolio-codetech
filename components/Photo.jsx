@@ -9,14 +9,30 @@ const Photo = () => {
         //    Uses flexbox to center its direct child (the motion.div wrapper).
         <div className="w-full h-full relative flex justify-center items-center">
             {/* 2. Wrapper for both the image and the SVG circle.
-                   - Removed delay animation here to allow LCP image to load instantly.
+                   - It's centered by the parent flex container.
+                   - `position: relative` makes it a positioning context for its absolute children.
+                   - Its dimensions are set to match the SVG's intended display size at different breakpoints.
+                     (Base: 300x300, XL: SVG width 586px, SVG height 506px)
             */}
-            <div className="relative w-[300px] h-[300px] xl:w-[586px] xl:h-[506px]">
-                {/* 3. Image Container (div instead of motion.div for instant LCP)
+            <motion.div 
+                initial={{opacity: 0}}
+                animate={{
+                    opacity: 1,
+                    transition: { delay: 2, duration: 0.4, ease: "easeIn"},
+                }}
+                className="relative w-[300px] h-[300px] xl:w-[586px] xl:h-[506px]"
+            >
+                {/* 3. Image Container (motion.div)
                        - `position: absolute` and centered using `top/left/transform`.
                        - Sized for the image content.
+                       - `mix-blend-lighten` is kept as in your original code.
                 */}
-                <div 
+                <motion.div 
+                    initial={{opacity: 0}}
+                    animate={{
+                        opacity: 1,
+                        transition: { delay: 2.4, duration: 0.4, ease: "easeInOut"},
+                    }}
                     className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] 
                                mix-blend-lighten absolute top-1/2 left-1/2 
                                transform -translate-x-1/2 -translate-y-1/2"
@@ -31,15 +47,17 @@ const Photo = () => {
                         // Keeping `mix-blend-lighten` as per your original.
                         className="object-cover rounded-full mix-blend-lighten" 
                     />
-                </div>
+                </motion.div>
 
-                {/* 4. Animated SVG circle */}
+                {/* 4. Animated SVG circle
+                       - `position: absolute`, `top-0 left-0 w-full h-full` makes it fill its parent (the sized motion.div wrapper).
+                       - It comes after the image div in the DOM, so it will render on top if both are absolute with same/no z-index.
+                       - `viewBox` defines the SVG's internal coordinate system.
+                       - `preserveAspectRatio` (default "xMidYMid meet") will ensure the viewBox content
+                         (the circle) is scaled and centered correctly, especially if the SVG element's
+                         aspect ratio (e.g., 586x506 on XL) doesn't match the viewBox's aspect ratio (506x506).
+                */}
                 <motion.svg 
-                    initial={{opacity: 0}}
-                    animate={{
-                        opacity: 1,
-                        transition: { delay: 2, duration: 0.4, ease: "easeIn"},
-                    }}
                     className="absolute top-0 left-0 w-full h-full" 
                     fill="transparent"
                     viewBox="0 0 506 506" // SVG coordinate system
@@ -65,7 +83,7 @@ const Photo = () => {
                         }}
                     />
                 </motion.svg>
-            </div>
+            </motion.div>
         </div>
     );
 };

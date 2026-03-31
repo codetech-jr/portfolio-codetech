@@ -149,19 +149,3 @@ h1, h2, h3, h4, h5, h6 {
   color: #00C6FF !important; /* Color principal para el dot activo */
   opacity: 1;
 }
-
-/* 
- * Corrección para PageSpeed: Sobrescribe la declaración original de slick-carousel 
- * para forzar 'font-display: swap', lo cual evita el bloqueo de renderizado del texto. 
- */
-@font-face {
-  font-family: 'slick';
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-  src: url('~slick-carousel/slick/fonts/slick.eot');
-  src: url('~slick-carousel/slick/fonts/slick.eot?#iefix') format('embedded-opentype'),
-       url('~slick-carousel/slick/fonts/slick.woff') format('woff'),
-       url('~slick-carousel/slick/fonts/slick.ttf') format('truetype'),
-       url('~slick-carousel/slick/fonts/slick.svg#slick') format('svg');
-}

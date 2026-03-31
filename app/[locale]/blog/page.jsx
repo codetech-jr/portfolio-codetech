@@ -205,7 +205,7 @@ function SearchResults({ searchResults, searchQuery, totalResults }) {
       ) : (
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {searchResults.map((post, index) => (
-            <AnimatedPostCard key={post._id} post={post} isSearchResult={true} index={index} priority={index < 2} />
+            <AnimatedPostCard key={post._id} post={post} isSearchResult={true} index={index} />
           ))}
         </div>
       )}
@@ -418,7 +418,7 @@ export default function BlogIndexPage() {
                       </h2>
                       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {regularPosts.map((post, index) => (
-                          <AnimatedPostCard key={post._id} post={post} index={index + 1} priority={index < 2} />
+                          <AnimatedPostCard key={post._id} post={post} index={index + 1} />
                         ))}
                       </div>
                     </div>

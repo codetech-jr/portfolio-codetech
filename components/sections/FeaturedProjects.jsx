@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { Play } from "lucide-react";
-import Image from "next/image";
 
 export function FeaturedProjects() {
   const t = useTranslations("projects");
@@ -40,7 +40,7 @@ export function FeaturedProjects() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} assets={assets[index]} index={index} priority={index < 2} />
+            <ProjectCard key={index} project={project} assets={assets[index]} index={index} />
           ))}
         </div>
 
@@ -66,7 +66,7 @@ export function FeaturedProjects() {
   );
 }
 
-function ProjectCard({ project, assets, index, priority = false }) {
+function ProjectCard({ project, assets, index }) {
   const [playing, setPlaying] = useState(false);
   const t = useTranslations("projects");
 
@@ -93,7 +93,6 @@ function ProjectCard({ project, assets, index, priority = false }) {
                 src={assets.thumb} 
                 alt={project.title} 
                 fill
-                priority={priority}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
