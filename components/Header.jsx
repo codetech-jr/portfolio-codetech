@@ -17,6 +17,7 @@ const Header = () => {
                             src="/logo.png" 
                             alt="Codetech Logo" 
                             fill
+                            sizes="(max-width: 768px) 40px, 48px"
                             className="object-contain"
                         />
                     </div>

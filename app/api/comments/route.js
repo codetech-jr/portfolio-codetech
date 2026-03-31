@@ -1,4 +1,4 @@
-// app/api/comments/route.js
+// app/api/comments/route.js (HMR Refresh)
 import { NextResponse } from 'next/server';
 import { createClient } from 'next-sanity';
 import { apiVersion, dataset, projectId } from '@/sanity/env';

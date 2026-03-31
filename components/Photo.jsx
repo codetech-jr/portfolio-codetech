@@ -43,6 +43,7 @@ const Photo = () => {
                         fill // `fill` makes the image expand to its parent div's dimensions
                         priority
                         quality={95}
+                        sizes="(max-width: 768px) 298px, 498px"
                         // `object-cover` maintains aspect ratio, `rounded-full` makes it circular.
                         // Keeping `mix-blend-lighten` as per your original.
                         className="object-cover rounded-full mix-blend-lighten" 
