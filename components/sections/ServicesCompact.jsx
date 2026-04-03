@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { useTranslations } from "next-intl";
 import { MonitorSmartphone, ShoppingCart, Bot, Smartphone } from "lucide-react";
 import { useInView } from "react-intersection-observer";
@@ -31,7 +31,7 @@ export function ServicesCompact() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((service, index) => (
-            <motion.div
+            <Motion as="div"
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}

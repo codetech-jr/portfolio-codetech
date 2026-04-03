@@ -1,20 +1,36 @@
 "use client";
-import React, { useEffect } from "react";
-import { useMotionValue, useTransform, animate, motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 
-const AnimatedNumber = ({ value }) => {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
+// Lightweight number animator using requestAnimationFrame.
+// Avoids framer-motion to keep bundle small and deterministic.
+export default function AnimatedNumber({ value = 0, duration = 1500 }) {
+  const [display, setDisplay] = useState(0);
+  const startRef = useRef(null);
+  const fromRef = useRef(0);
+  const rafRef = useRef(null);
 
   useEffect(() => {
-    const controls = animate(count, value, {
-      duration: 2,
-      ease: "easeOut",
-    });
-    return controls.stop;
-  }, [value, count]);
+    cancelAnimationFrame(rafRef.current);
+    const start = performance.now();
+    startRef.current = start;
+    fromRef.current = display;
 
-  return <motion.span>{rounded}</motion.span>;
-};
+    function tick(now) {
+      const elapsed = Math.min(now - startRef.current, duration);
+      const progress = elapsed / duration;
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(fromRef.current + (value - fromRef.current) * eased);
+      setDisplay(current);
+      if (elapsed < duration) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    }
 
-export default AnimatedNumber;
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  return <span>{display}</span>;
+}

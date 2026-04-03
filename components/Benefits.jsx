@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 
 // Use inline SVGs for benefit icons to avoid importing react-icons
 
@@ -72,7 +72,7 @@ const Benefits = () => {
       <div className="container px-4 mx-auto">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Columna Izquierda: Título y Declaración */}
-          <motion.div
+          <Motion as="div"
             className="flex flex-col justify-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,7 +89,7 @@ const Benefits = () => {
           </motion.div>
 
           {/* Columna Derecha: Lista de Beneficios */}
-          <motion.div
+          <Motion as="div"
             className="space-y-8"
             variants={sectionVariants}
             initial="hidden"
@@ -97,15 +97,15 @@ const Benefits = () => {
             viewport={{ once: true, amount: 0.2 }}
           >
             {benefitsData.map((benefit, index) => (
-              <motion.div key={index} className="flex items-start gap-6" variants={itemVariants}>
+              <Motion as="div" key={index} className="flex items-start gap-6" variants={itemVariants}>
                 <div className="flex-shrink-0 w-12 h-12 mt-1">{benefit.icon}</div>
                 <div>
                   <h3 className="mb-2 text-xl font-bold text-white">{benefit.title}</h3>
                   <p className="text-[#A3A8CC]">{benefit.description}</p>
                 </div>
-              </motion.div>
+              </Motion>
             ))}
-          </motion.div>
+          </Motion>
         </div>
       </div>
     </section>

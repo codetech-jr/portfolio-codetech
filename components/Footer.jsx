@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import { motion } from "framer-motion"; // 1. Importar Framer Motion
+import Motion from "@/components/ui/Motion";
 import IconInstagram from "./icons/IconInstagram";
 import IconLinkedin from "./icons/IconLinkedin";
 import IconGithub from "./icons/IconGithub";
@@ -63,7 +63,7 @@ const socialIconContainerVariants = {
 
 export default function Footer() {
   return (
-    <motion.footer
+    <Motion as="footer"
       className="w-full border-t bg-white dark:bg-[#0C0C2C] border-slate-200 dark:border-[#1B1F3B]"
       // 3. Animar el footer cuando entre en la vista
       variants={footerContainerVariants}
@@ -73,23 +73,23 @@ export default function Footer() {
     >
       <div className="flex flex-col items-center justify-between max-w-5xl gap-4 px-4 py-8 mx-auto md:flex-row">
         {/* Animar el bloque de texto */}
-        <motion.div className="text-center md:text-left" variants={itemVariants}>
+        <Motion as="div" className="text-center md:text-left" variants={itemVariants}>
           <span className="font-mono text-lg font-bold text-accent">
             © {new Date().getFullYear()} Codetech Junior
           </span>
           <span className="block mt-1 text-sm text-slate-500 dark:text-[#A3A8CC]">
             Todos los derechos reservados.
           </span>
-        </motion.div>
+        </Motion>
 
         {/* Animar el contenedor de iconos sociales */}
-        <motion.div 
-            className="flex gap-5" 
+        <Motion as="div"
+            className="flex gap-5"
             variants={socialIconContainerVariants}
         >
           {socialLinks.map((link) => (
             // 4. Convertir cada icono en un elemento animado con micro-interacciones
-            <motion.a
+            <Motion as="a"
               key={link.label}
               href={link.href}
               target="_blank"
@@ -102,10 +102,10 @@ export default function Footer() {
               transition={{ duration: 0.2 }}
             >
               {link.icon}
-            </motion.a>
+            </Motion>
           ))}
-        </motion.div>
+        </Motion>
       </div>
-    </motion.footer>
+    </Motion>
   );
 }

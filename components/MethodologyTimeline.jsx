@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { useInView } from "react-intersection-observer";
 import { useTranslations } from "next-intl";
 
@@ -31,7 +31,7 @@ export default function MethodologyTimeline() {
               const stepId = index + 1;
               
               return (
-                <motion.div 
+                <Motion as="div"
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -60,7 +60,7 @@ export default function MethodologyTimeline() {
                   <div className="absolute left-[20px] md:left-1/2 w-10 h-10 rounded-full border-4 border-[#0C0C2C] bg-accent/20 flex items-center justify-center -translate-x-[18px] md:-translate-x-1/2 z-20 shadow-[0_0_15px_rgba(0,198,255,0.4)]">
                     <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
                   </div>
-                </motion.div>
+                </Motion>
               );
             })}
           </div>

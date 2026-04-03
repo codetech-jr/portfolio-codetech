@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Motion from "@/components/ui/Motion";
+import dynamic from 'next/dynamic';
+const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 
 // Importaciones de los iconos necesarios
 // Inline simple SVGs instead of react-icons/tb to avoid bundling large icon packs
@@ -64,12 +66,12 @@ const DigitalBenefits = () => {
       <div className="container px-4 mx-auto">
         
         {/* Encabezado de la sección */}
-        <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5 }}
+        <Motion as="div" 
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
         >
           <h2 className="mb-6 text-4xl font-bold text-white">Un Activo Digital Estratégico para tu Negocio</h2>
           <p className="max-w-3xl mx-auto mb-12 text-lg text-[#A3A8CC]">
@@ -99,7 +101,7 @@ const DigitalBenefits = () => {
         {/* Contenido de la pestaña activa */}
         <div className="relative p-8 bg-[#1B1F3B] border border-[#003B8D] rounded-xl">
           <AnimatePresence mode="wait">
-            <motion.div
+            <Motion as="div"
               key={activeTab} // La 'key' le dice a AnimatePresence que este es un nuevo elemento a animar
               variants={contentVariants}
               initial="hidden"
@@ -108,14 +110,14 @@ const DigitalBenefits = () => {
               className="grid grid-cols-1 gap-8 md:grid-cols-2" // La rejilla de beneficios
             >
               {benefitsData[activeTab].benefits.map((benefit, i) => (
-                <motion.div key={i} className="flex items-start gap-4" variants={itemVariants}>
+                <Motion as="div" key={i} className="flex items-start gap-4" variants={itemVariants}>
                   <div className="flex-shrink-0 w-8 h-8 mt-1">
                     {benefit.icon}
                   </div>
                   <p className="text-lg text-[#A3A8CC]">{benefit.text}</p>
-                </motion.div>
+                </Motion>
               ))}
-            </motion.div>
+            </Motion>
           </AnimatePresence>
         </div>
       </div>

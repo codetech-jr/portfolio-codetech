@@ -1,9 +1,10 @@
 "use client";
 
 
-import { AnimatePresence } from "framer-motion";
+import Motion from "@/components/ui/Motion";
+import dynamic from 'next/dynamic';
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 
 // components
 import Stairs from "./Stairs"
@@ -19,7 +20,7 @@ const StairTransition = () => {
                     <Stairs />
                 </div>
 
-                <motion.div 
+                <Motion as="div"
                 className="h-screen w-screen fixed top-0 left-0 right-0 pointer-events-none z-40 flex bg-white dark:bg-primary"
                 initial={{ opacity: 1}}
                 animate={{

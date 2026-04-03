@@ -149,3 +149,23 @@ h1, h2, h3, h4, h5, h6 {
   color: #00C6FF !important; /* Color principal para el dot activo */
   opacity: 1;
 }
+
+/* Lightweight fade-in helpers (no JS inline styles) */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+.fade-in-delay-1 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+.fade-in-delay-2 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.8s forwards;
+}
+
+/* Ensure typewriter area reserves vertical space to avoid CLS */
+.typewriter-reserve {
+  display: inline-block;
+  min-width: 16ch;
+}

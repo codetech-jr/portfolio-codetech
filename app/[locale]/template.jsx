@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { usePathname } from "next/navigation";
 
 export default function Template({ children }) {
   const pathname = usePathname();
 
   return (
-    <motion.div
+    <Motion as="div"
       key={pathname}
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
@@ -19,6 +19,6 @@ export default function Template({ children }) {
       }}
     >
       { children }
-    </motion.div>
+    </Motion>
   );
 }

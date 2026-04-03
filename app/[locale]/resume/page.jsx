@@ -169,12 +169,12 @@ import {
 } from "@radix-ui/react-tooltip";
 
 import { ScrollArea, ScrollAreaViewport, ScrollAreaScrollbar, ScrollAreaThumb } from "@radix-ui/react-scroll-area";
-import { animate, delay, motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 
 
 const Resume = () => {
     return (
-        <motion.div
+        <Motion as="div"
             initial = {{ opacity: 0}}
             animate = {{
                 opacity: 1,
@@ -298,7 +298,7 @@ const Resume = () => {
                     </div>
                 </Tabs>
             </div>
-        </motion.div>
+        </Motion>
 )}
 
 export default Resume;

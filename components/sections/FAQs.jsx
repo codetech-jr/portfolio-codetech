@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Motion from "@/components/ui/Motion";
+import dynamic from 'next/dynamic';
+const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
 
@@ -68,11 +70,11 @@ export function FAQs() {
   return (
     <section className="py-24 relative z-10 font-primary">
       <div className="container max-w-4xl px-4 mx-auto">
-        <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
+        <Motion as="div" 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
         >
           <h2 className="mb-4 text-4xl md:text-5xl font-bold text-slate-900 dark:text-white font-display">
             {t("title")}
@@ -82,13 +84,13 @@ export function FAQs() {
           </p>
         </motion.div>
         
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
+        <Motion as="div"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           {Object.entries(groupedFaqs).map(([categoryKey, faqsInCategory], categoryIndex) => (
-            <motion.div key={categoryKey} className="mb-12" initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{delay: categoryIndex * 0.1}}>
+            <Motion as="div" key={categoryKey} className="mb-12" initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} transition={{delay: categoryIndex * 0.1}}>
               <h3 className="mb-6 text-2xl font-bold text-center text-accent/80 border-b border-slate-200 dark:border-white/10 pb-4 inline-block w-full">
                 {categories[categoryKey] || categoryKey}
               </h3>
@@ -102,9 +104,9 @@ export function FAQs() {
                   />
                 ))}
               </div>
-            </motion.div>
+            </Motion>
           ))}
-        </motion.div>
+        </Motion>
       </div>
     </section>
   );

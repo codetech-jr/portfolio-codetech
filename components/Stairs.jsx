@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+"use client";
+
+import Motion from "@/components/ui/Motion";
 
 // variants - use transform (y) to avoid layout shifts (CLS)
 const stairAnimation = {
@@ -27,7 +29,7 @@ const Stairs = () => {
         }
 
         {[...Array(6)].map((_, index) => (
-            <motion.div
+            <Motion as="div"
                 key={index}
                 variants={stairAnimation}
                 initial="initial"

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 
 import styles from "./TrustedBy.module.css";
 
@@ -45,7 +45,7 @@ const TrustedBy = () => {
   return (
     <section id="trusted-by" className="py-16 bg-[#1B1F3B]">
       <div className="container px-4 mx-auto">
-        <motion.div
+        <Motion as="div"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -81,7 +81,7 @@ const TrustedBy = () => {
               ))}
             </div>
           </div>
-        </motion.div>
+        </Motion>
       </div>
     </section>
   );

@@ -59,18 +59,18 @@ const info = [
     }
 ]
 
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 
 const Contact = () => {
     return (
-        <motion.section
-        initial={{ opacity: 0 }}
-        animate={{
-            opacity: 1,
-            transition: { delay: 2.4, duration: 0.4, ease: "easeIn" }
-        }}
-        className="py-6"
-        >
+        <Motion as="section"
+            initial={{ opacity: 0 }}
+            animate={{
+                opacity: 1,
+                transition: { delay: 2.4, duration: 0.4, ease: "easeIn" }
+            }}
+            className="py-6"
+            >
             <div className="container mx-auto">
                 <div className="flex flex-col xl:flex-row gap-[30px]">
                     {/* form */}
@@ -138,7 +138,7 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-        </motion.section>
+        </Motion>
     )
 }
 

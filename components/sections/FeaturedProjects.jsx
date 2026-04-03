@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Motion from "@/components/ui/Motion";
+import dynamic from "next/dynamic";
+const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -24,7 +26,7 @@ export function FeaturedProjects() {
   return (
     <section id="proyectos" className="py-24 relative z-10" ref={ref}>
       <div className="container mx-auto">
-        <motion.div
+        <Motion as="div"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
@@ -36,7 +38,7 @@ export function FeaturedProjects() {
           <p className="max-w-2xl mx-auto text-slate-600 dark:text-white/70 font-primary">
             {t("subtitle")}
           </p>
-        </motion.div>
+        </Motion>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {projects.map((project, index) => (
@@ -44,7 +46,7 @@ export function FeaturedProjects() {
           ))}
         </div>
 
-        <motion.div
+        <Motion as="div"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -60,7 +62,7 @@ export function FeaturedProjects() {
           >
             {t("ctaButton")}
           </Link>
-        </motion.div>
+        </Motion>
       </div>
     </section>
   );
@@ -71,7 +73,7 @@ function ProjectCard({ project, assets, index }) {
   const t = useTranslations("projects");
 
   return (
-    <motion.div
+    <Motion as="div"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -81,7 +83,7 @@ function ProjectCard({ project, assets, index }) {
       <div className="relative aspect-video w-full bg-slate-200 dark:bg-white/5 overflow-hidden">
         <AnimatePresence mode="wait">
           {!playing ? (
-            <motion.div 
+            <Motion as="div"
               key="thumb"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -102,8 +104,8 @@ function ProjectCard({ project, assets, index }) {
                 </div>
               </div>
             </motion.div>
-          ) : (
-            <motion.video
+            ) : (
+            <Motion as="video"
               key="video"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

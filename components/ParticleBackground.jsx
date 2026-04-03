@@ -162,7 +162,9 @@ export default function ParticleBackground() {
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => setMounted(true), []);
+  // Avoid rendering heavy three.js canvas on small/mobile screens
   if (!mounted) return null;
+  if (typeof window !== 'undefined' && window.innerWidth < 768) return null;
 
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden" style={{ mixBlendMode: 'screen' }}>

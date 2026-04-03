@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 
 // --- 1. IMPORTAMOS LOS ICONOS ---
 // Elige los que mejor representen cada servicio. Aquí te doy algunas ideas:
@@ -150,14 +150,14 @@ const Services = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           {servicesData.map((service, index) => (
-            <motion.div
-              key={index}
-              className="p-8 text-center bg-[#1B1F3B] border border-[#003B8D] rounded-lg transition-shadow duration-300 hover:shadow-2xl hover:shadow-[#00C6FF]/20"
-              variants={cardVariants}
-              // --- Animación al pasar el cursor ---
-              whileHover={{ y: -10, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
+            <Motion as="div" 
+                  key={index}
+                  className="p-8 text-center bg-[#1B1F3B] border border-[#003B8D] rounded-lg transition-shadow duration-300 hover:shadow-2xl hover:shadow-[#00C6FF]/20"
+                  variants={cardVariants}
+                  // --- Animación al pasar el cursor ---
+                  whileHover={{ y: -10, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
               <div className="flex items-center justify-center mb-6">
                 {service.icon}
               </div>
@@ -165,7 +165,7 @@ const Services = () => {
               <p className="text-[#A3A8CC]">{service.description}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </Motion>
       </div>
     </section>
   );

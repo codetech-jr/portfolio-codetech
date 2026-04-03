@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
         className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-1 w-20 h-9 backdrop-blur-md cursor-pointer group"
         aria-label="Toggle Language"
       >
-        <motion.div
+        <Motion as="div"
           layout
           className="absolute w-8 h-7 bg-accent rounded-full shadow-[0_0_10px_rgba(0,198,255,0.4)]"
           animate={{ x: locale === "es" ? 2 : 42 }}

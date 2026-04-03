@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import dynamic from 'next/dynamic';
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
 import "slick-carousel/slick/slick.css";
@@ -43,11 +43,13 @@ export function Testimonials() {
 
   return (
     <section id="testimonios" className="py-24 relative z-10 overflow-hidden">
-      {/* Glow background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+      {/* Glow background (flex-centered to avoid transform-based reflows) */}
+      <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+        <div className="w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px]" aria-hidden />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
+        <Motion as="div"
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,9 +61,9 @@ export function Testimonials() {
           <p className="max-w-2xl mx-auto text-slate-600 dark:text-white/70 font-primary">
             {t("subtitle")}
           </p>
-        </motion.div>
+        </Motion>
 
-        <motion.div
+        <Motion as="div"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -99,7 +101,7 @@ export function Testimonials() {
                <span className="text-slate-400">Cargando testimonios...</span>
             </div>
           )}
-        </motion.div>
+        </Motion>
       </div>
 
       <style jsx global>{`

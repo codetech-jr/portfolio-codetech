@@ -25,14 +25,14 @@ const services = [
     },
 ];
 
-import {motion} from "framer-motion"
+import Motion from "@/components/ui/Motion"
 import { Target } from "lucide-react";
 
 const Services = () => {
     return (
         <section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0">
             <div className="container mx-auto">
-                <motion.div 
+                <Motion as="div" 
                 initial={{opacity: 0}}
                 animate={{
                     opacity: 1, 
@@ -64,7 +64,7 @@ const Services = () => {
                         </div>
                         );
                     })}
-                </motion.div>
+                </Motion>
             </div>
         </section>
     )

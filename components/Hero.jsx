@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import Motion from "./ui/Motion";
 import { Typewriter } from "react-simple-typewriter";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -45,29 +45,26 @@ export default function Hero() {
       {/* 3D Particle Network Mesh (carga diferida) */}
       {loadParticles ? <ParticleBackground /> : null}
 
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
+      <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+        <div className="w-[800px] h-[800px] bg-accent/20 rounded-full blur-[120px]" aria-hidden />
+      </div>
 
       <div className="container mx-auto relative z-10">
         <div className="flex flex-col xl:flex-row items-center justify-between gap-12">
           
           <div className="text-center xl:text-left order-2 xl:order-none flex-1">
-            <motion.span 
+            <Motion as="span"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="text-xl font-medium tracking-wider text-accent mb-4 block"
             >
               {t("role")}
-            </motion.span>
+            </Motion>
             
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="h1 mb-6 text-slate-900 dark:text-white"
-            >
+            <h1 className="h1 mb-6 text-slate-900 dark:text-white">
               {t("greeting")} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
+              <span className="inline-block min-w-[16ch] text-transparent bg-clip-text bg-gradient-to-r from-accent to-blue-400">
                 <Typewriter
                   words={t.raw("typewriterWords")}
                   loop={true}
@@ -78,18 +75,18 @@ export default function Hero() {
                   delaySpeed={2000}
                 />
               </span>
-            </motion.h1>
+            </h1>
 
-            <motion.p 
+            <Motion as="p"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="max-w-[500px] mb-9 text-slate-600 dark:text-white/80 mx-auto xl:mx-0 text-lg leading-relaxed font-primary"
             >
               {t("description")}
-            </motion.p>
+            </Motion>
 
-            <motion.div 
+            <Motion as="div"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}

@@ -2,7 +2,7 @@
 
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { useTranslations } from "next-intl";
 
 export default function StatsAnimated() {
@@ -25,7 +25,7 @@ export default function StatsAnimated() {
         <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 max-w-[80vw] mx-auto xl:max-w-none">
           {stats.map((item, index) => {
             return (
-              <motion.div 
+              <Motion as="div"
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -40,7 +40,7 @@ export default function StatsAnimated() {
                 <p className="text-sm text-center font-medium text-slate-600 dark:text-white/80 max-w-[150px] leading-snug font-primary">
                   {item.text}
                 </p>
-              </motion.div>
+              </Motion>
             );
           })}
         </div>

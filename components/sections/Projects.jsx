@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import dynamic from "next/dynamic";
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
 import { Link } from "@/i18n/routing";
@@ -171,32 +171,32 @@ const Projects = () => {
   return (
     <section id="projects" className="py-16 bg-slate-50 dark:bg-[#0C0C2C] sm:py-24">
       <div className="container px-4 mx-auto">
-        <motion.div
-            className="text-center"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.5 }}
-            variants={headerTextVariants}
+        <Motion as="div"
+          className="text-center"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={headerTextVariants}
         >
           <h2 className="mb-4 text-4xl font-bold text-slate-900 dark:text-white">Proyectos Destacados</h2>
           <p className="max-w-3xl mx-auto mb-12 text-lg text-slate-600 dark:text-[#A3A8CC]">
             Aquí tienes una selección de mis trabajos. Cada proyecto es una historia de cómo transformo desafíos en soluciones digitales efectivas y atractivas.
           </p>
-        </motion.div>
+        </Motion>
 
         {/* --- SLIDER DE PROYECTOS --- */}
         <Slider {...sliderSettings}>
           {projectsData.map((project, idx) => (
             <div key={idx} className="px-2">
-              <motion.div variants={projectCardVariants}>
+              <Motion as="div" variants={projectCardVariants}>
                 <ProjectCard project={project} />
-              </motion.div>
+              </Motion>
             </div>
           ))}
         </Slider>
 
         {/* --- INICIO: NUEVO BLOQUE DE CTA --- */}
-        <motion.div
+        <Motion as="div"
           className="mt-20 text-center"
           initial="hidden"
           whileInView="show"
@@ -213,7 +213,7 @@ const Projects = () => {
           >
             Ver Mi Portafolio Completo
           </Link>
-        </motion.div>
+        </Motion>
         {/* --- FIN: NUEVO BLOQUE DE CTA --- */}
         
       </div>

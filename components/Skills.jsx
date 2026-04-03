@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { useTranslations } from "next-intl";
 
 const skillsMap = [
@@ -114,7 +114,7 @@ export default function Skills() {
           </p>
         </div>
         
-        <motion.div 
+        <Motion as="div" 
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4"
           variants={containerVariants}
           initial="hidden"
@@ -124,7 +124,7 @@ export default function Skills() {
           {skillsMap.map((skill, index) => {
             const Icon = skill.icon;
             return (
-              <motion.div
+              <Motion as="div"
                 key={index}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
@@ -132,10 +132,10 @@ export default function Skills() {
               >
                 <SkillIcon name={skill.name} className={`w-10 h-10 ${skill.text} group-hover:scale-110 transition-transform`} />
                 <span className="text-sm font-medium text-slate-800 dark:text-white/80">{skill.name}</span>
-              </motion.div>
+              </Motion>
             );
           })}
-        </motion.div>
+        </Motion>
       </div>
     </div>
   );

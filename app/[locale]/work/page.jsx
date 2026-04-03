@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Motion from "@/components/ui/Motion";
+import dynamic from "next/dynamic";
+
+const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 import ProjectCard from "@/components/ProjectCard"; 
 import { projectsData } from "@/data/projects";
 import { useTranslations } from "next-intl";
@@ -34,17 +37,17 @@ export default function WorkPage() {
   }, [activeCategory, localizedProjects, t]);
 
   return (
-    <motion.section
+    <Motion as="section"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="min-h-[80vh] py-16 xl:py-24 relative z-10 font-primary"
     >
       <div className="container mx-auto px-4">
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+        <Motion as="div" 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-16"
         >
             <h2 className="mb-4 text-4xl md:text-5xl font-bold text-slate-900 dark:text-white font-display">
                 {t("title")}
@@ -84,23 +87,23 @@ export default function WorkPage() {
         </div>
 
         {/* --- ANIMATED GALLERY GRID --- */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-                {filteredProjects.map((project) => (
-                    <motion.div
-                        layout
-                        key={project.id}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.4 }}
-                    >
-                        <ProjectCard project={project} />
-                    </motion.div>
-                ))}
-            </AnimatePresence>
-        </motion.div>
+        <Motion as="div" layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <Motion as="div"
+                layout
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+              >
+                <ProjectCard project={project} />
+              </Motion>
+            ))}
+          </AnimatePresence>
+        </Motion>
       </div>
-    </motion.section>
+    </Motion>
   );
 }

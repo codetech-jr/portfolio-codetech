@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form"; // 1. Importar useForm
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import {
   Dialog,
   DialogContent,
@@ -63,7 +63,28 @@ const addons = [
 
 // --- COMPONENTES INTERNOS (sin cambios) ---
 const CheckIcon = ({ className }) => ( <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12"></polyline></svg> );
-const PackageCard = ({ pkg, onSelect }) => ( <div className={cn("relative flex flex-col h-full p-8 rounded-2xl border-2 transition-all duration-300 bg-[#1B1F3B] border-[#003B8D]", pkg.highlight && "border-[#00C6FF] shadow-2xl shadow-[#00c6ff]/10 scale-105 z-10")}> {pkg.highlight && (<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 text-sm font-semibold text-[#0C0C2C] bg-[#00C6FF] rounded-full">Recomendado</div>)} <div className="flex flex-col flex-grow text-center"><h3 className={cn("text-2xl font-bold mb-2", pkg.highlight ? 'text-[#00C6FF]' : 'text-[#FFFFFF]')}>{pkg.name}</h3><p className="text-[#A3A8CC] mb-6 text-sm">{pkg.description}</p><ul className="space-y-3 text-left mb-8 text-[#A3A8CC] text-sm">{pkg.features.map((feature, i) => (<li key={i} className="flex items-start gap-3"><CheckIcon className="text-[#00C6FF] mt-1 flex-shrink-0" /><span>{feature}</span></li>))}</ul></div><div className="mt-auto text-center"><div className="mb-6 text-2xl font-extrabold text-[#FFFFFF]"><span className="text-[#00C6FF]">{pkg.price}</span></div><DialogTrigger asChild><Button onClick={() => onSelect(pkg)} size="lg" className={cn("w-full font-bold", pkg.highlight ? 'bg-[#00C6FF] text-[#0C0C2C] hover:bg-[#00C6FF]/90' : 'bg-transparent border-2 border-[#003B8D] text-[#A3A8CC] hover:bg-[#003B8D] hover:text-white')}>{pkg.price.includes("Desde") ? "Solicitar Cotización" : "Solicitar"}</Button></DialogTrigger></div></div> );
+const PackageCard = ({ pkg, onSelect }) => (
+  <div className={cn("flex flex-col h-full p-8 rounded-2xl border-2 transition-all duration-300 bg-[#1B1F3B] border-[#003B8D]", pkg.highlight && "border-[#00C6FF] shadow-2xl shadow-[#00c6ff]/10 scale-105 z-10")}>
+    {pkg.highlight && (
+      <div className="flex justify-center -mt-6 mb-2">
+        <div className="px-4 py-1 text-sm font-semibold text-[#0C0C2C] bg-[#00C6FF] rounded-full">Recomendado</div>
+      </div>
+    )}
+    <div className="flex flex-col flex-grow text-center">
+      <h3 className={cn("text-2xl font-bold mb-2", pkg.highlight ? 'text-[#00C6FF]' : 'text-[#FFFFFF]')}>{pkg.name}</h3>
+      <p className="text-[#A3A8CC] mb-6 text-sm">{pkg.description}</p>
+      <ul className="space-y-3 text-left mb-8 text-[#A3A8CC] text-sm">{pkg.features.map((feature, i) => (<li key={i} className="flex items-start gap-3"><CheckIcon className="text-[#00C6FF] mt-1 flex-shrink-0" /><span>{feature}</span></li>))}</ul>
+    </div>
+    <div className="mt-auto text-center">
+      <div className="mb-6 text-2xl font-extrabold text-[#FFFFFF]"><span className="text-[#00C6FF]">{pkg.price}</span></div>
+      <DialogTrigger asChild>
+        <Button onClick={() => onSelect(pkg)} size="lg" className={cn("w-full font-bold", pkg.highlight ? 'bg-[#00C6FF] text-[#0C0C2C] hover:bg-[#00C6FF]/90' : 'bg-transparent border-2 border-[#003B8D] text-[#A3A8CC] hover:bg-[#003B8D] hover:text-white')}>
+          {pkg.price.includes("Desde") ? "Solicitar Cotización" : "Solicitar"}
+        </Button>
+      </DialogTrigger>
+    </div>
+  </div>
+);
 const AddonCard = ({ addon }) => ( <div className="p-6 rounded-xl bg-[#1B1F3B] border border-[#003B8D] flex flex-col"><h4 className="text-lg font-semibold text-[#00C6FF] mb-2">{addon.title}</h4><p className="text-[#A3A8CC] text-sm flex-grow mb-4">{addon.description}</p><div className="mt-auto font-bold text-right text-white">{addon.price}</div></div> );
 
 // --- VARIANTES DE ANIMACIÓN (sin cambios) ---
@@ -115,19 +136,32 @@ export default function Services() {
       <section id="servicios" className="py-24 bg-[#0C0C2C]">
         <div className="container px-4 mx-auto">
           {/* ... Encabezado de la sección sin cambios ... */}
-          <motion.div className="text-center" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.8 }} variants={itemVariants}><h2 className="mb-6 text-4xl font-bold text-white">Paquetes de Desarrollo Web</h2><p className="max-w-2xl mx-auto text-[#A3A8CC] mb-12">Soluciones a la medida para llevar tu proyecto al siguiente nivel. Elige el paquete que mejor se adapte a tus necesidades.</p></motion.div>
-          
-          <motion.div className="grid items-stretch grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+          <Motion as="div" className="text-center" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.8 }} variants={itemVariants}>
+            <h2 className="mb-6 text-4xl font-bold text-white">Paquetes de Desarrollo Web</h2>
+            <p className="max-w-2xl mx-auto text-[#A3A8CC] mb-12">Soluciones a la medida para llevar tu proyecto al siguiente nivel. Elige el paquete que mejor se adapte a tus necesidades.</p>
+          </Motion>
+
+          <Motion as="div" className="grid items-stretch grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
             {packages.map((pkg) => (
-              <motion.div key={pkg.name} variants={itemVariants} whileHover={{ scale: pkg.highlight ? 1.08 : 1.03, transition: { duration: 0.2 } }}>
-                {/* 6. Usar la nueva función para seleccionar el paquete */}
+              <Motion as="div" key={pkg.name} variants={itemVariants} whileHover={{ scale: pkg.highlight ? 1.08 : 1.03, transition: { duration: 0.2 } }}>
                 <PackageCard pkg={pkg} onSelect={handleSelectPackage} />
-              </motion.div>
+              </Motion>
             ))}
-          </motion.div>
+          </Motion>
 
           {/* ... Sección de Add-ons sin cambios ... */}
-          <div className="mt-24"><motion.div className="text-center" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.8 }} variants={itemVariants}><h3 className="mb-10 text-3xl font-bold text-white">Servicios Adicionales</h3></motion.div><motion.div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>{addons.map((addon) => (<motion.div key={addon.title} variants={itemVariants} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}><AddonCard addon={addon} /></motion.div>))}</motion.div></div>
+          <div className="mt-24">
+            <Motion as="div" className="text-center" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.8 }} variants={itemVariants}>
+              <h3 className="mb-10 text-3xl font-bold text-white">Servicios Adicionales</h3>
+            </Motion>
+            <Motion as="div" className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4" variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+              {addons.map((addon) => (
+                <Motion as="div" key={addon.title} variants={itemVariants} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}>
+                  <AddonCard addon={addon} />
+                </Motion>
+              ))}
+            </Motion>
+          </div>
         </div>
       </section>
 

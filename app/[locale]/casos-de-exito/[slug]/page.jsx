@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { allCaseStudies } from "@/data/case-studies";
 
 // --- 1. IMPORTA LOS NUEVOS COMPONENTES REUTILIZABLES ---
@@ -31,7 +31,7 @@ const CaseStudyPage = () => {
   return (
     <div className="bg-slate-50 dark:bg-[#0C0C2C] text-slate-900 dark:text-white">
       {/* --- SECCIÓN HERO --- */}
-      <motion.header 
+      <Motion as="header" 
         className="relative flex items-center justify-center min-h-[60vh] md:min-h-[70vh] h-96"
         key={slug} 
         initial={{ opacity: 0 }}
@@ -51,15 +51,15 @@ const CaseStudyPage = () => {
           <h1 className="text-4xl font-bold md:text-6xl text-slate-900 dark:text-white">{data.title}</h1>
           <p className="mt-4 text-xl text-slate-600 dark:text-[#A3A8CC]">{data.tagline}</p>
         </div>
-      </motion.header>
+      </Motion>
 
 
       <main className="max-w-4xl px-4 py-16 mx-auto sm:py-24">
         {/* --- SECCIÓN DESAFÍO --- */}
-        <motion.section variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
+        <Motion as="section" variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
           <h2 className="mb-4 text-3xl font-bold text-center text-[#008BB2] dark:text-[#00C6FF]">{data.challenge.title}</h2>
           <p className="text-lg text-center text-slate-600 dark:text-[#A3A8CC]">{data.challenge.description}</p>
-        </motion.section>
+        </Motion>
 
         <hr className="my-16 border-t border-slate-200 dark:border-[#003B8D]" />
 
@@ -70,7 +70,7 @@ const CaseStudyPage = () => {
           
           <div className="space-y-16">
             {data.solution.steps.map((step, index) => (
-              <motion.div key={index} className="grid items-center gap-8 md:grid-cols-2" variants={sectionVariants}>
+              <Motion as="div" key={index} className="grid items-center gap-8 md:grid-cols-2" variants={sectionVariants}>
                 <div className={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}>
                   <h3 className="mb-3 text-2xl font-bold text-slate-900 dark:text-white">{step.title}</h3>
                   <p className="text-slate-600 dark:text-[#A3A8CC]">{step.content}</p>
@@ -79,7 +79,7 @@ const CaseStudyPage = () => {
                   {/* --- MEJORA 2: Imágenes ahora usan el mockup de navegador --- */}
                   <BrowserMockup imgSrc={step.image} altText={step.title} />
                 </div>
-              </motion.div>
+              </Motion>
             ))}
           </div>
         </motion.section>

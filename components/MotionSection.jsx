@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import { useInView } from "react-intersection-observer";
 
 export default function MotionSection({ children, className, id, delay = 0 }) {
@@ -11,7 +11,7 @@ export default function MotionSection({ children, className, id, delay = 0 }) {
   });
 
   return (
-    <motion.section
+    <Motion as="section"
       id={id}
       ref={ref}
       className={className}
@@ -20,6 +20,6 @@ export default function MotionSection({ children, className, id, delay = 0 }) {
       transition={{ duration: 0.6, delay: delay, ease: [0.21, 0.47, 0.32, 0.98] }}
     >
       {children}
-    </motion.section>
+    </Motion>
   );
 }

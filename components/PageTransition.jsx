@@ -1,26 +1,27 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 
 const PageTransition = ({ children }) => {
     const pathname = usePathname();
     return (
         <AnimatePresence mode="wait">
-            <div key={pathname}>
-                <motion.div
-                    initial={{opacity: 1}}
-                    animate ={{
-                        opacity: 0, 
-                        transition: {delay: 1, duration: 0.4, ease: "easeInOut"},
-                    }}
-                    className="h-screen w-screen fixed bg-[#0C0C2C] top-0 pointer-events-none"
-                >
-                    
-                </motion.div>
-                {children}
-            </div>
-        </AnimatePresence>
+                <div key={pathname}>
+                    <Motion as="div"
+                        initial={{opacity: 1}}
+                        animate ={{
+                            opacity: 0, 
+                            transition: {delay: 1, duration: 0.4, ease: "easeInOut"},
+                        }}
+                        className="h-screen w-screen fixed bg-[#0C0C2C] top-0 pointer-events-none"
+                    >
+                    </Motion>
+                    {children}
+                </div>
+            </AnimatePresence>
     );
 };
 
