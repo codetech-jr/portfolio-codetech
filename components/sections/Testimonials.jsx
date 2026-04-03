@@ -82,7 +82,7 @@ export function Testimonials() {
                         loading="lazy"
                       />
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900 dark:text-white">{test.name}</h4>
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">{test.name}</h3>
                         <p className="text-sm text-accent">{test.role}</p>
                       </div>
                     </div>

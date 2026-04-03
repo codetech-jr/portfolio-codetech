@@ -138,14 +138,17 @@ function ProjectCard({ project, assets, index }) {
           <Link
             href={assets.case}
             className="flex-1 text-center font-bold px-6 py-3 bg-accent/10 dark:bg-accent/20 hover:bg-accent/20 dark:hover:bg-accent/30 text-slate-900 dark:text-accent rounded-xl transition-colors border border-accent/30"
+            aria-label={`Ver caso de éxito de ${project.title}`}
           >
             Ver Caso de Éxito
+            <span className="sr-only"> de {project.title}</span>
           </Link>
           <a
             href={assets.link}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 text-center font-bold px-6 py-3 bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-700 dark:text-white rounded-xl transition-colors"
+            aria-label={`Ver proyecto ${project.title} en producción (abre en nueva pestaña)`}
           >
             {t("viewProject")}
           </a>
