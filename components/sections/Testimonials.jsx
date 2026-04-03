@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import dynamic from 'next/dynamic';
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import { useTranslations } from "next-intl";
 import { Quote } from "lucide-react";
 

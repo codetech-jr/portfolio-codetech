@@ -1,16 +1,16 @@
 import Hero from "@/components/Hero";
-import StatsAnimated from "@/components/StatsAnimated";
 import dynamic from "next/dynamic";
 import MotionSection from "@/components/MotionSection";
+// Client-boundary wrapper (allows ssr:false for react-countup)
+import { StatsAnimated } from "@/components/ClientOnlySections";
 
-// Dynamic Sections for performance
-const FeaturedProjects = dynamic(() => import("@/components/sections/FeaturedProjects").then(mod => mod.FeaturedProjects), { ssr: true });
-const Services = dynamic(() => import("@/components/sections/Services"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/sections/Testimonials").then(mod => mod.Testimonials), { ssr: true });
-const FAQs = dynamic(() => import("@/components/sections/FAQs").then(mod => mod.FAQs), { ssr: true });
-const Contact = dynamic(() => import("@/components/sections/Contact").then(mod => mod.Contact), { ssr: true });
+// ── Non-critical: deferred below the fold ────────────────────────────────
+const FeaturedProjects    = dynamic(() => import("@/components/sections/FeaturedProjects").then(m => m.FeaturedProjects), { ssr: true });
+const Services            = dynamic(() => import("@/components/sections/Services"),  { ssr: true });
+const Testimonials        = dynamic(() => import("@/components/sections/Testimonials").then(m => m.Testimonials), { ssr: true });
+const FAQs                = dynamic(() => import("@/components/sections/FAQs").then(m => m.FAQs), { ssr: true });
+const Contact             = dynamic(() => import("@/components/sections/Contact").then(m => m.Contact), { ssr: true });
 const MethodologyTimeline = dynamic(() => import("@/components/MethodologyTimeline"), { ssr: true });
-const Skills = dynamic(() => import("@/components/Skills"), { ssr: true });
 
 export default function Home() {
   return (

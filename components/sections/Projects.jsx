@@ -6,8 +6,7 @@ const Slider = dynamic(() => import('react-slick'), { ssr: false });
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import "../../app/globals.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 
 // --- DATOS DE PROYECTOS ---
 const projectsData = [
