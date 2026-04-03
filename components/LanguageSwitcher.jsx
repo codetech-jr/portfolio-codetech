@@ -19,9 +19,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={handleToggle}
         className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-1 w-20 h-9 backdrop-blur-md cursor-pointer group"
-        aria-label={locale === "es" ? "Cambiar idioma a Inglés" : "Switch language to Spanish"}
-        aria-pressed={locale === "en"}
-        role="switch"
+        aria-label="Toggle Language"
       >
         <motion.div
           layout
@@ -29,9 +27,9 @@ export default function LanguageSwitcher() {
           animate={{ x: locale === "es" ? 2 : 42 }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
-        <div className="flex justify-between w-full px-2 z-10 pointer-events-none" aria-hidden="true">
-          <span className={`text-[10px] font-bold ${locale === "es" ? "text-primary" : "text-white/70"}`}>ES</span>
-          <span className={`text-[10px] font-bold ${locale === "en" ? "text-primary" : "text-white/70"}`}>EN</span>
+        <div className="flex justify-between w-full px-2 z-10 pointer-events-none">
+          <span className={`text-[10px] font-bold ${locale === "es" ? "text-primary" : "text-white/40"}`}>ES</span>
+          <span className={`text-[10px] font-bold ${locale === "en" ? "text-primary" : "text-white/40"}`}>EN</span>
         </div>
       </button>
     </div>

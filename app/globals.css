@@ -1,16 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* ── Slick Carousel CSS (centralizado aquí para añadir font-display:swap) ── */
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
-
-/* Override del @font-face de slick para evitar render-blocking */
-@font-face {
-  font-family: 'slick';
-  font-display: swap;
-}
-
 /* Configuración Tailwind v4 para modo Oscuro manual (next-themes) */
 @variant dark (&:where(.dark, .dark *));
 
