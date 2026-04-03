@@ -24,10 +24,11 @@
   --animate-slide-in-from-bottom: slide-in-from-bottom 0.5s ease-out forwards;
   --animate-slide-out-to-bottom: slide-out-to-bottom 0.3s ease-in forwards;
 
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 :root {
