@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { FaComment, FaUser, FaCalendar, FaReply, FaHeart, FaTrash } from 'react-icons/fa';
 
 export default function Comments({ postId, postSlug, className = "" }) {
   const [comments, setComments] = useState([]);
@@ -90,12 +89,18 @@ export default function Comments({ postId, postSlug, className = "" }) {
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-[#00C6FF] rounded-full flex items-center justify-center">
-              <FaUser className="w-4 h-4 text-[#0C0C2C]" />
+              <svg className="w-4 h-4 text-[#0C0C2C]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="currentColor" />
+                <path d="M4 20c0-2.67 5.33-4 8-4s8 1.33 8 4v1H4v-1z" fill="currentColor" />
+              </svg>
             </div>
             <div>
               <h4 className="font-semibold text-white">{comment.name}</h4>
               <p className="text-xs text-[#A3A8CC] flex items-center">
-                <FaCalendar className="w-3 h-3 mr-1" />
+                <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M16 2v4M8 2v4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
                 {formatDate(comment.createdAt)}
               </p>
             </div>
@@ -107,14 +112,19 @@ export default function Comments({ postId, postSlug, className = "" }) {
                 comment.liked ? 'text-[#00C6FF]' : 'text-[#A3A8CC] hover:text-[#00C6FF]'
               }`}
             >
-              <FaHeart className={`w-3 h-3 ${comment.liked ? 'fill-current' : ''}`} />
+              <svg className={`w-3 h-3 ${comment.liked ? 'fill-current' : ''}`} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M12 21s-7-4.5-9-7.5C1 10.5 3 6 6 6c2.5 0 3 2 6 5 3-3 3.5-5 6-5 3 0 5 4.5 3 7.5-2 3-9 7.5-9 7.5z" />
+              </svg>
               <span>{comment.likes || 0}</span>
             </button>
             <button
               onClick={() => setReplyTo(comment)}
               className="text-[#A3A8CC] hover:text-[#00C6FF] transition-colors"
             >
-              <FaReply className="w-3 h-3" />
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M10 19l-7-7 7-7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 12h11a4 4 0 014 4v0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           </div>
         </div>
@@ -134,7 +144,9 @@ export default function Comments({ postId, postSlug, className = "" }) {
     <div className={className}>
       {/* Header */}
       <div className="flex items-center space-x-3 mb-6">
-        <FaComment className="text-[#00C6FF] w-5 h-5" />
+      <svg className="text-[#00C6FF] w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
         <h3 className="text-2xl font-bold text-[#00C6FF]">
           Comentarios ({comments.length})
         </h3>
@@ -152,7 +164,9 @@ export default function Comments({ postId, postSlug, className = "" }) {
                 onClick={() => setReplyTo(null)}
                 className="text-[#A3A8CC] hover:text-[#00C6FF] transition-colors"
               >
-                <FaTimes className="w-3 h-3" />
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
             </div>
           </div>

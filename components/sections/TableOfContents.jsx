@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { FaList, FaChevronDown, FaChevronRight } from 'react-icons/fa';
 
 export default function TableOfContents({ content, className = "" }) {
   const [headings, setHeadings] = useState([]);
@@ -82,8 +81,10 @@ export default function TableOfContents({ content, className = "" }) {
       {/* Header */}
       <div className="p-4 border-b border-[#003B8D]">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <FaList className="text-[#00C6FF] w-4 h-4" />
+            <div className="flex items-center space-x-2">
+            <svg className="text-[#00C6FF] w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
             <h3 className="text-lg font-semibold text-[#00C6FF]">
               Tabla de Contenidos
             </h3>
@@ -95,7 +96,15 @@ export default function TableOfContents({ content, className = "" }) {
             onClick={() => setIsExpanded(!isExpanded)}
             className="text-[#A3A8CC] hover:text-[#00C6FF] transition-colors"
           >
-            {isExpanded ? <FaChevronDown className="w-4 h-4" /> : <FaChevronRight className="w-4 h-4" />}
+            {isExpanded ? (
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
           </button>
         </div>
       </div>

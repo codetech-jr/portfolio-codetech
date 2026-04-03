@@ -1,22 +1,90 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiReact, SiNodedotjs, SiSupabase, SiExpress } from "react-icons/si";
-import { TbBrandReactNative } from "react-icons/tb";
-import { FaWhatsapp } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 
 const skillsMap = [
-  { icon: SiReact, name: "React", bg: "bg-blue-500/10", border: "border-blue-500/20", text: "text-blue-400" },
-  { icon: SiNextdotjs, name: "Next.js", bg: "bg-white/5", border: "border-white/10", text: "text-white" },
-  { icon: SiTailwindcss, name: "Tailwind CSS", bg: "bg-teal-500/10", border: "border-teal-500/20", text: "text-teal-400" },
-  { icon: SiTypescript, name: "TypeScript", bg: "bg-blue-600/10", border: "border-blue-600/20", text: "text-blue-500" },
-  { icon: SiNodedotjs, name: "Node.js", bg: "bg-green-500/10", border: "border-green-500/20", text: "text-green-500" },
-  { icon: SiExpress, name: "Express", bg: "bg-gray-500/10", border: "border-gray-500/20", text: "text-gray-400" },
-  { icon: SiSupabase, name: "Supabase", bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400" },
-  { icon: TbBrandReactNative, name: "React Native", bg: "bg-blue-400/10", border: "border-blue-400/20", text: "text-blue-300" },
-  { icon: FaWhatsapp, name: "WhatsApp API", bg: "bg-emerald-600/10", border: "border-emerald-600/20", text: "text-emerald-500" }
+  { name: "React", bg: "bg-blue-500/10", border: "border-blue-500/20", text: "text-blue-400" },
+  { name: "Next.js", bg: "bg-white/5", border: "border-white/10", text: "text-white" },
+  { name: "Tailwind CSS", bg: "bg-teal-500/10", border: "border-teal-500/20", text: "text-teal-400" },
+  { name: "TypeScript", bg: "bg-blue-600/10", border: "border-blue-600/20", text: "text-blue-500" },
+  { name: "Node.js", bg: "bg-green-500/10", border: "border-green-500/20", text: "text-green-500" },
+  { name: "Express", bg: "bg-gray-500/10", border: "border-gray-500/20", text: "text-gray-400" },
+  { name: "Supabase", bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400" },
+  { name: "React Native", bg: "bg-blue-400/10", border: "border-blue-400/20", text: "text-blue-300" },
+  { name: "WhatsApp API", bg: "bg-emerald-600/10", border: "border-emerald-600/20", text: "text-emerald-500" }
 ];
+
+function SkillIcon({ name, className }) {
+  switch (name) {
+    case "React":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+          <g stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+            <ellipse cx="12" cy="12" rx="6" ry="2" transform="rotate(0 12 12)" />
+            <ellipse cx="12" cy="12" rx="6" ry="2" transform="rotate(60 12 12)" />
+            <ellipse cx="12" cy="12" rx="6" ry="2" transform="rotate(120 12 12)" />
+          </g>
+        </svg>
+      );
+    case "Next.js":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <rect x="3" y="3" width="18" height="18" rx="3" />
+        </svg>
+      );
+    case "Tailwind CSS":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M2 12c5 0 7-5 12-5 3 0 6 5 10 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "TypeScript":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <text x="7" y="17" fontSize="8" fill="#fff">TS</text>
+        </svg>
+      );
+    case "Node.js":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+      );
+    case "Express":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <rect x="4" y="10" width="16" height="4" rx="2" />
+        </svg>
+      );
+    case "Supabase":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M12 2L2 7v10l10 5 10-5V7z" />
+        </svg>
+      );
+    case "React Native":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+        </svg>
+      );
+    case "WhatsApp API":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+      );
+    default:
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="3" fill="currentColor" />
+        </svg>
+      );
+  }
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -62,7 +130,7 @@ export default function Skills() {
                 whileHover={{ scale: 1.05 }}
                 className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border ${skill.bg} ${skill.border} backdrop-blur-sm group transition-colors hover:bg-white/10`}
               >
-                <Icon className={`text-4xl ${skill.text} group-hover:scale-110 transition-transform`} />
+                <SkillIcon name={skill.name} className={`w-10 h-10 ${skill.text} group-hover:scale-110 transition-transform`} />
                 <span className="text-sm font-medium text-slate-800 dark:text-white/80">{skill.name}</span>
               </motion.div>
             );

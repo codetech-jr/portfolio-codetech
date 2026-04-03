@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import { FaFilter, FaTimes, FaCalendar, FaSort, FaTag } from 'react-icons/fa';
 
 export default function AdvancedFilters({ 
   categories = [], 
@@ -64,8 +63,10 @@ export default function AdvancedFilters({
       {/* Header de filtros */}
       <div className="p-4 border-b border-[#003B8D]">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <FaFilter className="text-[#00C6FF] w-4 h-4" />
+            <div className="flex items-center space-x-3">
+            <svg className="text-[#00C6FF] w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <path d="M4 6h16M6 12h12M10 18h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+            </svg>
             <h3 className="text-lg font-semibold text-[#00C6FF]">Filtros Avanzados</h3>
             {hasActiveFilters && (
               <span className="px-2 py-1 bg-[#00C6FF] text-[#0C0C2C] text-xs font-semibold rounded-full">
@@ -86,7 +87,15 @@ export default function AdvancedFilters({
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#A3A8CC] hover:text-[#00C6FF] transition-colors"
             >
-              {isOpen ? <FaTimes className="w-4 h-4" /> : <FaFilter className="w-4 h-4" />}
+              {isOpen ? (
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M4 6h16M6 12h12M10 18h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
@@ -136,7 +145,9 @@ export default function AdvancedFilters({
           {tags.length > 0 && (
             <div>
               <label className="text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
-                <FaTag className="w-3 h-3 mr-2" />
+                <svg className="w-3 h-3 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M20.59 13.41L13.41 20.59a2 2 0 01-2.83 0L3.41 13.41a2 2 0 010-2.83L10.59 3.41a2 2 0 012.83 0l7.17 7.17a2 2 0 010 2.83z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
                 Tags
               </label>
               <div className="flex flex-wrap gap-2">
@@ -160,7 +171,10 @@ export default function AdvancedFilters({
           {/* Rango de fechas */}
           <div>
             <label className="text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
-              <FaCalendar className="w-3 h-3 mr-2" />
+              <svg className="w-3 h-3 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.2" />
+                <path d="M16 2v4M8 2v4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
               Rango de fechas
             </label>
             <select
@@ -179,7 +193,9 @@ export default function AdvancedFilters({
           {/* Ordenamiento */}
           <div>
             <label className="text-sm font-medium text-[#00C6FF] mb-3 flex items-center">
-              <FaSort className="w-3 h-3 mr-2" />
+              <svg className="w-3 h-3 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M6 6h12M8 12h8M10 18h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
               Ordenar por
             </label>
             <select

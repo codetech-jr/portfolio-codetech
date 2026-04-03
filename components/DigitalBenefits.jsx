@@ -3,43 +3,43 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Importaciones de los iconos necesarios
-import { 
-  TbBrowser, TbTargetArrow, TbShoppingCart, TbUsers, TbMessageBolt, 
-  TbChartArrowsVertical, TbFlask, TbClock24, TbCertificate, TbWorldWww, 
-  TbSeo, TbBuildingStore, TbRobot, TbArrowBigUpLines, TbDatabase 
-} from "react-icons/tb";
+// Inline simple SVGs instead of react-icons/tb to avoid bundling large icon packs
 
 // --- DATOS MEJORADOS ---
 // Estructura de datos con iconos para cada beneficio
 const benefitsData = [
   {
     title: "Landing Page",
-    icon: <TbTargetArrow size={24} />,
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path d="M12 2l7 4-7 4-7-4 7-4z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
     benefits: [
-      { icon: <TbUsers size={32} className="text-[#00C6FF]" />, text: "Captura de clientes potenciales (leads) de forma altamente efectiva." },
-      { icon: <TbMessageBolt size={32} className="text-[#00C6FF]" />, text: "Comunica un mensaje claro y enfocado para un producto o campaña." },
-      { icon: <TbChartArrowsVertical size={32} className="text-[#00C6FF]" />, text: "Maximiza el retorno de inversión de tus anuncios (Google/Facebook Ads)." },
-      { icon: <TbFlask size={32} className="text-[#00C6FF]" />, text: "Validación rápida de una idea de negocio con mínima inversión." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><circle cx="12" cy="8" r="3" /><path d="M4 20c0-3 4-5 8-5s8 2 8 5v1H4v-1z"/></svg>), text: "Captura de clientes potenciales (leads) de forma altamente efectiva." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M4 7h16v10H4z" stroke="currentColor" strokeWidth="1" /><path d="M8 11h8" stroke="currentColor" strokeWidth="1" /></svg>), text: "Comunica un mensaje claro y enfocado para un producto o campaña." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 20h18" stroke="currentColor" strokeWidth="1" /><path d="M7 14l5-9 5 9" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Maximiza el retorno de inversión de tus anuncios (Google/Facebook Ads)." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M6 19l6-6 6 6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Validación rápida de una idea de negocio con mínima inversión." },
     ],
   },
   {
     title: "Página Web",
-    icon: <TbBrowser size={24} />,
+    icon: (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1" /></svg>),
     benefits: [
-      { icon: <TbClock24 size={32} className="text-[#00C6FF]" />, text: "Tu negocio abierto 24/7, accesible desde cualquier parte del mundo." },
-      { icon: <TbCertificate size={32} className="text-[#00C6FF]" />, text: "Genera credibilidad y confianza, profesionalizando tu imagen de marca." },
-      { icon: <TbWorldWww size={32} className="text-[#00C6FF]" />, text: "Funciona como un centro de operaciones para tu marketing digital." },
-      { icon: <TbSeo size={32} className="text-[#00C6FF]" />, text: "Atrae clientes a través de un buen posicionamiento en Google (SEO)." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1" /><path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Tu negocio abierto 24/7, accesible desde cualquier parte del mundo." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1" /><path d="M7 9h10" stroke="currentColor" strokeWidth="1" /></svg>), text: "Genera credibilidad y confianza, profesionalizando tu imagen de marca." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M12 2l7 4-7 4-7-4 7-4z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Funciona como un centro de operaciones para tu marketing digital." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 20h18" stroke="currentColor" strokeWidth="1" /><path d="M7 14l5-9 5 9" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Atrae clientes a través de un buen posicionamiento en Google (SEO)." },
     ],
   },
   {
     title: "E-Commerce",
-    icon: <TbShoppingCart size={24} />,
+    icon: (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 6h15l3 6v6a2 2 0 01-2 2H7a2 2 0 01-2-2V6z" stroke="currentColor" strokeWidth="1" /></svg>),
     benefits: [
-      { icon: <TbBuildingStore size={32} className="text-[#00C6FF]" />, text: "Vende tus productos sin barreras geográficas y a toda hora." },
-      { icon: <TbRobot size={32} className="text-[#00C6FF]" />, text: "Automatiza el proceso de venta, desde el pago hasta la gestión de inventario." },
-      { icon: <TbArrowBigUpLines size={32} className="text-[#00C6FF]" />, text: "Escala tu negocio de forma mucho más rápida que una tienda física." },
-      { icon: <TbDatabase size={32} className="text-[#00C6FF]" />, text: "Recopila datos valiosos de tus clientes para mejorar tus estrategias." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 20h18v-6" stroke="currentColor" strokeWidth="1" /><rect x="5" y="6" width="6" height="8" stroke="currentColor" strokeWidth="1" /></svg>), text: "Vende tus productos sin barreras geográficas y a toda hora." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M6 19l6-6 6 6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Automatiza el proceso de venta, desde el pago hasta la gestión de inventario." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 20h18" stroke="currentColor" strokeWidth="1" /><path d="M7 14l5-9 5 9" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" /></svg>), text: "Escala tu negocio de forma mucho más rápida que una tienda física." },
+      { icon: (<svg className="text-[#00C6FF]" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" strokeWidth="1" /></svg>), text: "Recopila datos valiosos de tus clientes para mejorar tus estrategias." },
     ],
   },
 ];

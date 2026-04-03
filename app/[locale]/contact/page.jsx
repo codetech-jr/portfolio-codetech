@@ -14,21 +14,46 @@ import {
     SelectValue
 } from "@/components/ui/select"; // Asegúrate que la ruta sea correcta
 
-import {FaPhoneAlt, FaEnvelope, FaMapMarkerAlt} from 'react-icons/fa'
+// Íconos inline (reemplazo de react-icons/fa)
+function IconPhone({ className = '' }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.83.37 1.64.73 2.39a2 2 0 0 1-.45 2.11L8.91 9.91a16 16 0 0 0 6 6l1.69-1.69a2 2 0 0 1 2.11-.45c.75.36 1.56.61 2.39.73A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+        </svg>
+    );
+}
+
+function IconEnvelope({ className = '' }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M4 4h16v16H4z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+            <path d="M22 6l-10 7L2 6" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+        </svg>
+    );
+}
+
+function IconMapMarker({ className = '' }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+            <circle cx="12" cy="9" r="2.5" fill="#0C0C2C" />
+        </svg>
+    );
+}
 
 const info = [
     {
-        icon: <FaPhoneAlt />,
+        icon: <IconPhone className="w-6 h-6" />,
         title: 'Teléfono',
         description: '(+58) 412-972-5334'
     },
     {
-        icon: <FaEnvelope />, // Corregido: Debería ser FaEnvelope para Email
+        icon: <IconEnvelope className="w-6 h-6" />,
         title: 'Email',
         description: 'codetechjunior2000@gmail.com'
     },
     {
-        icon: <FaMapMarkerAlt />, // Corregido: Debería ser FaMapMarkerAlt para Dirección
+        icon: <IconMapMarker className="w-6 h-6" />,
         title: 'Dirección',
         description: 'Miranda, Venezuela'
     }

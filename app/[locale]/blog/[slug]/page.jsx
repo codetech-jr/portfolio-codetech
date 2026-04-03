@@ -4,24 +4,98 @@ import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from '@portabletext/react';
 import Image from 'next/image';
+import ImageWithSkeleton from '@/components/ui/ImageWithSkeleton';
 import Link from 'next/link';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import {
-  FaCalendar,
-  FaUser,
-  FaClock,
-  FaShare,
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
-  FaWhatsapp,
-  FaArrowLeft,
-  FaBookmark,
-  FaEye,
-  FaHeart,
-  FaTag
-} from 'react-icons/fa';
+// Íconos inline (reemplazo ligero por react-icons)
+function IconArrowLeft({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M14 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconUser({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconCalendar({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" />
+      <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconClock({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconTag({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M20.59 13.41L11.17 4 4 11.17V20h8.83L20.59 13.41z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M7 7h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconShare({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M16 6l-4-4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 2v13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconFacebook({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M18 2h-3a4 4 0 0 0-4 4v2H8v3h3v7h3v-7h2.5l.5-3H14V6a1 1 0 0 1 1-1h3V2z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconTwitter({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.43.36a9 9 0 0 1-2.83 1.08A4.52 4.52 0 0 0 16.5 0c-2.5 0-4.5 2.2-4.5 4.9 0 .38.04.75.12 1.1A12.94 12.94 0 0 1 3 1.6a4.82 4.82 0 0 0-.61 2.5c0 1.7.8 3.2 2 4.1A4.48 4.48 0 0 1 2 7.8v.06c0 2.4 1.6 4.4 3.8 4.9a4.52 4.52 0 0 1-2 .08c.56 1.8 2.2 3.1 4.1 3.2A9.06 9.06 0 0 1 1 19.5a12.8 12.8 0 0 0 7 2" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconLinkedin({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v6h-4v-12h4v2" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+      <rect x="2" y="8" width="4" height="12" fill="currentColor" />
+      <circle cx="4" cy="4" r="2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconWhatsapp({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M21 12.1a9 9 0 1 0-2.6 6.2L21 22l-2.7-2.6A9 9 0 0 0 21 12.1z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+    </svg>
+  );
+}
 import React from 'react'; // Added missing import for React
 import TableOfContents from '@/components/sections/TableOfContents';
 import Comments from '@/components/ui/Comments';
@@ -138,16 +212,16 @@ function Breadcrumbs({ post }) {
             Inicio
           </Link>
         </li>
-        <li className="flex items-center">
-          <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
+          <li className="flex items-center">
+          <IconArrowLeft className="w-3 h-3 mx-2 rotate-180" />
           <Link href="/blog" className="hover:text-[#00C6FF] transition-colors">
             Blog
           </Link>
         </li>
         {post.categories && post.categories.length > 0 && (
           <>
-            <li className="flex items-center">
-              <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
+              <li className="flex items-center">
+                <IconArrowLeft className="w-3 h-3 mx-2 rotate-180" />
               <Link
                 href={`/blog/category/${post.categories[0].toLowerCase().replace(/\s+/g, '-')}`}
                 className="hover:text-[#00C6FF] transition-colors"
@@ -157,8 +231,8 @@ function Breadcrumbs({ post }) {
             </li>
           </>
         )}
-        <li className="flex items-center">
-          <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
+          <li className="flex items-center">
+          <IconArrowLeft className="w-3 h-3 mx-2 rotate-180" />
           <span className="text-[#00C6FF] font-medium">{post.title}</span>
         </li>
       </ol>
@@ -179,6 +253,7 @@ function AuthorInfo({ author }) {
               alt={`Foto de ${author.name}`}
               width={60}
               height={60}
+              sizes="60px"
               className="rounded-full border-2 border-[#00C6FF]"
             />
           </div>
@@ -228,18 +303,18 @@ function ShareButtons({ post }) {
   return (
     <div className="bg-[#1B1F3B] rounded-lg p-4 border border-[#003B8D] mb-8 w-full">
       <h3 className="text-lg font-bold text-[#00C6FF] mb-4 flex items-center justify-center">
-        <FaShare className="mr-2" />
+        <IconShare className="mr-2" />
         Compartir
       </h3>
       <div className="grid grid-cols-2 gap-2">
-        <a
+          <a
           href={shareLinks.facebook}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center w-full h-10 bg-[#1877F2] text-white rounded-lg hover:bg-[#1877F2]/90 transition-colors text-sm"
           aria-label="Compartir en Facebook"
         >
-          <FaFacebook className="mr-1" />
+          <IconFacebook className="mr-1" />
           Facebook
         </a>
         <a
@@ -249,7 +324,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1DA1F2]/90 transition-colors text-sm"
           aria-label="Compartir en Twitter"
         >
-          <FaTwitter className="mr-1" />
+          <IconTwitter className="mr-1" />
           Twitter
         </a>
         <a
@@ -259,7 +334,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#0077B5] text-white rounded-lg hover:bg-[#0077B5]/90 transition-colors text-sm"
           aria-label="Compartir en LinkedIn"
         >
-          <FaLinkedin className="mr-1" />
+          <IconLinkedin className="mr-1" />
           LinkedIn
         </a>
         <a
@@ -269,7 +344,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#25D366] text-white rounded-lg hover:bg-[#25D366]/90 transition-colors text-sm"
           aria-label="Compartir en WhatsApp"
         >
-          <FaWhatsapp className="mr-1" />
+          <IconWhatsapp className="mr-1" />
           WhatsApp
         </a>
       </div>
@@ -290,15 +365,16 @@ function RelatedPosts({ currentPost, relatedPosts }) {
             className="block group"
           >
             <div className="flex space-x-4">
-              {post.mainImage && (
-                <Image
-                  src={urlFor(post.mainImage).width(120).height(80).url()}
-                  alt={`Imagen de ${post.title}`}
-                  width={120}
-                  height={80}
-                  className="flex-shrink-0 object-cover rounded-lg"
-                />
-              )}
+                {post.mainImage && (
+              <Image
+                src={urlFor(post.mainImage).width(120).height(80).url()}
+                alt={`Imagen de ${post.title}`}
+                width={120}
+                height={80}
+                sizes="120px"
+                className="flex-shrink-0 object-cover rounded-lg"
+              />
+            )}
               <div className="flex-1 min-w-0">
                 <h4 className="text-sm font-semibold text-[#A3A8CC] group-hover:text-white transition-colors line-clamp-2">
                   {post.title}
@@ -444,11 +520,11 @@ export default async function BlogPostPage({ params }) {
               {/* Meta información */}
               <div className="flex flex-wrap items-center gap-6 text-[#A3A8CC] mb-6">
                 <div className="flex items-center space-x-2">
-                  <FaUser className="w-4 h-4" />
+                  <IconUser className="w-4 h-4" />
                   <span>{post.author?.name || 'Autor desconocido'}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <FaCalendar className="w-4 h-4" />
+                  <IconCalendar className="w-4 h-4" />
                   <span>
                     {new Date(post.publishedAt).toLocaleDateString('es-ES', {
                       year: 'numeric',
@@ -459,7 +535,7 @@ export default async function BlogPostPage({ params }) {
                 </div>
                 {post.estimatedReadingTime && (
                   <div className="flex items-center space-x-2">
-                    <FaClock className="w-4 h-4" />
+                    <IconClock className="w-4 h-4" />
                     <span>{post.estimatedReadingTime} min de lectura</span>
                   </div>
                 )}
@@ -484,7 +560,7 @@ export default async function BlogPostPage({ params }) {
               {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-6">
                   <div className="flex items-center space-x-2 text-[#A3A8CC]">
-                    <FaTag className="w-4 h-4" />
+                    <IconTag className="w-4 h-4" />
                     <span className="text-sm">Tags:</span>
                   </div>
                   {post.tags.map((tag, index) => (
@@ -503,13 +579,14 @@ export default async function BlogPostPage({ params }) {
             {/* Imagen principal */}
             {post.mainImage && (
               <div className="mb-8">
-                <Image
+                <ImageWithSkeleton
                   src={urlFor(post.mainImage).width(1200).height(630).url()}
                   alt={`Imagen principal para ${post.title}`}
                   width={1200}
                   height={630}
-                  className="w-full rounded-lg shadow-lg"
+                  className="rounded-lg shadow-lg"
                   priority
+                  sizes="(max-width: 768px) 100vw, 800px"
                 />
               </div>
             )}

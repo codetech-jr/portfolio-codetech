@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { FaSearch, FaSpinner, FaTimes, FaHistory, FaTag } from 'react-icons/fa';
 import Link from 'next/link';
 
 export default function SearchAutocomplete({ 
@@ -126,19 +125,27 @@ export default function SearchAutocomplete({
           className="w-full px-4 py-3 pl-12 pr-12 bg-[#1B1F3B] border border-[#003B8D] rounded-lg text-white placeholder-[#A3A8CC] focus:outline-none focus:border-[#00C6FF] focus:ring-1 focus:ring-[#00C6FF]"
         />
         
-        <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#A3A8CC]" />
+        <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#A3A8CC] w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
         
         {isLoading && (
-          <FaSpinner className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#00C6FF] animate-spin" />
+          <svg className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#00C6FF] w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" strokeOpacity="0.25" />
+            <path d="M22 12a10 10 0 00-10-10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
         )}
         
         {query && !isLoading && (
-          <button
+            <button
             type="button"
             onClick={clearSearch}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#A3A8CC] hover:text-[#00C6FF] transition-colors"
           >
-            <FaTimes />
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
         )}
       </form>
@@ -150,10 +157,13 @@ export default function SearchAutocomplete({
           {recentSearches.length > 0 && !query && (
             <div className="p-4 border-b border-[#003B8D]">
               <div className="flex items-center justify-between mb-3">
-                <h4 className="text-sm font-medium text-[#00C6FF] flex items-center">
-                  <FaHistory className="w-3 h-3 mr-2" />
-                  Búsquedas recientes
-                </h4>
+                  <h4 className="text-sm font-medium text-[#00C6FF] flex items-center">
+                    <svg className="w-3 h-3 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                      <path d="M12 8v5l3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2" />
+                    </svg>
+                    Búsquedas recientes
+                  </h4>
                 <button
                   onClick={clearRecentSearches}
                   className="text-xs text-[#A3A8CC] hover:text-[#00C6FF] transition-colors"
@@ -190,7 +200,10 @@ export default function SearchAutocomplete({
                       className="w-full text-left p-3 hover:bg-[#0C0C2C] rounded-lg transition-colors group"
                     >
                       <div className="flex items-start space-x-3">
-                        <FaSearch className="w-3 h-3 text-[#A3A8CC] mt-1 flex-shrink-0" />
+                        <svg className="w-3 h-3 text-[#A3A8CC] mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                          <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                          <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.2" />
+                        </svg>
                         <div className="flex-1">
                           <div className="text-sm text-[#A3A8CC] group-hover:text-white transition-colors">
                             {suggestion.title}
@@ -202,7 +215,9 @@ export default function SearchAutocomplete({
                           )}
                           {suggestion.categories && suggestion.categories.length > 0 && (
                             <div className="flex items-center space-x-2 mt-2">
-                              <FaTag className="w-2 h-2 text-[#A3A8CC]" />
+                              <svg className="w-2 h-2 text-[#A3A8CC]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                                <path d="M20.59 13.41L13.41 20.59a2 2 0 01-2.83 0L3.41 13.41a2 2 0 010-2.83L10.59 3.41a2 2 0 012.83 0l7.17 7.17a2 2 0 010 2.83z" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
                               <span className="text-xs text-[#A3A8CC]">
                                 {suggestion.categories[0]}
                               </span>

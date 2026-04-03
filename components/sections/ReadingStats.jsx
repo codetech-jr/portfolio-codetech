@@ -1,8 +1,47 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FaEye, FaHeart, FaShare, FaBookmark, FaClock } from 'react-icons/fa';
+import Motion from '../ui/Motion';
+
+function StatIcon({ name, className }) {
+  switch (name) {
+    case 'eye':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+        </svg>
+      );
+    case 'clock':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2" />
+          <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'heart':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M12 21s-7-4.5-9-7.5C1 10.5 3 6 6 6c2.5 0 3 2 6 5 3-3 3.5-5 6-5 3 0 5 4.5 3 7.5-2 3-9 7.5-9 7.5z" />
+        </svg>
+      );
+    case 'bookmark':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M6 2h12v20l-6-3-6 3V2z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'share':
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M16 6l-4-4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function ReadingStats({ postId, postSlug, readingTime = 0, className = "" }) {
   const [stats, setStats] = useState({
@@ -129,44 +168,11 @@ export default function ReadingStats({ postId, postSlug, readingTime = 0, classN
   };
 
   const statItems = [
-    {
-      icon: FaEye,
-      label: 'Vistas',
-      value: stats.views,
-      color: 'text-blue-400'
-    },
-    {
-      icon: FaClock,
-      label: 'Tiempo',
-      value: `${stats.readingTime} min`,
-      color: 'text-green-400'
-    },
-    {
-      icon: FaHeart,
-      label: 'Likes',
-      value: stats.likes,
-      color: 'text-red-400',
-      interactive: true,
-      isActive: isLiked,
-      onClick: handleLike
-    },
-    {
-      icon: FaBookmark,
-      label: 'Guardados',
-      value: stats.bookmarks,
-      color: 'text-yellow-400',
-      interactive: true,
-      isActive: isBookmarked,
-      onClick: handleBookmark
-    },
-    {
-      icon: FaShare,
-      label: 'Compartidos',
-      value: stats.shares,
-      color: 'text-purple-400',
-      interactive: true,
-      onClick: handleShare
-    }
+    { name: 'eye', label: 'Vistas', value: stats.views, color: 'text-blue-400' },
+    { name: 'clock', label: 'Tiempo', value: `${stats.readingTime} min`, color: 'text-green-400' },
+    { name: 'heart', label: 'Likes', value: stats.likes, color: 'text-red-400', interactive: true, isActive: isLiked, onClick: handleLike },
+    { name: 'bookmark', label: 'Guardados', value: stats.bookmarks, color: 'text-yellow-400', interactive: true, isActive: isBookmarked, onClick: handleBookmark },
+    { name: 'share', label: 'Compartidos', value: stats.shares, color: 'text-purple-400', interactive: true, onClick: handleShare }
   ];
 
   return (
@@ -175,7 +181,7 @@ export default function ReadingStats({ postId, postSlug, readingTime = 0, classN
       
       <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
         {statItems.map((item, index) => (
-          <motion.div
+          <Motion as="div"
             key={index}
             className={`text-center p-3 rounded-lg transition-colors ${
               item.interactive 
@@ -189,7 +195,7 @@ export default function ReadingStats({ postId, postSlug, readingTime = 0, classN
             <div className={`flex justify-center mb-2 ${
               item.isActive ? 'text-[#00C6FF]' : item.color
             }`}>
-              <item.icon className="w-4 h-4" />
+              <StatIcon name={item.name} className="w-4 h-4" />
             </div>
             <div className="text-sm font-semibold text-white">
               {item.value}
@@ -197,7 +203,7 @@ export default function ReadingStats({ postId, postSlug, readingTime = 0, classN
             <div className="text-xs text-[#A3A8CC]">
               {item.label}
             </div>
-          </motion.div>
+          </Motion>
         ))}
       </div>
     </div>

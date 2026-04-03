@@ -2,7 +2,23 @@ import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
+// Íconos inline (sustituyen react-icons/bs)
+function IconArrowUpRight({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M13 5h6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 13L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconGithub({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.69 3.04 8.66 7.26 10.06.53.1.72-.23.72-.51 0-.25-.01-.92-.01-1.8-2.95.64-3.58-1.42-3.58-1.42-.48-1.22-1.17-1.55-1.17-1.55-.96-.66.07-.65.07-.65 1.07.08 1.64 1.1 1.64 1.1.94 1.61 2.47 1.15 3.07.88.09-.68.37-1.15.67-1.41-2.36-.27-4.84-1.18-4.84-5.25 0-1.16.41-2.12 1.08-2.86-.11-.27-.47-1.36.1-2.83 0 0 .88-.28 2.9 1.09a10.1 10.1 0 0 1 2.64-.36c.9 0 1.8.12 2.64.36 2.02-1.37 2.9-1.09 2.9-1.09.57 1.47.21 2.56.1 2.83.67.74 1.08 1.7 1.08 2.86 0 4.08-2.49 4.98-4.86 5.24.38.33.72.98.72 1.98 0 1.43-.01 2.58-.01 2.93 0 .28.19.61.73.51 4.23-1.4 7.26-5.37 7.26-10.06C23.25 5.48 18.27.5 12 .5z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+    </svg>
+  );
+}
 import MotionSection from "@/components/MotionSection";
 import { projectsData } from "@/data/projects";
 
@@ -52,13 +68,13 @@ export default function ProjectDetail({ params: { locale, slug } }) {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-4">
-                <a
+                  <a
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-[#0C0C2C] bg-accent rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(0,198,255,0.4)]"
                 >
-                  <BsArrowUpRight className="text-lg" /> Visitar Website
+                  <IconArrowUpRight className="text-lg" /> Visitar Website
                 </a>
                 <a
                   href={project.github}
@@ -66,7 +82,7 @@ export default function ProjectDetail({ params: { locale, slug } }) {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors border border-white/10"
                 >
-                  <BsGithub className="text-lg" /> Ver Repositorio
+                  <IconGithub className="text-lg" /> Ver Repositorio
                 </a>
               </div>
             </div>
@@ -78,6 +94,7 @@ export default function ProjectDetail({ params: { locale, slug } }) {
                   src={project.image}
                   fill
                   alt={t("title")}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>

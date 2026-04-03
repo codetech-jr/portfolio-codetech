@@ -3,7 +3,6 @@
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { cn } from "@/lib/utils"
-import { IoMdClose } from "react-icons/io"
 
 function Sheet({
   ...props
@@ -73,7 +72,9 @@ function SheetContent({
         <SheetPrimitive.Close
           className="absolute right-8 top-8 transition-opacity outline-none"
         >
-          <IoMdClose className="text-3xl text-[#00C6FF]" />
+          <svg className="w-8 h-8 text-[#00C6FF]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

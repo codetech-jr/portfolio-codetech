@@ -2,7 +2,10 @@
 
 import React from "react";
 import { motion } from "framer-motion"; // 1. Importar Framer Motion
-import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import IconInstagram from "./icons/IconInstagram";
+import IconLinkedin from "./icons/IconLinkedin";
+import IconGithub from "./icons/IconGithub";
+import IconEnvelope from "./icons/IconEnvelope";
 
 // Paleta de colores (sin cambios)
 const COLORS = {
@@ -17,22 +20,22 @@ const COLORS = {
 const socialLinks = [
   {
     href: "https://github.com/codetech-jr",
-    icon: <FaGithub />,
+      icon: <IconGithub className="w-6 h-6" />,
     label: "GitHub",
   },
   {
     href: "https://www.linkedin.com/in/alejandro-gabriel-daniel-919a17187/",
-    icon: <FaLinkedin />,
+      icon: <IconLinkedin className="w-6 h-6" />,
     label: "LinkedIn",
   },
   {
     href: "https://www.instagram.com/codetechjunior/",
-    icon: <FaInstagram />,
+      icon: <IconInstagram className="w-6 h-6" />,
     label: "Instagram",
   },
   {
     href: "mailto:codetechjr@gmail.com",
-    icon: <FaEnvelope />,
+      icon: <IconEnvelope className="w-6 h-6" />,
     label: "Email",
   },
 ];

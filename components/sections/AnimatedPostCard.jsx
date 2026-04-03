@@ -1,16 +1,10 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import Motion from '../ui/Motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
-import { 
-  FaCalendar, 
-  FaUser, 
-  FaClock, 
-  FaArrowRight,
-  FaTag
-} from 'react-icons/fa';
+// inline SVGs used instead of react-icons to avoid large icon bundles
 
 export default function AnimatedPostCard({ post, isFeatured = false, isSearchResult = false, index = 0 }) {
   const cardVariants = {
@@ -50,7 +44,7 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
   };
 
   return (
-    <motion.article
+    <Motion as="article"
       variants={cardVariants}
       initial="hidden"
       animate="visible"
@@ -60,15 +54,16 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
       <Link href={`/blog/${post.slug}`}>
         <div className="relative overflow-hidden">
           {post.mainImage ? (
-            <motion.div variants={imageVariants}>
+            <Motion as="div" variants={imageVariants}>
               <Image
                 src={urlFor(post.mainImage).width(600).height(400).url()}
                 alt={`Imagen de portada para ${post.title}`}
                 width={600}
                 height={400}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="w-full h-48 object-cover"
               />
-            </motion.div>
+            </Motion>
           ) : (
             <div className="w-full h-48 bg-gradient-to-br from-[#1B1F3B] to-[#003B8D] flex items-center justify-center">
               <span className="text-[#A3A8CC] text-lg">Sin imagen</span>
@@ -77,7 +72,7 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
           
           {/* Badge de categoría */}
           {post.categories && post.categories.length > 0 && (
-            <motion.div 
+            <Motion as="div" 
               className="absolute top-4 left-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -86,12 +81,12 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
               <span className="px-3 py-1 bg-[#00C6FF] text-[#0C0C2C] text-xs font-semibold rounded-full">
                 {post.categories[0]}
               </span>
-            </motion.div>
+            </Motion>
           )}
           
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
-            <motion.div 
+            <Motion as="div" 
               className="absolute bottom-4 left-4 flex flex-wrap gap-1"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -107,12 +102,12 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
                   {tag.title}
                 </span>
               ))}
-            </motion.div>
+            </Motion>
           )}
           
           {/* Badge de resultado de búsqueda */}
           {isSearchResult && post.matchType && (
-            <motion.div 
+            <Motion as="div" 
               className="absolute top-4 right-4"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -126,21 +121,21 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
                 {post.matchType === 'title' ? 'Título' :
                  post.matchType === 'excerpt' ? 'Extracto' : 'Contenido'}
               </span>
-            </motion.div>
+            </Motion>
           )}
         </div>
         
         <div className="p-6">
-          <motion.h2 
+          <Motion as="h2"
             className="text-xl font-bold text-[#00C6FF] mb-3 group-hover:text-white transition-colors line-clamp-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
           >
             {post.title}
-          </motion.h2>
+          </Motion>
           
-          <motion.div 
+          <Motion as="div"
             className="mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -156,9 +151,9 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
                 {post.excerpt}
               </p>
             )}
-          </motion.div>
+            </Motion>
           
-          <motion.div 
+          <Motion as="div"
             className="flex items-center justify-between text-sm text-[#A3A8CC]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -166,11 +161,17 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
           >
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-1">
-                <FaUser className="w-3 h-3" />
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="currentColor" />
+                  <path d="M4 20c0-2.67 5.33-4 8-4s8 1.33 8 4v1H4v-1z" fill="currentColor" />
+                </svg>
                 <span>{post.authorName}</span>
               </div>
               <div className="flex items-center space-x-1">
-                <FaCalendar className="w-3 h-3" />
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M16 2v4M8 2v4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
                 <span>
                   {new Date(post.publishedAt).toLocaleDateString('es-ES', {
                     year: 'numeric',
@@ -183,29 +184,34 @@ export default function AnimatedPostCard({ post, isFeatured = false, isSearchRes
             
             {post.estimatedReadingTime && (
               <div className="flex items-center space-x-1">
-                <FaClock className="w-3 h-3" />
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
                 <span>{post.estimatedReadingTime} min</span>
               </div>
             )}
-          </motion.div>
+          </Motion>
           
-          <motion.div 
+          <Motion as="div"
             className="mt-4 flex items-center text-[#00C6FF] group-hover:text-white transition-colors"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
             <span className="text-sm font-medium">Leer más</span>
-            <motion.div
+              <Motion as="div"
               className="ml-2"
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
             >
-              <FaArrowRight className="w-3 h-3" />
-            </motion.div>
-          </motion.div>
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M5 12h14M13 5l6 7-6 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Motion>
+          </Motion>
         </div>
       </Link>
-    </motion.article>
+    </Motion>
   );
 } 

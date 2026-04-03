@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 
-// variants
+// variants - use transform (y) to avoid layout shifts (CLS)
 const stairAnimation = {
     initial: {
-        top: "0%",
+        y: "0%",
     },
     animate: {
-        top: "100%",
+        y: "100%",
     },
     exit: {
-        top: ["100%", "0%"],
+        y: ["100%", "0%"],
     },
 };
 
@@ -27,20 +27,21 @@ const Stairs = () => {
         }
 
         {[...Array(6)].map((_, index) => (
-    <motion.div 
-        key={index} 
-        variants={stairAnimation} 
-        initial="initial" 
-        animate="animate" 
-        exit="exit" 
-        transition={{
-            duration: 0.4,
-            ease: 'easeInOut',
-            delay: reverseIndex(index) * 0.1,
-        }} 
-        className="h-full w-full bg-white relative"
-    />
-))}
+            <motion.div
+                key={index}
+                variants={stairAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{
+                    duration: 0.4,
+                    ease: 'easeInOut',
+                    delay: reverseIndex(index) * 0.1,
+                }}
+                className="absolute inset-0 bg-white"
+                style={{ zIndex: index, willChange: 'transform' }}
+            />
+        ))}
         </>
     )
 }

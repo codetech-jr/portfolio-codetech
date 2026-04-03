@@ -3,7 +3,7 @@
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { Link, usePathname } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
-import { CiMenuFries } from 'react-icons/ci'
+// lightweight inline menu icon to avoid bundling react-icons
 import Image from "next/image";
 
 const MobileNav = () => {
@@ -24,7 +24,11 @@ const MobileNav = () => {
             </SheetHeader>
 
             <SheetTrigger className="flex items-center justify-center">
-                <CiMenuFries className="text-[32px] text-accent" />
+                <svg className="w-8 h-8 text-accent" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor" />
+                    <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor" />
+                    <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor" />
+                </svg>
             </SheetTrigger>
             <SheetContent className="flex flex-col">
                 {/* logo */}
@@ -36,6 +40,7 @@ const MobileNav = () => {
                                     src="/logo.png" 
                                     alt="Codetech Logo" 
                                     fill
+                                    sizes="40px"
                                     className="object-contain"
                                 />
                             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import Image from "next/image";
@@ -7,11 +8,15 @@ import { Button } from "./ui/button";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
-const ParticleBackground = dynamic(() => import("./ParticleBackground"), { ssr: false });
+const ParticleBackground = dynamic(() => import("./ParticleBackground"), {
+  ssr: false,
+  loading: () => null,
+});
 import Photo from "./Photo";
 
 export default function Hero() {
   const t = useTranslations("hero");
+  const [loadParticles, setLoadParticles] = useState(false);
 
   const handleScroll = (id) => {
     const el = document.getElementById(id);
@@ -20,12 +25,25 @@ export default function Hero() {
     }
   };
 
+  useEffect(() => {
+    let idleId;
+    if ('requestIdleCallback' in window) {
+      idleId = requestIdleCallback(() => setLoadParticles(true), { timeout: 2000 });
+    } else {
+      idleId = window.setTimeout(() => setLoadParticles(true), 2000);
+    }
+    return () => {
+      if ('cancelIdleCallback' in window && idleId) cancelIdleCallback(idleId);
+      else clearTimeout(idleId);
+    };
+  }, []);
+
   return (
     <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden py-12 xl:py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-slate-50/90 to-slate-100 dark:from-primary dark:via-primary/90 dark:to-primary/80 z-0"></div>
       
-      {/* 3D Particle Network Mesh */}
-      <ParticleBackground />
+      {/* 3D Particle Network Mesh (carga diferida) */}
+      {loadParticles ? <ParticleBackground /> : null}
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
 

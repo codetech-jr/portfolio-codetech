@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import { BsArrowUpRight, BsGithub } from "react-icons/bs";
+// Inline icons to avoid react-icons bundle
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTranslations } from "next-intl";
 
@@ -34,7 +34,10 @@ const ProjectCard = ({ project }) => {
                   className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex justify-center items-center transition-all duration-300 hover:bg-accent/80 hover:scale-110 scale-0 group-hover:scale-100 shadow-xl"
                   style={{ transitionDelay: '0.1s' }}
                 >
-                  <BsArrowUpRight className="text-3xl text-white" />
+                  <svg className="text-3xl text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M7 17v-7h7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M7 17h10V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </a>
               </TooltipTrigger>
               <TooltipContent><p>{t("viewProject")}</p></TooltipContent>
@@ -52,7 +55,9 @@ const ProjectCard = ({ project }) => {
                   className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex justify-center items-center transition-all duration-300 hover:bg-accent/80 hover:scale-110 scale-0 group-hover:scale-100 shadow-xl"
                   style={{ transitionDelay: '0.2s' }}
                 >
-                  <BsGithub className="text-3xl text-white" />
+                  <svg className="text-3xl text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.49 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.19-3.37-1.19-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.9 1.53 2.36 1.09 2.94.83.09-.64.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.115 2.51.34 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85 0 1.33-.01 2.4-.01 2.72 0 .27.16.59.67.49C19.14 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
+                  </svg>
                 </a>
               </TooltipTrigger>
               <TooltipContent><p>Repositorio Github</p></TooltipContent>
@@ -90,7 +95,9 @@ const ProjectCard = ({ project }) => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center flex-1 gap-2 px-4 py-3 text-sm font-semibold text-[#0C0C2C] bg-accent rounded-xl hover:bg-accent/90 transition-colors shadow-lg"
             >
-                <BsArrowUpRight /> {t("viewProject")}
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M5 12h14M13 5l6 7-6 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg> {t("viewProject")}
             </a>
             <a
                 href={project.github}
@@ -98,7 +105,9 @@ const ProjectCard = ({ project }) => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center flex-1 gap-2 px-4 py-3 text-sm font-semibold text-white transition-colors duration-300 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10"
             >
-                <BsGithub /> GitHub
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.49 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.19-3.37-1.19-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.9 1.53 2.36 1.09 2.94.83.09-.64.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.115 2.51.34 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85 0 1.33-.01 2.4-.01 2.72 0 .27.16.59.67.49C19.14 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z" />
+                </svg> GitHub
             </a>
         </div>
         

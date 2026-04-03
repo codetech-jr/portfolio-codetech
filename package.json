@@ -66,4 +66,12 @@
     "tw-animate-css": "^1.2.8",
     "typescript": "^6.0.2"
   }
+  ,
+  "browserslist": [
+    "last 2 versions",
+    ">=0.5%",
+    "not dead",
+    "not IE 11",
+    "not op_mini all"
+  ]
 }

@@ -4,7 +4,57 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
-import { FaCalendar, FaUser, FaClock, FaArrowRight, FaArrowLeft, FaFolder } from 'react-icons/fa';
+// Íconos inline (reemplazo de react-icons/fa)
+function IconArrowLeft({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M14 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconArrowRight({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M10 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconUser({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconCalendar({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" />
+      <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconClock({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconFolder({ className = '' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6l2 3h8a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="0" fill="currentColor" />
+    </svg>
+  );
+}
 
 // Metadatos SEO dinámicos
 export async function generateMetadata({ params }) {
@@ -78,12 +128,12 @@ function Breadcrumbs({ category }) {
         <li>
           <Link href="/" className="hover:text-[#00C6FF] transition-colors">Inicio</Link>
         </li>
-        <li className="flex items-center">
-          <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
+          <li className="flex items-center">
+          <IconArrowLeft className="w-3 h-3 mx-2 rotate-180" />
           <Link href="/blog" className="hover:text-[#00C6FF] transition-colors">Blog</Link>
         </li>
         <li className="flex items-center">
-          <FaArrowLeft className="w-3 h-3 mx-2 rotate-180" />
+          <IconArrowLeft className="w-3 h-3 mx-2 rotate-180" />
           <span className="text-[#00C6FF] font-medium">{category.title}</span>
         </li>
       </ol>
@@ -96,7 +146,7 @@ function CategoryHeader({ category }) {
   return (
     <header className="mb-8">
       <div className="flex items-center mb-6 space-x-4">
-        <FaFolder className="w-6 h-6 text-[#00C6FF]" />
+        <IconFolder className="w-6 h-6 text-[#00C6FF]" />
         <h1 className="text-4xl md:text-5xl font-bold text-[#00C6FF]">{category.title}</h1>
       </div>
       {category.description && (
@@ -112,12 +162,13 @@ function PostCard({ post }) {
     <article className="group overflow-hidden rounded-lg border border-[#003B8D] transition-all duration-300 hover:border-[#00C6FF] hover:shadow-xl hover:shadow-[#00C6FF]/10 bg-[#0C0C2C]">
       <Link href={`/blog/${post.slug}`}>
         <div className="relative overflow-hidden">
-          {post.mainImage ? (
+            {post.mainImage ? (
             <Image
               src={urlFor(post.mainImage).width(600).height(400).url()}
               alt={`Imagen de portada para ${post.title}`}
               width={600}
               height={400}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
@@ -131,25 +182,25 @@ function PostCard({ post }) {
           <p className="text-[#A3A8CC] mb-4 line-clamp-3">{post.excerpt}</p>
           <div className="flex items-center justify-between text-sm text-[#A3A8CC]">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-1">
-                <FaUser className="w-3 h-3" />
+                <div className="flex items-center space-x-1">
+                <IconUser className="w-3 h-3" />
                 <span>{post.authorName}</span>
               </div>
               <div className="flex items-center space-x-1">
-                <FaCalendar className="w-3 h-3" />
+                <IconCalendar className="w-3 h-3" />
                 <span>{new Date(post.publishedAt).toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
               </div>
             </div>
             {post.estimatedReadingTime && (
               <div className="flex items-center space-x-1">
-                <FaClock className="w-3 h-3" />
+                <IconClock className="w-3 h-3" />
                 <span>{post.estimatedReadingTime} min</span>
               </div>
             )}
           </div>
           <div className="mt-4 flex items-center text-[#00C6FF] group-hover:text-white transition-colors">
             <span className="text-sm font-medium">Leer más</span>
-            <FaArrowRight className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-1" />
+            <IconArrowRight className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-1" />
           </div>
         </div>
       </Link>

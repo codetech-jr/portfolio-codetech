@@ -1,6 +1,6 @@
 "use client"
 
-import { BsArrowDownRight } from "react-icons/bs"
+// Inline arrow icon to avoid react-icons bundle
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
@@ -50,7 +50,9 @@ const Services = () => {
                             <div className="w-full flex justify-between items-center">
                             <div className="text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-300">{service.num}</div>
                                 <Link href={service.href} className="w-[78px] h-[78px] rounded-full bg-white group-hover:bg-[#00C6FF] transition-all duration-500 flex justify-center items-center hover:-rotate-45">
-                                    <BsArrowDownRight className="text-[#0C0C2C] text-3xl" />
+                                                                        <svg className="text-[#0C0C2C] text-3xl w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                                                                            <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                                        </svg>
                                 </Link>
                             </div>
                             {/* title */}

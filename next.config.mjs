@@ -40,7 +40,8 @@ const nextConfig = {
 
 const withPWA = withPWAInit({
   dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
+  // Allow temporarily disabling PWA for experiments via DISABLE_PWA=true
+  disable: process.env.DISABLE_PWA === 'true' || process.env.NODE_ENV === 'development',
 });
 
 export default withPWA(withNextIntl(nextConfig));

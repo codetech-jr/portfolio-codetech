@@ -32,15 +32,19 @@ const CaseStudyPage = () => {
     <div className="bg-slate-50 dark:bg-[#0C0C2C] text-slate-900 dark:text-white">
       {/* --- SECCIÓN HERO --- */}
       <motion.header 
-        className="relative flex items-center justify-center h-96"
+        className="relative flex items-center justify-center min-h-[60vh] md:min-h-[70vh] h-96"
         key={slug} 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         <div className="absolute inset-0 z-0">
-          {/* --- MEJORA 1: Opacidad del logo de fondo ajustada --- */}
-          <img src={data.heroImage} alt={data.title} className="object-cover w-full h-full opacity-10" />
+          {/* --- MEJORA 1: Usar background-image para evitar CLS al cargar imagenes */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cover bg-center opacity-10"
+            style={{ backgroundImage: `url(${data.heroImage})` }}
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-50 dark:from-[#0C0C2C] to-transparent"></div>
         </div>
         <div className="relative z-10 text-center">

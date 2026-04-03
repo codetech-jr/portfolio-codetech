@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
+const Slider = dynamic(() => import('react-slick'), { ssr: false });
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import "../../app/globals.css";

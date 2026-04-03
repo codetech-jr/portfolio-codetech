@@ -1,10 +1,10 @@
 import "../globals.css";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PageTransition from "@/components/PageTransition";
-import StairTransition from "@/components/StairTransition";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import CustomCursor from "@/components/CustomCursor";
+import PageTransition from '@/components/PageTransition';
+import StairTransition from '@/components/StairTransition';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import CustomCursor from '@/components/CustomCursor';
 import Script from "next/script";
 import { Providers } from "./providers";
 import { Inter, Fraunces } from 'next/font/google';

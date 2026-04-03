@@ -1,13 +1,6 @@
 "use client";
 
-import {
-    FaHtml5,
-    FaCss3,
-    FaJs,
-    FaFigma,
-} from "react-icons/fa"
-
-import { SiTailwindcss, SiNextdotjs} from "react-icons/si"
+// Replace react-icons with small inline SVGs to avoid bundling icon packs
 
 // about data
 const about = {
@@ -140,27 +133,27 @@ const skills = {
     "",
     skillList:[
         {
-            icon: <FaHtml5 />,
+            icon: (<svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M1.5 0h21L12 24 1.5 0z"/></svg>),
             name: "html 5",
         },
         {
-            icon: <FaCss3 />,
+            icon: (<svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="3" width="18" height="18" rx="2"/></svg>),
             name: "css 3",
         },
         {
-            icon: <FaJs />,
+            icon: (<svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M2 3h20v18L12 21 2 21V3z"/></svg>),
             name: "javascript",
         },
         {
-            icon: <FaFigma />,
+            icon: (<svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><circle cx="12" cy="12" r="10"/></svg>),
             name: "figma",
         },
         {
-            icon: <SiNextdotjs />,
+            icon: (<svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><rect x="3" y="3" width="18" height="18" rx="2"/></svg>),
             name: "next.js",
         },
         {
-            icon: <SiTailwindcss />,
+            icon: (<svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M2 12h20"/></svg>),
             name: "tailwind.css",
         },
     ]

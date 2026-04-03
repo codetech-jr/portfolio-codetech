@@ -2,31 +2,46 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Usaremos iconos más conceptuales para los beneficios
-import { TbBulb, TbHexagons, TbMessages, TbChartInfographic } from "react-icons/tb";
+// Use inline SVGs for benefit icons to avoid importing react-icons
 
 // --- DATOS DE LOS BENEFICIOS ---
 const benefitsData = [
   {
-    icon: <TbBulb size={40} className="text-[#00C6FF]" />,
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path d="M12 2a7 7 0 017 7c0 3-2 4-2 4s-1 1-1 2-1 2-3 2-3-1-3-2-1-2-1-2-2-1-2-4a7 7 0 017-7z" stroke="currentColor" strokeWidth="0.8" />
+      </svg>
+    ),
     title: "Enfoque en tus Objetivos",
     description:
       "No solo construyo sitios web; creo soluciones digitales que responden a tus metas de negocio. Cada línea de código y cada elemento de diseño tiene un propósito comercial.",
   },
   {
-    icon: <TbHexagons size={40} className="text-[#00C6FF]" />,
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path d="M12 2l3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6z" stroke="currentColor" strokeWidth="0.8" />
+      </svg>
+    ),
     title: "Tecnología de Vanguardia",
     description:
       "Tu proyecto será desarrollado con herramientas modernas y eficientes (React, Next.js) que garantizan velocidad, seguridad y una experiencia de usuario impecable.",
   },
   {
-    icon: <TbMessages size={40} className="text-[#00C6FF]" />,
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" strokeWidth="0.8" />
+      </svg>
+    ),
     title: "Comunicación Transparente",
     description:
       "Te mantendré informado en cada fase del proyecto. Creo en la comunicación constante y en un proceso colaborativo para asegurar que estemos siempre alineados.",
   },
   {
-    icon: <TbChartInfographic size={40} className="text-[#00C6FF]" />,
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+        <path d="M3 20h18M7 14l5-9 5 9" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
     title: "Entrega de Resultados Medibles",
     description:
       "Mi objetivo final es que tu inversión tenga un retorno. Me centro en métricas clave como la velocidad de carga, la optimización para SEO y la conversión de visitantes a clientes.",

@@ -4,16 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
-import { 
-  FaSearch, 
-  FaCalendar, 
-  FaUser, 
-  FaClock, 
-  FaArrowRight,
-  FaSpinner,
-  FaTimes,
-  FaTag
-} from 'react-icons/fa';
+// icons moved to component-local inline SVGs to avoid react-icons bundle
 import { useState, useEffect, useCallback } from 'react';
 import AdvancedFilters from '@/components/sections/AdvancedFilters';
 import SearchAutocomplete from '@/components/sections/SearchAutocomplete';
