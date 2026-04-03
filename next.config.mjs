@@ -15,7 +15,7 @@ const nextConfig = {
         pathname: '/images/**',
       },
     ],
-    qualities: [75, 95],
+    qualities: [75, 80, 95],
   },
   webpack: (config, { isServer, nextRuntime }) => {
     // Prevent Sanity Studio packages from being bundled into the Next.js app pages.
