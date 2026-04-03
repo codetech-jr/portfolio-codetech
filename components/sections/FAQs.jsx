@@ -19,18 +19,18 @@ function AccordionItem({ faq, isOpen, onClick }) {
         <span className="font-medium text-lg text-slate-900 dark:text-white group-hover:text-accent transition-colors font-display">
           {faq.question}
         </span>
-        <motion.span
+        <Motion as="span"
           className="ml-4 flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-white/10 group-hover:bg-accent/20 transition-colors"
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
           <ChevronDown className={`w-5 h-5 ${isOpen ? "text-accent" : "text-slate-400 dark:text-white/60 group-hover:text-accent"}`} />
-        </motion.span>
+        </Motion>
       </button>
       
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <Motion as="div"
             key="content"
             initial="collapsed"
             animate="open"
@@ -45,7 +45,7 @@ function AccordionItem({ faq, isOpen, onClick }) {
             <p className="text-slate-600 dark:text-white/70 leading-relaxed whitespace-pre-line font-primary text-sm">
               {faq.answer}
             </p>
-          </motion.div>
+          </Motion>
         )}
       </AnimatePresence>
     </div>
@@ -82,7 +82,7 @@ export function FAQs() {
           <p className="mb-12 text-lg text-slate-600 dark:text-white/70 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
-        </motion.div>
+        </Motion>
         
         <Motion as="div"
           initial={{ opacity: 0 }}

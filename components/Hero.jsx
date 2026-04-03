@@ -107,7 +107,7 @@ export default function Hero() {
               >
                 {t("ctaContact")}
               </Button>
-            </motion.div>
+            </Motion>
           </div>
 
           {/* Photo */}

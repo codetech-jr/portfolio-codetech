@@ -78,7 +78,7 @@ const DigitalBenefits = () => {
             Tener presencia en internet es fundamental, pero cada negocio tiene necesidades distintas. 
             Descubre qué tipo de plataforma es la ideal para alcanzar tus objetivos.
           </p>
-        </motion.div>
+        </Motion>
 
         {/* Botones de las pestañas (Tabs) */}
         <div className="flex flex-wrap justify-center gap-4 mb-10">

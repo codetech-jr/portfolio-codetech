@@ -55,7 +55,7 @@ export default function WorkPage() {
             <p className="max-w-2xl mx-auto text-lg text-slate-600 dark:text-white/70">
                 {t("subtitle")}
             </p>
-        </motion.div>
+        </Motion>
 
         {/* --- CUSTOM NEUMORPHIC FILTERS --- */}
         <div className="flex flex-wrap justify-center gap-3 mb-16 max-w-4xl mx-auto">
@@ -71,7 +71,7 @@ export default function WorkPage() {
                         {category}
                     </span>
                     {isActive && (
-                        <motion.div
+                        <Motion as="div"
                             layoutId="activeFilterBubble"
                             className="absolute inset-0 bg-accent rounded-full shadow-[0_0_15px_rgba(0,198,255,0.4)]"
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}

@@ -64,7 +64,7 @@ const CaseStudyPage = () => {
         <hr className="my-16 border-t border-slate-200 dark:border-[#003B8D]" />
 
         {/* --- SECCIÓN SOLUCIÓN --- */}
-        <motion.section variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
+        <Motion as="section" variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
           <h2 className="mb-4 text-3xl font-bold text-center text-[#008BB2] dark:text-[#00C6FF]">{data.solution.title}</h2>
           <p className="mb-12 text-lg text-center text-slate-600 dark:text-[#A3A8CC]">{data.solution.description}</p>
           
@@ -82,12 +82,12 @@ const CaseStudyPage = () => {
               </Motion>
             ))}
           </div>
-        </motion.section>
+        </Motion>
 
         <hr className="my-16 border-t border-slate-200 dark:border-[#003B8D]" />
         
         {/* --- SECCIÓN RESULTADOS --- */}
-        <motion.section 
+        <Motion as="section" 
           className="p-8 rounded-lg bg-white dark:bg-[#1B1F3B] sm:p-12 shadow-sm dark:shadow-none border border-slate-100 dark:border-transparent"
           variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}
         >
@@ -124,10 +124,10 @@ const CaseStudyPage = () => {
               <cite className="block mt-4 not-italic font-semibold text-right text-slate-600 dark:text-[#A3A8CC]">— {data.results.testimonial.author}</cite>
             </blockquote>
           )}
-        </motion.section>
+        </Motion>
 
         {/* --- CTA FINAL --- */}
-        <motion.section 
+        <Motion as="section" 
           className="mt-20 text-center"
           variants={sectionVariants} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}
         >
@@ -141,7 +141,7 @@ const CaseStudyPage = () => {
           >
             Contáctame
           </Link>
-        </motion.section>
+        </Motion>
       </main>
     </div>
   );

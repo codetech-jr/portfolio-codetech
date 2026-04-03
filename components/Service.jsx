@@ -128,7 +128,7 @@ const Services = () => {
     <section id="services" className="py-16 bg-[#0C0C2C] sm:py-24">
       <div className="container px-4 mx-auto">
         {/* Encabezado de la sección */}
-        <motion.div 
+        <Motion as="div" 
             className="text-center"
             initial="hidden"
             whileInView="show"
@@ -139,10 +139,10 @@ const Services = () => {
           <p className="max-w-3xl mx-auto mb-12 text-lg text-[#A3A8CC]">
             Desde una idea hasta un producto digital completo. Ofrezco soluciones a medida para llevar tu proyecto al siguiente nivel.
           </p>
-        </motion.div>
+        </Motion>
 
         {/* Contenedor de las tarjetas de servicios */}
-        <motion.div
+        <Motion as="div"
           className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
@@ -163,7 +163,7 @@ const Services = () => {
               </div>
               <h3 className="mb-3 text-2xl font-bold text-white">{service.title}</h3>
               <p className="text-[#A3A8CC]">{service.description}</p>
-            </motion.div>
+            </Motion>
           ))}
         </Motion>
       </div>

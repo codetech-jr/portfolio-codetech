@@ -1,4 +1,5 @@
 "use client";
+import Motion from "@/components/ui/Motion";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
@@ -38,7 +39,7 @@ const AnimatedNumber = ({ value }) => {
       return controls.stop; 
     }, [value, count]);
   
-    return <motion.span>{rounded}</motion.span>;
+    return <Motion as="span">{rounded}</Motion>;
 };
 
 

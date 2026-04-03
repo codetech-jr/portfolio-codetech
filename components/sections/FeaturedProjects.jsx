@@ -103,7 +103,7 @@ function ProjectCard({ project, assets, index }) {
                   <Play className="w-8 h-8 ml-1" fill="currentColor" />
                 </div>
               </div>
-            </motion.div>
+            </Motion>
             ) : (
             <Motion as="video"
               key="video"
@@ -153,6 +153,6 @@ function ProjectCard({ project, assets, index }) {
           </a>
         </div>
       </div>
-    </motion.div>
+    </Motion>
   );
 }

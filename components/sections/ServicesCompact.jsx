@@ -48,7 +48,7 @@ export function ServicesCompact() {
               <p className="text-white/60 text-sm leading-relaxed font-primary">
                 {service.desc}
               </p>
-            </motion.div>
+            </Motion>
           ))}
         </div>
       </div>

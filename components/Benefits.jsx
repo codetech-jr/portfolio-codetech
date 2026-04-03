@@ -86,7 +86,7 @@ const Benefits = () => {
             <p className="text-lg text-[#A3A8CC]">
               Mi compromiso va más allá de entregar un buen producto. Me involucro en tu proyecto para entender tu visión y tus desafíos. El objetivo no es solo lanzar una web, sino crear un activo digital que impulse tu negocio hacia adelante. Tu éxito es mi éxito.
             </p>
-          </motion.div>
+          </Motion>
 
           {/* Columna Derecha: Lista de Beneficios */}
           <Motion as="div"
