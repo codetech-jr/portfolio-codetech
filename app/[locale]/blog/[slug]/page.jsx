@@ -303,7 +303,7 @@ function ShareButtons({ post }) {
   return (
     <div className="bg-[#1B1F3B] rounded-lg p-4 border border-[#003B8D] mb-8 w-full">
       <h3 className="text-lg font-bold text-[#00C6FF] mb-4 flex items-center justify-center">
-        <IconShare className="mr-2" />
+        <IconShare className="w-5 h-5 mr-2" />
         Compartir
       </h3>
       <div className="grid grid-cols-2 gap-2">
@@ -314,7 +314,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#1877F2] text-white rounded-lg hover:bg-[#1877F2]/90 transition-colors text-sm"
           aria-label="Compartir en Facebook"
         >
-          <IconFacebook className="mr-1" />
+          <IconFacebook className="w-4 h-4 mr-2" />
           Facebook
         </a>
         <a
@@ -324,7 +324,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1DA1F2]/90 transition-colors text-sm"
           aria-label="Compartir en Twitter"
         >
-          <IconTwitter className="mr-1" />
+          <IconTwitter className="w-4 h-4 mr-2" />
           Twitter
         </a>
         <a
@@ -334,7 +334,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#0077B5] text-white rounded-lg hover:bg-[#0077B5]/90 transition-colors text-sm"
           aria-label="Compartir en LinkedIn"
         >
-          <IconLinkedin className="mr-1" />
+          <IconLinkedin className="w-4 h-4 mr-2" />
           LinkedIn
         </a>
         <a
@@ -344,7 +344,7 @@ function ShareButtons({ post }) {
           className="flex items-center justify-center w-full h-10 bg-[#25D366] text-white rounded-lg hover:bg-[#25D366]/90 transition-colors text-sm"
           aria-label="Compartir en WhatsApp"
         >
-          <IconWhatsapp className="mr-1" />
+          <IconWhatsapp className="w-4 h-4 mr-2" />
           WhatsApp
         </a>
       </div>

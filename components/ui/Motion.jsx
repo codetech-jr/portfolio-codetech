@@ -13,6 +13,11 @@ const MOTION_KEYS = new Set([
   "transition",
   "viewport",
   "onAnimationComplete",
+  "layout",
+  "layoutId",
+  "variants",
+  "exit",
+  "custom",
 ]);
 
 function filterProps(props) {

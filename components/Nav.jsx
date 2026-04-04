@@ -9,6 +9,7 @@ const Nav = () => {
 
     const links = [
         { name: t("home"), path: "/" },
+        { name: t("about"), path: "/about" },
         { name: t("services"), path: "/services" },
         { name: t("projects"), path: "/work" },
         { name: t("contact"), path: "/contact" },

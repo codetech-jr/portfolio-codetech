@@ -1,19 +1,18 @@
 {
   "hero": {
-    "role": "Digital Solutions Consultant",
-    "greeting": "Hi, I'm",
-    "name": "Junior Daniel",
-    "typewriterWords": [
-      "Software Engineer",
-      "UX/UI Designer",
-      "Automation Expert"
-    ],
-    "description": "I design and develop high-impact digital experiences. Specialized in web conversion systems, e-commerce, apps, and AI-powered chatbots.",
-    "ctaProjects": "View Projects",
-    "ctaContact": "Contact Me"
+    "badge": "Web Development, CRO & Artificial Intelligence Consulting",
+    "headline": "You focus on your business, I build the technology that brings you clients.",
+    "description": "I design and integrate fast commercial systems (Next.js) and AI Chatbots that work and close sales for you 24/7. Corporate quality with the agile touch of an expert independent developer.",
+    "ctaPrimary": "🟢 Schedule Your Free Consultation",
+    "ctaSecondary": "View success stories →",
+    "proof1": "+23 projects deployed",
+    "proof2": "Google Lighthouse 90+",
+    "proof3": "Direct 1-on-1 technical contact",
+    "testimonial": "\"My website now generates 3x more inquiries\" — Guido G."
   },
   "nav": {
     "home": "Home",
+    "about": "About",
     "projects": "Projects",
     "services": "Services",
     "blog": "Blog",
@@ -290,5 +289,72 @@
         "category": "Mobile App"
       }
     }
+  },
+  "about": {
+    "sectionLabel": "About me",
+    "headline": "The person behind the",
+    "headlineHighlight": "code",
+    "badge": "Available for new projects",
+    "greeting": "Hi, I'm Junior",
+    "handle": "CodeTechJr 👋",
+    "bio": "3 years ago I dived into the world of web development with a clear objective: to help professionals and businesses build a digital presence that not only looks great, but truly works and converts.",
+    "bio2": "As a freelance developer, I specialize in building competitive, elegant, and fast websites. I capture your vision and bring it to life with corporate-grade code.",
+    "availableLabel": "Available",
+    "yearsBadge": "3+ years",
+    "experienceLabel": "of experience",
+    "stat2Value": "23+",
+    "stat2Label": "projects",
+    "stat3Value": "90+",
+    "stat3Label": "Lighthouse",
+    "missionTitle": "Mission",
+    "missionText": "To empower professionals and businesses by transforming ideas into competitive, beautiful, and fast websites that generate real results.",
+    "missionProof": "Real results oriented",
+    "visionTitle": "Vision",
+    "visionText": "To become the preferred global technology partner, recognized for deep client understanding, technical quality, and speed of delivery.",
+    "visionProof": "Global technology partner",
+    "valuesTitle": "Values that guide my work",
+    "values": [
+      {
+        "icon": "Ear",
+        "title": "Listening & Empathy",
+        "description": "I understand your business before writing a single line of code. Your vision is the north star."
+      },
+      {
+        "icon": "Timer",
+        "title": "Punctuality & Efficiency",
+        "description": "Deadlines are sacred commitments. I deliver complete projects, without excuses."
+      },
+      {
+        "icon": "Handshake",
+        "title": "Total Commitment",
+        "description": "I'm involved from start to finish as if the project were my own. I don't disappear."
+      },
+      {
+        "icon": "Gem",
+        "title": "Functional Excellence",
+        "description": "Clean code, harmonious design, and 90+ Lighthouse performance. No shortcuts."
+      }
+    ],
+    "differentiatorTitle": "Why work with me?",
+    "differentiators": [
+      {
+        "icon": "Zap",
+        "title": "Real speed",
+        "description": "Your website in 1-2 weeks, not months."
+      },
+      {
+        "icon": "Shield",
+        "title": "Corporate quality",
+        "description": "Professional code, Lighthouse 90+."
+      },
+      {
+        "icon": "HeadphonesIcon",
+        "title": "Direct support",
+        "description": "You talk to me, not a chatbot."
+      }
+    ],
+    "ctaTitle": "Ready to transform your digital presence?",
+    "ctaDescription": "Schedule a free consultation and let's discover together how to grow your business.",
+    "ctaButton": "Schedule your free consultation"
   }
 }

@@ -21,28 +21,32 @@ const { locale } = await params;
   const isEs = locale === 'es';
   return {
     title: isEs
-      ? 'Codetech JR | Consultor de Soluciones Digitales'
-      : 'Codetech JR | Digital Solutions Consultant',
+      ? 'Estudio de Desarrollo Web & IA | Aumentamos tus Ventas | CodeTechJr'
+      : 'Web Development & AI Studio | We Grow Your Sales | CodeTechJr',
     description: isEs
-      ? 'Diseño y desarrollo experiencias digitales de alto impacto. Especializado en sistemas de conversión web, e-commerce, apps y chatbots impulsados por IA.'
-      : 'Design and develop high-impact digital experiences. Specialized in web conversion systems, e-commerce, apps and AI-powered chatbots.',
+      ? 'No hacemos "páginas bonitas". Construimos sistemas comerciales: Webs veloces, apps y chatbots IA orientados a conversiones para negocios en LATAM y EEUU. Trato 1 a 1.'
+      : 'We don\'t make "pretty pages". We build commercial systems: Fast websites, apps, and AI chatbots focused on conversions for businesses in LATAM and the US. 1-on-1 service.',
     keywords: isEs
-      ? ['portafolio', 'desarrollador web', 'next.js', 'chatbot', 'react native', 'automatización']
-      : ['portfolio', 'web developer', 'next.js', 'chatbot', 'react native', 'automation'],
+      ? ['desarrollo web premium', 'páginas web de conversión', 'chatbots IA para empresas', 'agencia desarrollo nextjs', 'CRO', 'portafolio', 'automatización']
+      : ['premium web development', 'conversion websites', 'AI chatbots for business', 'nextjs development agency', 'CRO', 'portfolio', 'automation'],
     authors: [{ name: 'Alejandro Daniel', url: 'https://codetechjr.com' }],
     openGraph: {
-      title: isEs ? 'Codetech JR | Consultor Digital' : 'Codetech JR | Digital Consultant',
+      title: isEs
+        ? 'Estudio Digital & IA | CodeTechJr — Sistemas que convierten'
+        : 'Digital & AI Studio | CodeTechJr — Systems that convert',
       description: isEs
-        ? 'Soluciones digitales premium: webs, apps, chatbots IA.'
-        : 'Premium digital solutions: websites, apps, AI chatbots.',
+        ? 'Webs, apps y chatbots IA de alto rendimiento para negocios que quieren crecer.'
+        : 'High-performance websites, apps and AI chatbots for businesses that want to grow.',
       url: 'https://codetechjr.com',
-      siteName: 'Codetech JR',
+      siteName: 'CodeTechJr',
       locale: locale === 'es' ? 'es_VE' : 'en_US',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: isEs ? 'Codetech JR | Consultor Digital' : 'Codetech JR | Digital Consultant',
+      title: isEs
+        ? 'Estudio Digital & IA | CodeTechJr — Sistemas que convierten'
+        : 'Digital & AI Studio | CodeTechJr — Systems that convert',
     },
     alternates: {
       canonical: `https://codetechjr.com/${locale}`,
@@ -52,11 +56,11 @@ const { locale } = await params;
       },
     },
     manifest: '/manifest.json',
-    applicationName: 'Codetech JR',
+    applicationName: 'CodeTechJr',
     appleWebApp: {
       capable: true,
       statusBarStyle: 'default',
-      title: 'Codetech JR',
+      title: 'CodeTechJr',
     },
     formatDetection: {
       telephone: false,
