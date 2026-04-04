@@ -15,6 +15,7 @@ const MobileNav = () => {
         { name: t("services"), path: '/services' },
         { name: t("projects"), path: '/work' },
         { name: t("contact"), path: '/contact' },
+        { name: t("blog"), path: '/blog' },
     ];
 
     return (

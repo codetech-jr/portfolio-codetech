@@ -12,8 +12,27 @@ import { Quote } from "lucide-react";
 export function Testimonials() {
   const [mounted, setMounted] = useState(false);
   
+  const [slidesToShow, setSlidesToShow] = useState(3);
+
   useEffect(() => {
     setMounted(true);
+    
+    // Función para actualizar slides según el ancho
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSlidesToShow(1);
+      } else if (window.innerWidth < 1024) {
+        setSlidesToShow(2);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+    
+    // Ejecutar una vez al montar
+    handleResize();
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const t = useTranslations("testimonials");
@@ -30,15 +49,12 @@ export function Testimonials() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 6000,
     arrows: false,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 768, settings: { slidesToShow: 1 } }
-    ]
+    key: slidesToShow, // Force re-render of slider when breakpoint changes completely
   };
 
   return (
