@@ -1,138 +1,234 @@
+/**
+ * @typedef {Object} Project
+ * @property {string}   id          - Unique slug identifier
+ * @property {string}   title       - Short project name (EN fallback, i18n preferred via messages)
+ * @property {string}   description - Business-result description (max 2 lines)
+ * @property {string}   category    - Category label (used for filter chips)
+ * @property {string[]} techStack   - Technology badges list
+ * @property {string}   image       - Path relative to /public
+ * @property {string}   live        - Live URL
+ * @property {string}   github      - GitHub repo URL
+ * @property {string}   [caseStudy] - Internal case study path
+ * @property {boolean}  featured    - true → Hero Card (2-col span in Bento Grid)
+ * @property {boolean}  isDemo      - true → Concept/demo project (not a real client)
+ */
+
+/** @type {Project[]} */
 export const projectsData = [
-    {
-        id: 'repuestos-temuco',
-        image: '/assets/temuco.png',
-        live: 'https://temuco-repuestos.vercel.app/',
-        github: 'https://github.com/codetech-jr/temuco-repuestos',
-        techStack: ['React', 'TailwindCss', 'Typescript', 'Next.Js', 'Supabase'],
-        featured: true,
-        isDemo: false
-    },
-    {
-        id: 'grupo-legal-barboza',
-        image: '/assets/grupo-legal-barboza.png',
-        live: 'https://grupolegalbarboza.com/',
-        github: 'https://github.com/codetech-jr/grupo-legal-barboza-landing-page',
-        techStack: ['React', 'TailwindCss', 'Typescript', 'Next.Js'],
-        featured: true,
-        isDemo: false
-    },
-    {
-        id: 'pedro-salazar',
-        image: '/assets/pedro-salazar.png',
-        live: 'https://abogado-pedro-salazar.vercel.app/',
-        github: 'https://github.com/codetech-jr/abogado-pedro-salazar',
-        techStack: ['React', 'TailwindCss', 'Typescript', 'Next.Js'],
-        featured: true,
-        isDemo: false
-    },
-    {
-        id: 'miri-model',
-        image: '/assets/portfolio-miri.png',
-        live: 'https://miri-portfolio-model.vercel.app/',
-        github: 'https://github.com/codetech-jr/miri-portfolio-model',
-        techStack: ['React', 'TailwindCss', 'Typescript', 'Next.Js'],
-        featured: true,
-        isDemo: false
-    },
-    {
-        id: 'dada-videos',
-        image: '/assets/dada-videos.png',
-        live: 'https://dada-videos.vercel.app/',
-        github: 'https://github.com/codetech-jr/dada-videos',
-        techStack: ['Vue.js', 'TailwindCss', 'Typescript', 'Nuxt'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'dada-media',
-        image: '/assets/dada.png',
-        live: 'https://dada-react.vercel.app/',
-        github: 'https://github.com/codetech-jr/dada-react',
-        techStack: ['React', 'Next.Js', 'TailwindCss'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'golden-spa',
-        image: '/assets/golden-doodle-spa.png',
-        live: 'https://landing-doodles.vercel.app/',
-        github: 'https://github.com/codetech-jr/landing-doodles',
-        techStack: ['React', 'TailwindCss', 'Typescript', 'Next.Js', 'Gsap', 'Framer Motion'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'homevista',
-        image: '/assets/homevista.png',
-        live: 'https://homevista-js.vercel.app/',
-        github: 'https://github.com/codetech-jr/homevista-js',
-        techStack: ['Html5', 'Css3', 'Javascript'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'wecare',
-        image: '/assets/wecare.png',
-        live: 'https://landing-doctors-js.vercel.app/',
-        github: 'https://github.com/codetech-jr/landing-doctors-js',
-        techStack: ['Html5', 'Css3', 'Javascript'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'education-page',
-        image: '/assets/egator.png',
-        live: 'https://education-page-six.vercel.app/',
-        github: 'https://github.com/codetech-jr/education-page',
-        techStack: ['Html5', 'Css3', 'Javascript'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'portfolio-ux',
-        image: '/assets/portfolio.png',
-        live: 'https://portfolio-ux-js.vercel.app/',
-        github: 'https://github.com/codetech-jr/portfolio-js',
-        techStack: ['Html5', 'Css3', 'Javascript'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'landing-lawyer',
-        image: '/assets/lawyer.png',
-        live: 'https://landing-lawyer.vercel.app/',
-        github: 'https://github.com/codetech-jr/landing-lawyer',
-        techStack: ['Html5', 'Css3', 'Javascript'],
-        featured: false,
-        isDemo: false
-    },
-    {
-        id: 'restaurant-landing',
-        image: '/assets/resto.png',
-        live: 'https://restaurant-landing-ochre.vercel.app/',
-        github: 'https://github.com/codetech-jr/restaurant-landing',
-        techStack: ['Html5', 'Css3', 'Javascript'],
-        featured: false,
-        isDemo: false
-    },
-    // Nuevos Demos (App Móvil y Chatbot)
-    {
-        id: 'botpress-assistant',
-        image: '/assets/chatbot-demo.png', // Placeholder (el usuario debe crearlo luego)
-        live: '#',
-        github: '#',
-        techStack: ['Botpress', 'Make', 'Cal.com', 'Telegram API', 'Google Sheets'],
-        featured: true,
-        isDemo: true
-    },
-    {
-        id: 'react-native-app',
-        image: '/assets/app-demo.png', // Placeholder
-        live: '#',
-        github: '#',
-        techStack: ['React Native', 'Expo', 'NativeWind', 'Firebase'],
-        featured: false,
-        isDemo: true
-    }
+  // ── FEATURED HERO CARDS (featured: true → col-span-2 in Bento Grid) ──────────
+  {
+    id: "repuestos-temuco",
+    title: "Catálogo Digital — Repuestos Temuco",
+    description:
+      "Transformé un negocio físico en una vitrina online rápida con buscador inteligente y categorías. Resultado: +60% de consultas digitales en el primer mes.",
+    category: "E-Commerce Catalog",
+    techStack: ["Next.js", "Supabase", "TailwindCSS", "TypeScript", "React"],
+    image: "/assets/hero-temuco.png",
+    live: "https://temuco-repuestos.vercel.app/",
+    github: "https://github.com/codetech-jr/temuco-repuestos",
+    caseStudy: "/casos-de-exito/repuestos-temuco",
+    featured: true,
+    isDemo: false,
+  },
+  {
+    id: "grupo-legal-barboza",
+    title: "Grupo Legal Barboza",
+    description:
+      "Landing de alta conversión para despacho jurídico. CTAs estratégicos que aumentaron las consultas en un 45% desde el primer mes de lanzamiento.",
+    category: "Landing Page",
+    techStack: ["Next.js", "TailwindCSS", "TypeScript", "Vercel"],
+    image: "/assets/grupo-legal-barboza.png",
+    live: "https://www.grupolegalbarboza.com/",
+    github: "https://github.com/codetech-jr/grupo-legal-barboza-landing-page",
+    caseStudy: "/casos-de-exito/deylena-barboza",
+    featured: true,
+    isDemo: false,
+  },
+
+  // ── SECONDARY CARDS ────────────────────────────────────────────────────────────
+  {
+    id: "pedro-salazar",
+    title: "Pedro Salazar — Abogado",
+    description:
+      "Identidad visual y UX que transmiten confianza y jerarquía legal. Optimizado para convertir visitantes en clientes potenciales.",
+    category: "Sitio Profesional",
+    techStack: ["Next.js", "TypeScript", "TailwindCSS", "React"],
+    image: "/assets/pedro-salazar.png",
+    live: "https://abogado-pedro-salazar.vercel.app/",
+    github: "https://github.com/codetech-jr/abogado-pedro-salazar",
+    caseStudy: "/casos-de-exito/pedro-salazar",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "miri-model",
+    title: "Portfolio Modelo Miri",
+    description:
+      "Experiencia inmersiva de galería de alta resolución que refleja la estética y sofisticación de una modelo profesional internacional.",
+    category: "Portfolio Premium",
+    techStack: ["Next.js", "TypeScript", "Framer Motion", "TailwindCSS"],
+    image: "/assets/portfolio-miri.png",
+    live: "https://miri-portfolio-model.vercel.app/",
+    github: "https://github.com/codetech-jr/miri-portfolio-model",
+    caseStudy: "/casos-de-exito/miri-portfolio",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "dada-videos",
+    title: "Dada Videos",
+    description:
+      "Landing optimizada para la conversión, exhibiendo el portafolio de trabajos de un editor de vídeo profesional.",
+    category: "Landing Page",
+    techStack: ["Vue.js", "TailwindCSS", "TypeScript", "Nuxt"],
+    image: "/assets/dada-videos.png",
+    live: "https://dada-videos.vercel.app/",
+    github: "https://github.com/codetech-jr/dada-videos",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "dada-media",
+    title: "Dada Media Design",
+    description:
+      "Landing de alta conversión para diseñador gráfico con embudo de ventas integrado. Posicionada para capturar leads orgánicos.",
+    category: "Landing Page",
+    techStack: ["React", "Next.js", "TailwindCSS"],
+    image: "/assets/dada.png",
+    live: "https://dada-react.vercel.app/",
+    github: "https://github.com/codetech-jr/dada-react",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "golden-spa",
+    title: "Golden Doodle Spa",
+    description:
+      "Landing premium con interacciones y transiciones avanzadas. Micro-animaciones GSAP y Framer Motion para una experiencia diferenciadora.",
+    category: "Landing Page",
+    techStack: ["Next.js", "TailwindCSS", "GSAP", "Framer Motion"],
+    image: "/assets/golden-doodle-spa.png",
+    live: "https://landing-doodles.vercel.app/",
+    github: "https://github.com/codetech-jr/landing-doodles",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "homevista",
+    title: "Homevista JS",
+    description:
+      "Proyecto educativo explorando capacidades frontend avanzadas en Vanilla JS sin frameworks.",
+    category: "Landing Page",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: "/assets/homevista.png",
+    live: "https://homevista-js.vercel.app/",
+    github: "https://github.com/codetech-jr/homevista-js",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "wecare",
+    title: "WeCare Platform",
+    description:
+      "Proyecto simulando una plataforma para clínicas médicas. Enfoque en formularios complejos y dashboards responsivos.",
+    category: "Landing Page",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: "/assets/wecare.png",
+    live: "https://landing-doctors-js.vercel.app/",
+    github: "https://github.com/codetech-jr/landing-doctors-js",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "education-page",
+    title: "Education Page",
+    description:
+      "Maquetado avanzado y diseño responsive puro orientado a plataformas educativas.",
+    category: "Sitio Web",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: "/assets/egator.png",
+    live: "https://education-page-six.vercel.app/",
+    github: "https://github.com/codetech-jr/education-page",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "portfolio-ux",
+    title: "Portfolio Concept",
+    description:
+      "Refinamiento de UX en un portafolio conceptual clásico con foco en usabilidad.",
+    category: "Portfolio",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: "/assets/portfolio.png",
+    live: "https://portfolio-ux-js.vercel.app/",
+    github: "https://github.com/codetech-jr/portfolio-js",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "landing-lawyer",
+    title: "Landing Lawyer",
+    description:
+      "Plantilla de alta conversión orientada a servicios legales. Layout y copywriting optimizados para captar clientes.",
+    category: "Landing Page",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: "/assets/lawyer.png",
+    live: "https://landing-lawyer.vercel.app/",
+    github: "https://github.com/codetech-jr/landing-lawyer",
+    featured: false,
+    isDemo: false,
+  },
+  {
+    id: "restaurant-landing",
+    title: "Restaurant Experience",
+    description:
+      "Landing page inmersiva para restaurante con diseño gastronómico y reservas integradas.",
+    category: "Landing Page",
+    techStack: ["HTML5", "CSS3", "JavaScript"],
+    image: "/assets/resto.png",
+    live: "https://restaurant-landing-ochre.vercel.app/",
+    github: "https://github.com/codetech-jr/restaurant-landing",
+    featured: false,
+    isDemo: false,
+  },
+
+  // ── DEMO PROJECTS (nuevas capacidades) ───────────────────────────────────────
+  {
+    id: "botpress-assistant",
+    title: "AI Booking Assistant",
+    description:
+      "Chatbot que agenda via Telegram + Cal.com, responde 24/7 y sincroniza leads en Google Sheets usando Make automations.",
+    category: "Chatbot IA",
+    techStack: ["Botpress", "Make", "Cal.com", "Telegram API", "Google Sheets"],
+    image: "/assets/chatbot-demo.png",
+    live: "#",
+    github: "#",
+    featured: true,
+    isDemo: true,
+  },
+  {
+    id: "react-native-app",
+    title: "Mobile App — React Native",
+    description:
+      "App móvil con Expo y NativeWind: UI minimalista, animaciones nativas fluidas y autenticación integrada.",
+    category: "App Móvil",
+    techStack: ["React Native", "Expo", "NativeWind", "Firebase"],
+    image: "/assets/app-demo.png",
+    live: "#",
+    github: "#",
+    featured: false,
+    isDemo: true,
+  },
+];
+
+/** Proyectos destacados para la home (Bento Grid hero section) */
+export const featuredProjects = projectsData.filter((p) => p.featured);
+
+/** Todos los proyectos reales (sin demos) */
+export const realProjects = projectsData.filter((p) => !p.isDemo);
+
+/** Categorías únicas para los filtros de la página /work */
+export const projectCategories = [
+  "Todos",
+  ...new Set(projectsData.map((p) => p.category)),
 ];
