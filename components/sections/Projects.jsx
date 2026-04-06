@@ -8,46 +8,8 @@ import Image from "next/image";
 import "../../app/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { realProjects } from "@/data/projects";
 
-// --- DATOS DE PROYECTOS ---
-const projectsData = [
-    {
-        title: "Catálogo Digital para Repuestos Temuco",
-        description: "Creé un catálogo digital para modernizar la consulta de inventario. El resultado es una vitrina online rápida y fácil de usar, con un potente buscador y navegación por categorías que ha mejorado la presencia digital del negocio.",
-        technologies: ["React", "Node.js", "TailwindCSS", "Supabase", "Express", "Next.js"],
-        videoSrc: "/videos/proyecto-temuco.mp4",
-        thumbnail: "/assets/thumbnail-temuco.jpg", 
-        link: "https://temuco-repuestos.vercel.app/",
-        caseStudyLink: "/casos-de-exito/repuestos-temuco"
-      },
-      {
-        title: "Web Profesional para Pedro Salazar",
-        description: "Diseñé una identidad visual y una experiencia de usuario (UX) que transmiten confianza y profesionalismo. La web está estructurada para guiar a los usuarios hacia los servicios y contacto, optimizando la conversión de clientes.",
-        technologies: ["Next.js", "TailwindCSS", "TypeScript", "React"],
-        videoSrc: "/videos/proyecto-pedro.mp4",
-        thumbnail: "/assets/thumbnail-pedro.jpg",
-        link: "https://abogado-pedro-salazar.vercel.app/",
-        caseStudyLink: "/casos-de-exito/pedro-salazar"
-      },
-      {
-        title: "Landing Page para la abogada Deylena Barboza",
-        description: "Diseñé una landing page moderna y profesional para destacar los servicios legales ofrecidos. La página está optimizada para conversiones, con un diseño claro y llamado a la acción enfocado en captar clientes potenciales.",
-        technologies: ["Next.js", "TailwindCSS", "React", "Vercel"],
-        videoSrc: "/videos/proyecto-deylena.mp4",
-        thumbnail: "/assets/thumbnail-deylena.jpg",
-        link: "https://www.grupolegalbarboza.com/",
-        caseStudyLink: "/casos-de-exito/deylena-barboza"
-      },
-      {
-        title: "Portafolio para Modelo Profesional",
-        description: "Desarrollé un portafolio con una experiencia de usuario inmersiva y un diseño limpio que realza la fotografía. El foco principal fue crear una galería de alta resolución que refleja la sofisticación y profesionalismo de la modelo.",
-        technologies: ["Next.js", "TailwindCSS", "TypeScript", "React"],
-        videoSrc: "/videos/proyecto-miri.mp4",
-        thumbnail: "/assets/thumbnail-miri.jpg",
-        link: "https://miri-portfolio-model.vercel.app/",
-        caseStudyLink: "/casos-de-exito/miri-portfolio"
-      },
-];
 
 // --- COMPONENTES INTERNOS ---
 const PlayIcon = () => (
@@ -76,7 +38,7 @@ const ProjectCard = ({ project }) => {
           {!playing ? (
             <div className="relative w-full h-full cursor-pointer group bg-slate-200 dark:bg-primary/20" onClick={() => setPlaying(true)}>
               <Image
-                src={project.thumbnail}
+                src={project.image}
                 alt={`Thumbnail de ${project.title}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -94,11 +56,11 @@ const ProjectCard = ({ project }) => {
             </div>
           ) : (
             <video
-              src={project.videoSrc}
+              src={project.video || project.videoSrc}
               controls
               autoPlay
               className="w-full h-full"
-              poster={project.thumbnail}
+              poster={project.image}
               onEnded={() => setPlaying(false)}
             />
           )}
@@ -107,8 +69,8 @@ const ProjectCard = ({ project }) => {
           <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
           <p className="mb-4 text-left text-base text-slate-600 dark:text-[#A3A8CC]">{project.description}</p>
           
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.technologies.map((tech) => (
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {(project.techStack || project.technologies).map((tech) => (
               <span key={tech} className="px-3 py-1 text-xs font-semibold text-[#00C6FF] bg-[#003B8D] rounded-full">
                 {tech}
               </span>
@@ -116,14 +78,16 @@ const ProjectCard = ({ project }) => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 mt-auto">
-            <Link
-              href={project.caseStudyLink}
-              className="inline-block px-5 py-2 font-bold text-[#0C0C2C] transition-opacity duration-300 bg-[#00C6FF] rounded-md hover:opacity-90"
-            >
-              Ver Caso de Éxito
-            </Link>
+            {project.caseStudy && (
+              <Link
+                href={project.caseStudy}
+                className="inline-block px-5 py-2 font-bold text-[#0C0C2C] transition-opacity duration-300 bg-[#00C6FF] rounded-md hover:opacity-90"
+              >
+                Ver Caso de Éxito
+              </Link>
+            )}
             <a
-              href={project.link}
+              href={project.live}
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-slate-700 dark:text-white transition-colors duration-300 hover:text-[#00C6FF] dark:hover:text-[#00C6FF]"
@@ -186,7 +150,7 @@ const Projects = () => {
 
         {/* --- SLIDER DE PROYECTOS --- */}
         <Slider {...sliderSettings}>
-          {projectsData.map((project, idx) => (
+          {realProjects.map((project, idx) => (
             <div key={idx} className="px-2">
               <Motion as="div" variants={projectCardVariants}>
                 <ProjectCard project={project} />

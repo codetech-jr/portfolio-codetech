@@ -55,16 +55,6 @@ const { locale } = await params;
         'es': 'https://codetechjr.com/es',
       },
     },
-    manifest: '/manifest.json',
-    applicationName: 'CodeTechJr',
-    appleWebApp: {
-      capable: true,
-      statusBarStyle: 'default',
-      title: 'CodeTechJr',
-    },
-    formatDetection: {
-      telephone: false,
-    },
   };
 }
 

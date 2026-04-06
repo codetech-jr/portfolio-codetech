@@ -1,5 +1,4 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-import withPWAInit from '@ducanh2912/next-pwa';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.js');
 
@@ -38,10 +37,4 @@ const nextConfig = {
   },
 };
 
-const withPWA = withPWAInit({
-  dest: 'public',
-  // Allow temporarily disabling PWA for experiments via DISABLE_PWA=true
-  disable: process.env.DISABLE_PWA === 'true' || process.env.NODE_ENV === 'development',
-});
-
-export default withPWA(withNextIntl(nextConfig));
+export default withNextIntl(nextConfig);

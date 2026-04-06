@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import MotionSection from "@/components/MotionSection";
 
 // Dynamic Sections for performance
-const FeaturedProjects = dynamic(() => import("@/components/sections/FeaturedProjects").then(mod => mod.FeaturedProjects), { ssr: true });
+import FeaturedProjects from "@/components/sections/FeaturedProjects";
 const Services = dynamic(() => import("@/components/sections/Services"), { ssr: true });
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials").then(mod => mod.Testimonials), { ssr: true });
 const FAQs = dynamic(() => import("@/components/sections/FAQs").then(mod => mod.FAQs), { ssr: true });
@@ -22,10 +22,10 @@ export default function Home() {
         <StatsAnimated />
       </MotionSection>
 
-      {/* 2. Featured Projects */}
-      <MotionSection id="proyectos">
+      {/* 2. Featured Projects (Original Slider/Grid) */}
+      <section id="proyectos">
         <FeaturedProjects />
-      </MotionSection>
+      </section>
 
       {/* 3. Pricing & Services (Original) */}
       <MotionSection id="servicios">

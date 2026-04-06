@@ -86,7 +86,7 @@ export function Testimonials() {
           className="pb-12 slick-portfolio-theme w-full max-w-full overflow-hidden"
         >
           {mounted ? (
-            <Slider {...settings}>
+            <Slider key={settings.key} {...Object.fromEntries(Object.entries(settings).filter(([k]) => k !== 'key'))}>
               {testimonials.map((test, idx) => (
                 <div key={idx} className="h-full px-3 py-4">
                   <div className="bg-slate-50 dark:bg-[#1B1F3B]/40 backdrop-blur-md border border-slate-200 dark:border-white/5 rounded-3xl p-8 h-full flex flex-col hover:border-accent/30 dark:hover:border-accent/30 transition-colors relative group shadow-sm dark:shadow-none min-h-[300px]">

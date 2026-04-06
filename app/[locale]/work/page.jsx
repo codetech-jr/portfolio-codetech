@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 
 const AnimatePresence = dynamic(() => import('framer-motion').then(m => m.AnimatePresence), { ssr: false });
 import ProjectCard from "@/components/ProjectCard"; 
+import ProjectList from "@/components/sections/ProjectList";
 import { projectsData } from "@/data/projects";
 import { useTranslations } from "next-intl";
 
@@ -86,23 +87,16 @@ export default function WorkPage() {
           })}
         </div>
 
-        {/* --- ANIMATED GALLERY GRID --- */}
-        <Motion as="div" layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <Motion as="div"
-                layout
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-              >
-                <ProjectCard project={project} />
-              </Motion>
-            ))}
-          </AnimatePresence>
-        </Motion>
+        {/* --- MINIMALIST PROJECT LIST --- */}
+        <div className="mt-8">
+          {filteredProjects.length > 0 ? (
+            <ProjectList projects={filteredProjects} hideHeader={true} />
+          ) : (
+            <div className="text-center py-20 text-white/50">
+              No se encontraron proyectos para esta categoría.
+            </div>
+          )}
+        </div>
       </div>
     </Motion>
   );
