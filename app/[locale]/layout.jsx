@@ -9,7 +9,7 @@ import SchemaJsonLd from '@/components/SchemaJsonLd';
 import { Providers } from "./providers";
 import { Inter, Fraunces } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next/intl/server';
+import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
