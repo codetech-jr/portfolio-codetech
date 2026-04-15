@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 // POST - Dar/quitar like a un comentario
 export async function POST(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     if (!id) {
       return NextResponse.json(

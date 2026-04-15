@@ -58,7 +58,8 @@ function IconFolder({ className = '' }) {
 
 // Metadatos SEO dinámicos
 export async function generateMetadata({ params }) {
-  const categorySlug = params.slug;
+  const { slug } = await params;
+  const categorySlug = slug;
   const category = await client.fetch(
     `*[_type == "category" && slug.current == $slug][0]{title, description}`,
     { slug: categorySlug }
@@ -74,7 +75,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      url: `https://codetechjunior.com/blog/category/${categorySlug}`,
+      url: `https://codetechjunior.com/blog/category/${slug}`,
       siteName: 'Blog de Codetech Junior',
       locale: 'es_ES',
       type: 'website',
@@ -85,7 +86,7 @@ export async function generateMetadata({ params }) {
       description: pageDescription,
     },
     alternates: {
-      canonical: `https://codetechjunior.com/blog/category/${categorySlug}`,
+      canonical: `https://codetechjunior.com/blog/category/${slug}`,
     },
   };
 }
@@ -244,7 +245,8 @@ function NewsletterSignup() {
 
 // Página de categoría
 export default async function CategoryPage({ params }) {
-  const categorySlug = params.slug;
+  const { slug } = await params;
+  const categorySlug = slug;
   const [category, posts, allCategories] = await Promise.all([
     getCategoryInfo(categorySlug),
     getPostsByCategory(categorySlug),

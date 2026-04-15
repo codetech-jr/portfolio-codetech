@@ -23,7 +23,8 @@ import MotionSection from "@/components/MotionSection";
 import { projectsData } from "@/data/projects";
 
 // This simulates a dynamic page component that fetches translations
-export default function ProjectDetail({ params: { locale, slug } }) {
+export default async function ProjectDetail({ params }) {
+  const { locale, slug } = await params;
   setRequestLocale(locale);
 
   // Validate the project exists in our technical data

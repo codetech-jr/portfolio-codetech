@@ -1,0 +1,5 @@
+Metric,Value,Unit
+First Contentful Paint,1.6 s,ms
+Largest Contentful Paint,31.4 s,ms
+Total Blocking Time,"10,380 ms",ms
+Cumulative Layout Shift,0.058,score

@@ -103,6 +103,7 @@ import ReadingStats from '@/components/sections/ReadingStats';
 
 // Función para generar los metadatos dinámicos para SEO
 export async function generateMetadata({ params }) {
+  const { slug } = await params;
   const query = `*[_type == "post" && slug.current == $slug][0]{
     title,
     seoTitle,
@@ -115,7 +116,7 @@ export async function generateMetadata({ params }) {
     "categories": categories[]->title,
     excerpt
   }`;
-  const post = await client.fetch(query, { slug: params.slug });
+  const post = await client.fetch(query, { slug: slug });
 
   if (!post) {
     return { title: 'Post no encontrado' };
@@ -134,7 +135,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      url: `${domain}/blog/${params.slug}`,
+      url: `${domain}/blog/${slug}`,
       siteName: 'Blog de Codetech Junior',
       images: [{
         url: ogImage,
@@ -155,7 +156,7 @@ export async function generateMetadata({ params }) {
       creator: '@codetechjunior',
     },
     alternates: {
-      canonical: `${domain}/blog/${params.slug}`,
+      canonical: `${domain}/blog/${slug}`,
     },
   };
 }
@@ -442,7 +443,8 @@ async function getRelatedPosts(currentPostId, categories = []) {
 // La página del post
 export default async function BlogPostPage({ params }) {
   try {
-    const post = await getPost(params.slug);
+    const { slug } = await params;
+    const post = await getPost(slug);
     
     if (!post) {
       return (

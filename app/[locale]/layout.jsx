@@ -5,20 +5,36 @@ import PageTransition from '@/components/PageTransition';
 import StairTransition from '@/components/StairTransition';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CustomCursor from '@/components/CustomCursor';
-import Script from "next/script";
+import SchemaJsonLd from '@/components/SchemaJsonLd';
 import { Providers } from "./providers";
 import { Inter, Fraunces } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages } from 'next/intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', weight: ['400', '500', '600', '700'] });
-const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap', weight: ['400', '700'] });
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+  adjustFontFallback: true, // Parche Maestro anti-CLS: Elimina los saltos por FOUT
+});
 
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  display: 'swap',
+  weight: ['400', '700'],
+  adjustFontFallback: true, // Parche Maestro anti-CLS
+});
+
+// === METADATOS DINÁMICOS SEO Y GEO ===
 export async function generateMetadata({ params }) {
-const { locale } = await params;
+  // En Next.js 15 params es asíncrono
+  const { locale } = await params;
   const isEs = locale === 'es';
+  
   return {
     title: isEs
       ? 'Estudio de Desarrollo Web & IA | Aumentamos tus Ventas | CodeTechJr'
@@ -58,24 +74,31 @@ const { locale } = await params;
   };
 }
 
-
-
 export default async function LocaleLayout({ children, params }) {
+  // Desestructuración asíncrona de params requerida en Next 15+
   const { locale } = await params;
   
+  // Validar si el locale (idioma) en la URL es uno de los permitidos
   if (!routing.locales.includes(locale)) {
     notFound();
   }
 
-  // Load translations on the server
+  // Carga de las traducciones (Diccionarios) en el servidor
   const messages = await getMessages();
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${fraunces.variable}`}>
-       <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-       </head>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/*
+          JSON-LD Schema — Inyección de identidad semántica para Google
+          Renderiza directo desde el servidor (No afecta hidratación de React ni tiempos de carga)
+        */}
+        <SchemaJsonLd locale={locale} pageType="homepage" />
+      </head>
+
       <body className="font-primary antialiased leading-loose bg-white text-slate-900 dark:bg-primary dark:text-white scroll-smooth relative grain"> 
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
@@ -84,9 +107,11 @@ export default async function LocaleLayout({ children, params }) {
               {children}
               <StairTransition /> 
             </PageTransition>
+            
             <Footer />
             <CustomCursor />
             <WhatsAppButton />
+            
           </Providers>
         </NextIntlClientProvider>
       </body>
