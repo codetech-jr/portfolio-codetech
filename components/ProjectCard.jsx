@@ -117,7 +117,7 @@ const ProjectCard = ({ project }) => {
           {overflowCount > 0 && (
             <Badge
               variant="outline"
-              className="rounded-full border-white/10 bg-white/[0.04] text-white/40 text-[10px] font-medium px-2.5 py-0.5"
+              className="rounded-full border-white/10 bg-white/[0.04] text-white/70 text-[10px] font-medium px-2.5 py-0.5"
             >
               +{overflowCount}
             </Badge>
@@ -153,7 +153,8 @@ const ProjectCard = ({ project }) => {
         {project.caseStudy && (
           <Link
             href={project.caseStudy}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/40 hover:text-accent transition-colors duration-200 group/link"
+            aria-label={`Ver caso de éxito de ${project.title || 'este proyecto'}`}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/70 hover:text-accent transition-colors duration-200 group/link"
           >
             Ver caso de éxito
             <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform duration-200" />

@@ -11,7 +11,7 @@ const Photo = () => {
                         src="/assets/alejo-1.png"
                         alt="Foto de Alejo"
                         fill
-                        priority={false}
+                        priority={true}
                         quality={80}
                         sizes="(max-width: 768px) 298px, 498px"
                         className="object-cover rounded-full mix-blend-lighten"

@@ -64,11 +64,12 @@ export async function generateMetadata({ params }) {
         ? 'Estudio Digital & IA | CodeTechJr — Sistemas que convierten'
         : 'Digital & AI Studio | CodeTechJr — Systems that convert',
     },
+    metadataBase: new URL('https://www.codetechjr.com'),
     alternates: {
-      canonical: `https://codetechjr.com/${locale}`,
+      canonical: '/' + locale,
       languages: {
-        'en': 'https://codetechjr.com/en',
-        'es': 'https://codetechjr.com/es',
+        'en': '/en',
+        'es': '/es',
       },
     },
   };

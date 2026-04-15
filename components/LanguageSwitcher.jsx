@@ -28,8 +28,8 @@ export default function LanguageSwitcher() {
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />
         <div className="flex justify-between w-full px-2 z-10 pointer-events-none">
-          <span className={`text-[10px] font-bold ${locale === "es" ? "text-primary" : "text-white/40"}`}>ES</span>
-          <span className={`text-[10px] font-bold ${locale === "en" ? "text-primary" : "text-white/40"}`}>EN</span>
+          <span className={`text-[10px] font-bold ${locale === "es" ? "text-primary" : "text-white/70"}`}>ES</span>
+          <span className={`text-[10px] font-bold ${locale === "en" ? "text-primary" : "text-white/70"}`}>EN</span>
         </div>
       </button>
     </div>
