@@ -64,40 +64,32 @@ export default function Hero() {
           <div className="text-center xl:text-left order-2 xl:order-none flex-1 flex flex-col gap-5">
 
             {/* [A] Badge */}
-            <Motion
-              as="div"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 }}
-            >
+            <div>
               <Badge
                 variant="accent"
                 className="text-sm tracking-wide px-4 py-1.5 mx-auto xl:mx-0 font-primary"
               >
                 {t("badge")}
               </Badge>
-            </Motion>
+            </div>
 
             {/* [B] H1 – Headline */}
             <h1
-              className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
-              style={{ animationDelay: '150ms' }}
+              className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white"
             >
               {t("headline")}
             </h1>
 
             {/* [C] Sub-paragraph */}
             <p
-              className="max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 mx-auto xl:mx-0 font-primary animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
-              style={{ animationDelay: '250ms' }}
+              className="max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 mx-auto xl:mx-0 font-primary"
             >
               {t("description")}
             </p>
 
             {/* [D] CTA Group */}
             <div
-              className="flex flex-col sm:flex-row items-center gap-4 justify-center xl:justify-start animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
-              style={{ animationDelay: '350ms' }}
+              className="flex flex-col sm:flex-row items-center gap-4 justify-center xl:justify-start"
             >
               {/* Primary CTA */}
               <Button
@@ -121,8 +113,7 @@ export default function Hero() {
 
             {/* [E] Micro-Proof */}
             <div
-              className="flex flex-col gap-3 animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
-              style={{ animationDelay: '450ms' }}
+              className="flex flex-col gap-3"
             >
               {/* Metric badges row */}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 justify-center xl:justify-start text-xs font-medium text-slate-500 dark:text-slate-400">

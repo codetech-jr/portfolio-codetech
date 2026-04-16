@@ -8,16 +8,11 @@
 // completamente fuera del critical-path del servidor, reduciendo el TBT en mobile.
 
 import dynamic from "next/dynamic";
+import PageTransitionComponent from "@/components/PageTransition";
+import StairTransitionComponent from "@/components/StairTransition";
 
-export const PageTransition = dynamic(
-  () => import("@/components/PageTransition"),
-  { ssr: false }
-);
-
-export const StairTransition = dynamic(
-  () => import("@/components/StairTransition"),
-  { ssr: false }
-);
+export const PageTransition = PageTransitionComponent;
+export const StairTransition = StairTransitionComponent;
 
 export const CustomCursor = dynamic(
   () => import("@/components/CustomCursor"),
