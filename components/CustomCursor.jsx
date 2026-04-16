@@ -62,7 +62,7 @@ export default function CustomCursor() {
       });
     };
 
-    window.addEventListener("mousemove", mouseMove);
+    window.addEventListener("mousemove", mouseMove, { passive: true });
     
     // Re-attach hover listeners when pathname changes
     setTimeout(applyHoverLinks, 500);

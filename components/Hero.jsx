@@ -79,34 +79,25 @@ export default function Hero() {
             </Motion>
 
             {/* [B] H1 – Headline */}
-            <Motion
-              as="h1"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white"
+            <h1
+              className="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
+              style={{ animationDelay: '150ms' }}
             >
               {t("headline")}
-            </Motion>
+            </h1>
 
             {/* [C] Sub-paragraph */}
-            <Motion
-              as="p"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              className="max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 mx-auto xl:mx-0 font-primary"
+            <p
+              className="max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 mx-auto xl:mx-0 font-primary animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
+              style={{ animationDelay: '250ms' }}
             >
               {t("description")}
-            </Motion>
+            </p>
 
             {/* [D] CTA Group */}
-            <Motion
-              as="div"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-              className="flex flex-col sm:flex-row items-center gap-4 justify-center xl:justify-start"
+            <div
+              className="flex flex-col sm:flex-row items-center gap-4 justify-center xl:justify-start animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
+              style={{ animationDelay: '350ms' }}
             >
               {/* Primary CTA */}
               <Button
@@ -126,15 +117,12 @@ export default function Hero() {
               >
                 {t("ctaSecondary")}
               </Button>
-            </Motion>
+            </div>
 
             {/* [E] Micro-Proof */}
-            <Motion
-              as="div"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
-              className="flex flex-col gap-3"
+            <div
+              className="flex flex-col gap-3 animate-in slide-in-from-bottom-4 fade-in duration-500 fill-mode-both"
+              style={{ animationDelay: '450ms' }}
             >
               {/* Metric badges row */}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 justify-center xl:justify-start text-xs font-medium text-slate-500 dark:text-slate-400">
@@ -159,7 +147,7 @@ export default function Hero() {
                   {t("testimonial")}
                 </span>
               </p>
-            </Motion>
+            </div>
           </div>
 
           {/* ─── Right: Photo ─── */}

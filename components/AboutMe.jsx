@@ -1,8 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import Motion from "@/components/ui/Motion";
 import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -56,7 +57,8 @@ const staggerItem = {
 // ─── Bio Card (Large — col-span-7) ────────────────────────────────────────
 function BioCard({ t }) {
   return (
-    <motion.div
+    <Motion
+      as="div"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -127,14 +129,15 @@ function BioCard({ t }) {
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </Motion>
   );
 }
 
 // ─── Mission Card ─────────────────────────────────────────────────────────
 function MissionCard({ t }) {
   return (
-    <motion.div
+    <Motion
+      as="div"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -164,14 +167,15 @@ function MissionCard({ t }) {
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </Motion>
   );
 }
 
 // ─── Vision Card ──────────────────────────────────────────────────────────
 function VisionCard({ t }) {
   return (
-    <motion.div
+    <Motion
+      as="div"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -201,7 +205,7 @@ function VisionCard({ t }) {
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </Motion>
   );
 }
 
@@ -218,7 +222,8 @@ function ValueCard({ value, index }) {
   const theme = VALUE_THEMES[index % VALUE_THEMES.length];
 
   return (
-    <motion.div
+    <Motion
+      as="div"
       variants={staggerItem}
       className="col-span-6 sm:col-span-6 lg:col-span-3"
     >
@@ -237,7 +242,7 @@ function ValueCard({ value, index }) {
           <p className="text-white/60 text-sm leading-relaxed">{value.description}</p>
         </CardContent>
       </Card>
-    </motion.div>
+    </Motion>
   );
 }
 
@@ -252,7 +257,7 @@ function DifferentiatorCard({ item, index }) {
   const c = colors[index % colors.length];
 
   return (
-    <motion.div variants={staggerItem} className="flex items-start gap-4">
+    <Motion as="div" variants={staggerItem} className="flex items-start gap-4">
       <div
         className={`flex items-center justify-center h-10 w-10 rounded-lg ${c.bg} border ${c.border} shrink-0`}
       >
@@ -262,14 +267,15 @@ function DifferentiatorCard({ item, index }) {
         <span className="text-sm font-semibold text-white">{item.title}</span>
         <span className="text-xs text-white/55 leading-relaxed">{item.description}</span>
       </div>
-    </motion.div>
+    </Motion>
   );
 }
 
 // ─── CTA Banner ───────────────────────────────────────────────────────────
 function CTABanner({ t }) {
   return (
-    <motion.div
+    <Motion
+      as="div"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -316,7 +322,7 @@ function CTABanner({ t }) {
           </Link>
         </CardContent>
       </Card>
-    </motion.div>
+    </Motion>
   );
 }
 
@@ -336,7 +342,8 @@ export default function AboutMe() {
 
       <div className="container mx-auto px-4">
         {/* Section label */}
-        <motion.div
+        <Motion
+          as="div"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -347,9 +354,10 @@ export default function AboutMe() {
           <span className="text-[#00C6FF] text-sm font-medium tracking-widest uppercase">
             {t("sectionLabel")}
           </span>
-        </motion.div>
+        </Motion>
 
-        <motion.div
+        <Motion
+          as="div"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -361,7 +369,7 @@ export default function AboutMe() {
             {t("headline")}{" "}
             <span className="text-[#00C6FF]">{t("headlineHighlight")}</span>
           </h1>
-        </motion.div>
+        </Motion>
 
         {/* ── Bento Grid ──────────────────────────────── */}
         <div className="grid grid-cols-12 gap-4 sm:gap-5">
@@ -371,7 +379,8 @@ export default function AboutMe() {
           <VisionCard t={t} />
 
           {/* Row 2 — Values strip (staggered) */}
-          <motion.div
+          <Motion
+            as="div"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -382,11 +391,12 @@ export default function AboutMe() {
               values.map((value, i) => (
                 <ValueCard key={value.title} value={value} index={i} />
               ))}
-          </motion.div>
+          </Motion>
         </div>
 
         {/* Values section label */}
-        <motion.p
+        <Motion
+          as="p"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -395,12 +405,13 @@ export default function AboutMe() {
           className="text-white/40 text-xs text-center mt-6 tracking-widest uppercase"
         >
           {t("valuesTitle")}
-        </motion.p>
+        </Motion>
 
         {/* ── Differentiators + CTA ─────────────────── */}
         <div className="grid grid-cols-12 gap-4 sm:gap-5 mt-12">
           {/* Why me — compact differentiator bar */}
-          <motion.div
+          <Motion
+            as="div"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -409,12 +420,13 @@ export default function AboutMe() {
           >
             <Card className="border border-white/10 bg-white/5 dark:bg-white/[0.04] backdrop-blur-md shadow-lg">
               <CardContent className="p-6 sm:p-8">
-                <motion.h3
+                <Motion
+                  as="h3"
                   variants={staggerItem}
                   className="font-display text-lg font-semibold text-white tracking-tight mb-6"
                 >
                   {t("differentiatorTitle")}
-                </motion.h3>
+                </Motion>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                   {Array.isArray(differentiators) &&
                     differentiators.map((item, i) => (
@@ -423,7 +435,7 @@ export default function AboutMe() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </Motion>
 
           {/* CTA Banner */}
           <CTABanner t={t} />

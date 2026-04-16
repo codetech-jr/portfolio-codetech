@@ -1,10 +1,6 @@
 import "../globals.css";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import PageTransition from '@/components/PageTransition';
-import StairTransition from '@/components/StairTransition';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import CustomCursor from '@/components/CustomCursor';
 import SchemaJsonLd from '@/components/SchemaJsonLd';
 import { Providers } from "./providers";
 import { Inter, Fraunces } from 'next/font/google';
@@ -12,6 +8,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import {
+  PageTransition,
+  StairTransition,
+  CustomCursor,
+  WhatsAppButton,
+} from '@/components/ui/ClientLayoutComponents';
+
 
 const inter = Inter({
   subsets: ['latin'],

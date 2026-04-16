@@ -1,57 +1,77 @@
+import { Suspense } from "react";
 import Hero from "@/components/Hero";
 import StatsAnimated from "@/components/StatsAnimated";
 import dynamic from "next/dynamic";
 import MotionSection from "@/components/MotionSection";
-
-// Dynamic Sections for performance
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
-const Services = dynamic(() => import("@/components/sections/Services"), { ssr: true });
-const Testimonials = dynamic(() => import("@/components/sections/Testimonials").then(mod => mod.Testimonials), { ssr: true });
-const FAQs = dynamic(() => import("@/components/sections/FAQs").then(mod => mod.FAQs), { ssr: true });
-const Contact = dynamic(() => import("@/components/sections/Contact").then(mod => mod.Contact), { ssr: true });
-const MethodologyTimeline = dynamic(() => import("@/components/MethodologyTimeline"), { ssr: true });
-const Skills = dynamic(() => import("@/components/Skills"), { ssr: true });
+import {
+  Services,
+  Testimonials,
+  FAQs,
+  Contact,
+  MethodologyTimeline,
+  Skills,
+} from "@/components/ui/ClientSections";
+
+// Minimal skeleton — prevents CLS while section JS loads, matches section heights
+function SectionSkeleton() {
+  return (
+    <div
+      className="w-full py-24 flex items-center justify-center"
+      aria-hidden="true"
+    >
+      <div className="w-12 h-12 rounded-full border-2 border-accent/30 border-t-accent animate-spin" />
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <main className="flex flex-col pb-24 relative overflow-hidden">
-      
-      {/* 1. Hero & Base Stats */}
+
+      {/* 1. Hero & Base Stats — synchronous, above the fold */}
       <Hero />
       <MotionSection>
         <StatsAnimated />
       </MotionSection>
 
-      {/* 2. Featured Projects (Original Slider/Grid) */}
+      {/* 2. Featured Projects — synchronous, first visible section */}
       <section id="proyectos">
         <FeaturedProjects />
       </section>
 
-      {/* 3. Pricing & Services (Original) */}
-      <MotionSection id="servicios">
-        <Services />
-      </MotionSection>
+      {/* 3–8. Below-the-fold — each wrapped in Suspense for streaming */}
+      <Suspense fallback={<SectionSkeleton />}>
+        <MotionSection id="servicios">
+          <Services />
+        </MotionSection>
+      </Suspense>
 
-      {/* 5. Methodology */}
-      <MotionSection id="metodologia">
-        <MethodologyTimeline />
-      </MotionSection>
+      <Suspense fallback={<SectionSkeleton />}>
+        <MotionSection id="metodologia">
+          <MethodologyTimeline />
+        </MotionSection>
+      </Suspense>
 
-      {/* 6. Testimonials */}
-      <MotionSection id="testimonios">
-        <Testimonials />
-      </MotionSection>
+      <Suspense fallback={<SectionSkeleton />}>
+        <MotionSection id="testimonios">
+          <Testimonials />
+        </MotionSection>
+      </Suspense>
 
-      {/* 7. FAQs */}
-      <MotionSection id="faqs">
-        <FAQs />
-      </MotionSection>
+      <Suspense fallback={<SectionSkeleton />}>
+        <MotionSection id="faqs">
+          <FAQs />
+        </MotionSection>
+      </Suspense>
 
-      {/* 8. Contact */}
-      <MotionSection id="contacto">
-        <Contact />
-      </MotionSection>
+      <Suspense fallback={<SectionSkeleton />}>
+        <MotionSection id="contacto">
+          <Contact />
+        </MotionSection>
+      </Suspense>
 
     </main>
   );
 }
+
