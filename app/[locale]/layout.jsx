@@ -15,7 +15,6 @@ import {
   WhatsAppButton,
 } from '@/components/ui/ClientLayoutComponents';
 
-
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -28,7 +27,7 @@ const fraunces = Fraunces({
   subsets: ['latin'],
   variable: '--font-fraunces',
   display: 'swap',
-  weight: ['400', '700'],
+  weight:['400', '700'],
   adjustFontFallback: true, // Parche Maestro anti-CLS
 });
 
@@ -38,6 +37,9 @@ export async function generateMetadata({ params }) {
   const { locale } = await params;
   const isEs = locale === 'es';
   
+  // Unificamos el dominio principal para evitar el error de canónicas en Search Console
+  const siteUrl = 'https://www.codetechjr.com'; 
+
   return {
     title: isEs
       ? 'Estudio de Desarrollo Web & IA | Aumentamos tus Ventas | CodeTechJr'
@@ -46,9 +48,9 @@ export async function generateMetadata({ params }) {
       ? 'No hacemos "páginas bonitas". Construimos sistemas comerciales: Webs veloces, apps y chatbots IA orientados a conversiones para negocios en LATAM y EEUU. Trato 1 a 1.'
       : 'We don\'t make "pretty pages". We build commercial systems: Fast websites, apps, and AI chatbots focused on conversions for businesses in LATAM and the US. 1-on-1 service.',
     keywords: isEs
-      ? ['desarrollo web premium', 'páginas web de conversión', 'chatbots IA para empresas', 'agencia desarrollo nextjs', 'CRO', 'portafolio', 'automatización']
-      : ['premium web development', 'conversion websites', 'AI chatbots for business', 'nextjs development agency', 'CRO', 'portfolio', 'automation'],
-    authors: [{ name: 'Alejandro Daniel', url: 'https://codetechjr.com' }],
+      ?['desarrollo web premium', 'páginas web de conversión', 'chatbots IA para empresas', 'agencia desarrollo nextjs', 'CRO', 'portafolio', 'automatización']
+      :['premium web development', 'conversion websites', 'AI chatbots for business', 'nextjs development agency', 'CRO', 'portfolio', 'automation'],
+    authors:[{ name: 'Alejandro Daniel', url: siteUrl }],
     openGraph: {
       title: isEs
         ? 'Estudio Digital & IA | CodeTechJr — Sistemas que convierten'
@@ -56,7 +58,7 @@ export async function generateMetadata({ params }) {
       description: isEs
         ? 'Webs, apps y chatbots IA de alto rendimiento para negocios que quieren crecer.'
         : 'High-performance websites, apps and AI chatbots for businesses that want to grow.',
-      url: 'https://codetechjr.com',
+      url: siteUrl, // Usamos la variable siteUrl para asegurar unificación
       siteName: 'CodeTechJr',
       locale: locale === 'es' ? 'es_VE' : 'en_US',
       type: 'website',
@@ -67,9 +69,9 @@ export async function generateMetadata({ params }) {
         ? 'Estudio Digital & IA | CodeTechJr — Sistemas que convierten'
         : 'Digital & AI Studio | CodeTechJr — Systems that convert',
     },
-    metadataBase: new URL('https://www.codetechjr.com'),
+    metadataBase: new URL(siteUrl), // Usamos la misma variable exacta
     alternates: {
-      canonical: '/' + locale,
+      canonical: `/${locale}`,
       languages: {
         'en': '/en',
         'es': '/es',
