@@ -200,7 +200,7 @@ export const projectsData = [
       "Chatbot que agenda via Telegram + Cal.com, responde 24/7 y sincroniza leads en Google Sheets usando Make automations.",
     category: "Chatbot IA",
     techStack: ["Botpress", "Make", "Cal.com", "Telegram API", "Google Sheets"],
-    image: "/assets/alejo-1.png", // Temporales por falta de capturas
+    image: "", // Temporales por falta de capturas
     live: "#",
     github: "#",
     featured: true,
@@ -213,7 +213,7 @@ export const projectsData = [
       "App móvil con Expo y NativeWind: UI minimalista, animaciones nativas fluidas y autenticación integrada.",
     category: "App Móvil",
     techStack: ["React Native", "Expo", "NativeWind", "Firebase"],
-    image: "/assets/alejo-1.png", // Temporales por falta de capturas
+    image: "", // Temporales por falta de capturas
     live: "#",
     github: "#",
     featured: false,

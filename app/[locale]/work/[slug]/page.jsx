@@ -89,17 +89,19 @@ export default async function ProjectDetail({ params }) {
             </div>
 
             {/* Main Image */}
-            <div className="flex-1 w-full max-w-xl">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
-                <Image
-                  src={project.image}
-                  fill
-                  alt={t("title")}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+            {project.image && (
+              <div className="flex-1 w-full max-w-xl">
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                  <Image
+                    src={project.image}
+                    fill
+                    alt={t("title")}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </MotionSection>
 

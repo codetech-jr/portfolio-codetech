@@ -147,15 +147,17 @@ export default function ProjectList({ projects = featuredProjects, hideHeader = 
 
                 {/* ── Mobile Card (visible on mobile only) ── */}
                 <div className="flex md:hidden flex-col gap-5 py-10 px-2">
-                  <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      sizes="100vw"
-                    />
-                  </div>
+                  {project.image && (
+                    <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-white/10">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                      />
+                    </div>
+                  )}
                   <div>
                     <h3 className="text-4xl font-bold text-white tracking-[-0.03em] uppercase leading-tight">
                       {project.title}
@@ -224,12 +226,12 @@ export default function ProjectList({ projects = featuredProjects, hideHeader = 
           height: IMG_H,
         }}
         animate={{
-          opacity: hoveredIdx >= 0 ? 1 : 0,
-          scale: hoveredIdx >= 0 ? 1 : 0.88,
+          opacity: (hoveredIdx >= 0 && projects[hoveredIdx]?.image) ? 1 : 0,
+          scale: (hoveredIdx >= 0 && projects[hoveredIdx]?.image) ? 1 : 0.88,
         }}
         transition={{ opacity: { duration: 0.2 }, scale: { duration: 0.2 } }}
       >
-        {hoveredIdx >= 0 && projects[hoveredIdx] && (
+        {hoveredIdx >= 0 && projects[hoveredIdx] && projects[hoveredIdx].image && (
           <Image
             src={projects[hoveredIdx].image}
             alt={projects[hoveredIdx].title}

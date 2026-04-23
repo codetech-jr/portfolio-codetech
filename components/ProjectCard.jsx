@@ -81,16 +81,18 @@ const ProjectCard = ({ project }) => {
       </div>
 
       {/* Naked screenshot image */}
-      <figure className="relative w-full flex-1 min-h-[210px] overflow-hidden">
-        <Image
-          src={project.image}
-          fill
-          alt={`Captura del proyecto ${project.title}`}
-          className="object-cover object-top transform transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0C0C2C]/80 to-transparent pointer-events-none" />
-      </figure>
+      {project.image && (
+        <figure className="relative w-full flex-1 min-h-[210px] overflow-hidden">
+          <Image
+            src={project.image}
+            fill
+            alt={`Captura del proyecto ${project.title}`}
+            className="object-cover object-top transform transition-transform duration-700 ease-out group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0C0C2C]/80 to-transparent pointer-events-none" />
+        </figure>
+      )}
 
       {/* Card header */}
       <CardHeader className="px-5 pt-5 pb-0 gap-1">
