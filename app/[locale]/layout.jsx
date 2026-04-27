@@ -90,7 +90,7 @@ export default async function LocaleLayout({ children, params }) {
   }
 
   // Carga de las traducciones (Diccionarios) en el servidor
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${fraunces.variable}`}>

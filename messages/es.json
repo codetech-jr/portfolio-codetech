@@ -82,17 +82,17 @@
     "rights": "Todos los derechos reservados."
   },
   "projects": {
-    "title": "Casos de éxito de mis proyectos más relevantes",
-    "subtitle": "Aquí tienes una selección de mis trabajos. Cada proyecto es una historia de cómo transformo desafíos en soluciones digitales efectivas y atractivas.",
-    "ctaTitle": "¿Quieres ver más?",
-    "ctaSubtitle": "Estos son solo algunos de los proyectos que he liderado. Explora mi portafolio completo para conocer la diversidad de mi trabajo.",
+    "title": "Proyectos que generan resultados",
+    "subtitle": "Cada línea de código tiene un propósito: vender más, ahorrar tiempo o posicionar tu marca como líder en su sector.",
+    "ctaTitle": "¿Quieres resultados similares?",
+    "ctaSubtitle": "He ayudado a decenas de negocios a digitalizarse y escalar. Tu proyecto puede ser el próximo caso de éxito.",
     "ctaButton": "Ver Mi Portafolio Completo",
     "viewCase": "Ver Caso de Éxito",
     "viewProject": "Ver Proyecto →",
     "items": [
       {
         "title": "Catálogo Digital para Repuestos Temuco",
-        "description": "Creé un catálogo digital para modernizar la consulta de inventario. El resultado es una vitrina online rápida y fácil de usar, con un potente buscador y navegación por categorías que ha mejorado la presencia digital.",
+        "description": "Ventas aumentadas gracias a un sistema de consulta de inventario en tiempo real. Redujimos el tiempo de atención al cliente en un 40% mediante automatización de búsquedas.",
         "technologies": [
           "React",
           "Node.js",
@@ -104,7 +104,7 @@
       },
       {
         "title": "Web Profesional para Pedro Salazar",
-        "description": "Diseñé una identidad visual y una experiencia de usuario (UX) que transmiten confianza y profesionalismo. La web está estructurada para guiar a los usuarios hacia los servicios y contacto, optimizando la conversión de clientes.",
+        "description": "Generación de leads constante mediante una arquitectura persuasiva. El sitio proyecta la autoridad necesaria para cerrar contratos corporativos de alto valor.",
         "technologies": [
           "Next.js",
           "TailwindCSS",
@@ -113,8 +113,8 @@
         ]
       },
       {
-        "title": "Landing Page para la abogada Deylena Barboza",
-        "description": "Diseñé una landing page moderna y profesional para destacar los servicios legales ofrecidos. La página está optimizada para conversiones, con un diseño claro y llamado a la acción enfocado en captar clientes potenciales.",
+        "title": "Landing Page para Deylena Barboza",
+        "description": "Conversión optimizada para servicios legales migratorios. Un diseño enfocado en la confianza que convirtió una web informativa en una máquina de captar clientes potenciales.",
         "technologies": [
           "Next.js",
           "TailwindCSS",
@@ -124,7 +124,7 @@
       },
       {
         "title": "Portafolio para Modelo Profesional",
-        "description": "Desarrollé un portafolio con una experiencia de usuario inmersiva y un diseño limpio que realza la fotografía. El foco principal fue crear una galería de alta resolución que refleja la sofisticación y profesionalismo.",
+        "description": "Posicionamiento de marca internacional con una carga ultra-rápida. La experiencia inmersiva logró captar la atención de agencias en mercados competitivos de Europa.",
         "technologies": [
           "Next.js",
           "TailwindCSS",

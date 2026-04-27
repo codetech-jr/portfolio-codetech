@@ -22,7 +22,6 @@ const nextConfig = {
     // We mark all problematic sanity internals as false (empty module).
     const sanityExternals = [
       '@sanity/types',
-      'react-is',
       '@sanity/insert-menu',
       '@sanity/ui',
       '@sanity/vision',

@@ -5,7 +5,9 @@ import { client } from '@/sanity/lib/client';
 // Función para resaltar el término buscado en el extracto
 function highlightSearchTerm(text, query) {
   if (!text || !query) return text;
-  const regex = new RegExp(`(${query})`, 'gi');
+  // Escapar caracteres especiales de regex para prevenir ReDoS
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(`(${escapedQuery})`, 'gi');
   return text.replace(regex, '<mark class="bg-[#00C6FF] text-[#0C0C2C] px-1 rounded">$1</mark>');
 }
 

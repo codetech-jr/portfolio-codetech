@@ -1,66 +1,107 @@
 "use client"
 
 import React from 'react';
-// Inline WhatsApp icon to avoid react-icons bundle
 import Motion from '../ui/Motion';
-import { useTranslations } from 'next-intl';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "../ui/dialog";
+import { Button } from "../ui/button";
+import ContactForm from "../ContactForm";
+import { MessageCircle, Mail } from 'lucide-react';
 
 const WHATSAPP_NUMBER = "584129725334";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 
 export function Contact() {
-  const t = useTranslations("contact");
-
   return (
     <section className="py-24 relative z-10" id="contacto">
       <div className="container max-w-5xl mx-auto px-4">
         <Motion as="div"
-          className="bg-gradient-to-br from-[#1B1F3B]/80 to-primary/80 border border-white/10 backdrop-blur-xl rounded-[2rem] p-10 md:p-16 text-center relative overflow-hidden group shadow-2xl"
+          className="bg-gradient-to-br from-[#1B1F3B] to-primary border border-white/10 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden group shadow-2xl"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50"></div>
+          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-accent/10 rounded-full blur-3xl group-hover:bg-accent/20 transition-colors duration-700"></div>
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-primary/30 rounded-full blur-3xl"></div>
           
           <Motion as="h2"
-            className="text-4xl md:text-5xl font-bold font-display text-white mb-6"
+            className="text-4xl md:text-6xl font-bold font-primary text-white mb-6 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            {t("title")}
+            ¿Listo para dejar de <br />
+            <span className="text-accent">perder clientes?</span>
           </Motion>
 
           <Motion as="p"
-            className="text-lg text-white/70 max-w-2xl mx-auto mb-10 font-primary leading-relaxed"
+            className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-primary leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            {t("subtitle")}
+            Tu competencia ya está usando tecnología para vender más. No te quedes atrás. Agenda una sesión estratégica gratuita hoy mismo.
           </Motion>
 
-          <Motion as="a"
-            href={WHATSAPP_URL}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-bold text-[#0C0C2C] bg-accent rounded-full transition-all shadow-[0_0_20px_rgba(0,198,255,0.4)]"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            whileHover={{ 
-              scale: 1.05, 
-              boxShadow: "0 8px 30px rgba(0, 198, 255, 0.6)" 
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <svg className="w-6 h-6 text-2xl" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-              <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.373 0 0 5.373 0 12c0 2.116.553 4.184 1.6 6.024L0 24l6.2-1.6A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.24-6.16-3.48-8.52z" fill="currentColor" opacity="0.15" />
-              <path d="M17.6 14.8c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.17.2-.33.22-.62.07-.3-.15-1.27-.47-2.41-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.33.45-.5.15-.17.2-.28.3-.47.1-.2.05-.37-.03-.52-.08-.15-.68-1.64-.93-2.25-.24-.59-.48-.51-.66-.52l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.3 5.08 4.62 2.98 1.32 2.98.88 3.52.82.54-.07 1.78-.72 2.03-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z" fill="currentColor" />
-            </svg>
-            <span>{t("cta")}</span>
-          </Motion>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
+            <Motion as="a"
+              href={WHATSAPP_URL}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 text-lg font-bold text-[#0C0C2C] bg-accent rounded-2xl transition-all shadow-[0_0_20px_rgba(0,198,255,0.4)] group"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: "0 10px 40px rgba(0, 198, 255, 0.6)" 
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <MessageCircle className="w-6 h-6 fill-current" />
+              <span>Hablar por WhatsApp</span>
+            </Motion>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Motion 
+                  as="div" 
+                  className="w-full sm:w-auto"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button 
+                    variant="outline" 
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 text-lg font-bold text-white border-white/20 hover:bg-white/10 rounded-2xl transition-all h-auto"
+                  >
+                    <Mail className="w-6 h-6" />
+                    <span>Enviar Formulario</span>
+                  </Button>
+                </Motion>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-lg bg-[#0c0c1d] border-white/10 text-white">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold">Cuéntame tu proyecto</DialogTitle>
+                  <DialogDescription className="text-white/60">
+                    Completa el formulario y me pondré en contacto contigo en menos de 24 horas.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="mt-4">
+                  <ContactForm />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
+
+          <div className="mt-12 flex items-center justify-center gap-8 text-white/40 text-sm font-medium">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
+              Disponibilidad inmediata
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
+              Respuesta en 24h
+            </div>
+          </div>
         </Motion>
       </div>
     </section>

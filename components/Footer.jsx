@@ -9,12 +9,12 @@ import IconEnvelope from "./icons/IconEnvelope";
 
 // Paleta de colores (sin cambios)
 const COLORS = {
-  bg: "#0C0C2C",
+  bg: "#1B1F3B",
   accent: "#00C6FF",
   accentDark: "#003B8D",
   white: "#FFFFFF",
   muted: "#A3A8CC",
-  card: "#1B1F3B",
+  card: "#0C0C2C",
 };
 
 const socialLinks = [
@@ -64,12 +64,12 @@ const socialIconContainerVariants = {
 export default function Footer() {
   return (
     <Motion as="footer"
-      className="w-full border-t bg-white dark:bg-[#0C0C2C] border-slate-200 dark:border-[#1B1F3B]"
+      className="w-full border-t bg-white dark:bg-primary border-slate-200 dark:border-white/5"
       // 3. Animar el footer cuando entre en la vista
       variants={footerContainerVariants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       <div className="flex flex-col items-center justify-between max-w-5xl gap-4 px-4 py-8 mx-auto md:flex-row">
         {/* Animar el bloque de texto */}

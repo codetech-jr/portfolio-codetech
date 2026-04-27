@@ -1,10 +1,9 @@
 import { Suspense } from "react";
-import Hero from "@/components/Hero";
-import StatsAnimated from "@/components/StatsAnimated";
-import dynamic from "next/dynamic";
 import MotionSection from "@/components/MotionSection";
-import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import {
+  Hero,
+  ProblemSection,
+  FeaturedProjects,
   Services,
   Testimonials,
   FAQs,
@@ -25,14 +24,18 @@ function SectionSkeleton() {
   );
 }
 
-export default function Home() {
+import { setRequestLocale } from "next-intl/server";
+
+export default async function Home({ params }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <main className="flex flex-col pb-24 relative overflow-hidden">
 
-      {/* 1. Hero & Base Stats — synchronous, above the fold */}
+      {/* 1. Hero & Problem Section — synchronous, above the fold */}
       <Hero />
       <MotionSection>
-        <StatsAnimated />
+        <ProblemSection />
       </MotionSection>
 
       {/* 2. Featured Projects — synchronous, first visible section */}

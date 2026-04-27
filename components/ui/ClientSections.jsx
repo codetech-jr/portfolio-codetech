@@ -13,13 +13,28 @@ import dynamic from "next/dynamic";
 function SectionSkeleton() {
   return (
     <div
-      className="w-full py-24 flex items-center justify-center"
+      className="w-full py-24 flex items-center justify-center bg-white dark:bg-primary"
       aria-hidden="true"
     >
       <div className="w-12 h-12 rounded-full border-2 border-accent/30 border-t-accent animate-spin" />
     </div>
   );
 }
+
+export const Hero = dynamic(
+  () => import("@/components/Hero"),
+  { ssr: false }
+);
+
+export const ProblemSection = dynamic(
+  () => import("@/components/sections/ProblemSection"),
+  { ssr: false }
+);
+
+export const FeaturedProjects = dynamic(
+  () => import("@/components/sections/FeaturedProjects"),
+  { ssr: false }
+);
 
 export const Services = dynamic(
   () => import("@/components/sections/Services"),
